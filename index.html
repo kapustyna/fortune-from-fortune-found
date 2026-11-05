@@ -16,9 +16,7 @@
   --soft-cream: #EDE2D2;
 }
 
-* {
-  box-sizing: border-box;
-}
+* { box-sizing: border-box; }
 
 body {
   margin: 0;
@@ -47,9 +45,7 @@ h2 {
   margin-bottom: 15px;
 }
 
-p {
-  line-height: 1.7;
-}
+p { line-height: 1.7; }
 
 button {
   font-family: inherit;
@@ -59,9 +55,7 @@ button {
   transition: opacity 0.2s;
 }
 
-button:hover {
-  opacity: 0.85;
-}
+button:hover { opacity: 0.85; }
 
 button:focus-visible,
 input:focus-visible,
@@ -74,14 +68,12 @@ select:focus-visible {
 .page {
   display: none;
   width: 100%;
-  max-width: 850px;
+  max-width: 900px;
   margin: auto;
   padding: 35px 20px 60px;
 }
 
-.page.active {
-  display: block;
-}
+.page.active { display: block; }
 
 /* HOMEPAGE */
 
@@ -94,9 +86,7 @@ select:focus-visible {
   padding: 35px 20px;
 }
 
-#home.active {
-  display: flex;
-}
+#home.active { display: flex; }
 
 #home h1 {
   max-width: 650px;
@@ -159,7 +149,7 @@ select:focus-visible {
   letter-spacing: 1px;
 }
 
-/* INNER PAGE NAVIGATION */
+/* NAVIGATION */
 
 .top-nav {
   display: flex;
@@ -183,7 +173,7 @@ select:focus-visible {
   border-radius: 22px;
   padding: 25px;
   margin: 22px auto;
-  max-width: 620px;
+  max-width: 760px;
 }
 
 .intro {
@@ -209,35 +199,370 @@ select:focus-visible {
   margin: 12px auto;
 }
 
-/* ENVELOPES */
+/* LETTER CREATOR */
 
-.envelopes {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 15px;
-  margin: 35px auto;
+.creator-section {
+  margin: 35px 0;
 }
 
-.envelope {
-  width: 155px;
-  height: 112px;
-  background: var(--tan);
-  color: var(--brown);
-  border-radius: 17px;
+.creator-heading {
   font-family: Georgia, serif;
+  font-size: 22px;
+  font-weight: normal;
+  margin-bottom: 7px;
+}
+
+.creator-description {
+  color: var(--light-brown);
+  font-size: 13px;
+  margin-top: 0;
+  margin-bottom: 18px;
+}
+
+/* TABS */
+
+.tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 15px 0 20px;
+}
+
+.tab-button {
+  background: var(--soft-cream);
+  color: var(--brown);
+  padding: 11px 15px;
+  border-radius: 18px;
+  font-size: 13px;
+}
+
+.tab-button.active {
+  background: var(--dark-tan);
+  color: white;
+}
+
+/* OPTION GRID */
+
+.option-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 13px;
+}
+
+.option-card {
+  background: #F8F3EB;
+  border: 2px solid transparent;
+  border-radius: 13px;
+  padding: 9px;
+  color: var(--brown);
+  text-align: center;
+  min-width: 0;
+}
+
+.option-card.selected {
+  border-color: var(--dark-tan);
+  background: #F0E5D6;
+}
+
+.option-name {
+  display: block;
+  font-size: 12px;
+  margin-top: 8px;
+  line-height: 1.3;
+}
+
+/* ENVELOPE PREVIEWS */
+
+.envelope-preview {
+  width: 100%;
+  aspect-ratio: 1.45;
+  border-radius: 5px;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(80,60,40,0.18);
+}
+
+.envelope-preview::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(145deg, transparent 49.5%, rgba(80,60,40,.18) 50%, transparent 50.8%),
+    linear-gradient(215deg, transparent 49.5%, rgba(80,60,40,.18) 50%, transparent 50.8%);
+}
+
+.envelope-preview::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 0;
+  width: 70%;
+  height: 70%;
+  transform: translateX(-50%) rotate(45deg);
+  border-left: 1px solid rgba(80,60,40,.15);
+  border-top: 1px solid rgba(80,60,40,.15);
+  pointer-events: none;
+}
+
+.envelope-preview .mini-seal {
+  z-index: 2;
+  position: relative;
   font-size: 17px;
 }
 
-.envelope:nth-child(2) {
-  background: #C9B49D;
+/* SPECIAL ENVELOPE DESIGNS */
+
+.design-aged {
+  background:
+    radial-gradient(ellipse at 20% 25%, #9B7950 0 2%, transparent 18%),
+    radial-gradient(ellipse at 85% 75%, #A27A4F 0 3%, transparent 20%),
+    linear-gradient(130deg, #E8D3A9, #C6A477, #EAD9B6);
 }
 
-.envelope:nth-child(3) {
-  background: #BFA58A;
+.design-flowers {
+  background:
+    radial-gradient(circle at 20% 25%, #D58C9A 0 4%, transparent 5%),
+    radial-gradient(circle at 26% 30%, #E9C7A7 0 3%, transparent 4%),
+    radial-gradient(circle at 75% 70%, #D58C9A 0 5%, transparent 6%),
+    linear-gradient(135deg, #F1E7D5, #D8E3CF);
 }
 
-/* FORMS */
+.design-child {
+  background:
+    radial-gradient(circle at 25% 30%, #E5A2A2 0 5%, transparent 6%),
+    radial-gradient(circle at 70% 65%, #E7C46E 0 6%, transparent 7%),
+    linear-gradient(135deg, #FFF1D9, #F4DCCB);
+}
+
+.design-moon {
+  background:
+    radial-gradient(circle at 25% 25%, #F6E8B0 0 3%, transparent 4%),
+    radial-gradient(circle at 75% 65%, #F6E8B0 0 2%, transparent 3%),
+    linear-gradient(135deg, #18243E, #44456A, #202C4A);
+}
+
+.design-sky {
+  background:
+    radial-gradient(ellipse at 25% 35%, white 0 12%, transparent 13%),
+    radial-gradient(ellipse at 75% 65%, #FFFFFF 0 15%, transparent 16%),
+    linear-gradient(135deg, #9DC5DF, #D6E9EF);
+}
+
+.design-postcard {
+  background:
+    repeating-linear-gradient(45deg, transparent 0 12px, rgba(160,100,70,.12) 13px 15px),
+    linear-gradient(135deg, #EAD9BB, #F4EBD8);
+}
+
+/* PAPER PREVIEWS */
+
+.paper-preview {
+  width: 100%;
+  aspect-ratio: 1.25;
+  border: 1px solid rgba(80,60,40,.2);
+  border-radius: 4px;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 1px 3px rgba(60,40,20,.08);
+}
+
+.paper-white { background: #FFFFFF; }
+.paper-cream { background: #F3EBDD; }
+.paper-pink { background: #F0D9D4; }
+.paper-blue { background: #DCE7E9; }
+.paper-sage { background: #DCE4D7; }
+.paper-black { background: #252525; }
+
+.paper-aged {
+  background:
+    radial-gradient(ellipse at 5% 10%, rgba(110,70,30,.35), transparent 25%),
+    radial-gradient(ellipse at 95% 90%, rgba(120,70,25,.3), transparent 24%),
+    radial-gradient(ellipse at 80% 15%, rgba(140,90,40,.2), transparent 20%),
+    linear-gradient(135deg, #D5B77D, #F0D9A9, #D7BB87);
+}
+
+.paper-flowers {
+  background:
+    radial-gradient(circle at 20% 30%, #D88D9B 0 3%, transparent 4%),
+    radial-gradient(circle at 25% 34%, #E6B8A0 0 2%, transparent 3%),
+    radial-gradient(circle at 70% 65%, #C98CA1 0 4%, transparent 5%),
+    linear-gradient(135deg, #F4EADB, #E5E8D8);
+}
+
+.paper-child {
+  background:
+    radial-gradient(circle at 20% 25%, #E99A9A 0 5%, transparent 6%),
+    radial-gradient(circle at 75% 65%, #E8C36E 0 5%, transparent 6%),
+    radial-gradient(circle at 45% 75%, #A6C7A1 0 4%, transparent 5%),
+    #FFF3E5;
+}
+
+.paper-clouds {
+  background:
+    radial-gradient(ellipse at 25% 30%, white 0 12%, transparent 13%),
+    radial-gradient(ellipse at 70% 60%, white 0 17%, transparent 18%),
+    linear-gradient(#A9CDE2, #E3F0F2);
+}
+
+.paper-galaxy {
+  background:
+    radial-gradient(circle at 25% 25%, #F3E4B4 0 2%, transparent 3%),
+    radial-gradient(circle at 70% 65%, #F3E4B4 0 2%, transparent 3%),
+    radial-gradient(ellipse at 50% 50%, #65537E, transparent 60%),
+    linear-gradient(135deg, #171B39, #34375E);
+}
+
+.paper-recycled {
+  background:
+    radial-gradient(circle at 20% 30%, #B5A78E 0 1px, transparent 2px),
+    radial-gradient(circle at 70% 60%, #A99C83 0 1px, transparent 2px),
+    radial-gradient(circle at 45% 80%, #C1B39A 0 1px, transparent 2px),
+    #E8DFCC;
+}
+
+.paper-hearts {
+  background:
+    radial-gradient(circle at 25% 30%, #E6A8A8 0 4%, transparent 5%),
+    radial-gradient(circle at 75% 70%, #E6A8A8 0 4%, transparent 5%),
+    #F8E8E5;
+}
+
+.paper-meadow {
+  background:
+    radial-gradient(circle at 20% 20%, #D98C9B 0 3%, transparent 4%),
+    radial-gradient(circle at 70% 60%, #E7C47D 0 3%, transparent 4%),
+    linear-gradient(135deg, #DCE5D4, #F1EAD8);
+}
+
+.paper-dots {
+  background:
+    radial-gradient(circle, #C9A8A0 1.5px, transparent 2px),
+    #F5EDE2;
+  background-size: 18px 18px;
+}
+
+.paper-stars {
+  background:
+    radial-gradient(circle, #D7C28B 1.5px, transparent 2px),
+    #29324F;
+  background-size: 23px 23px;
+}
+
+.paper-postage {
+  background:
+    repeating-linear-gradient(45deg, transparent 0 13px, rgba(130,90,60,.13) 14px 16px),
+    #EADCC4;
+}
+
+.paper-watercolour {
+  background:
+    radial-gradient(ellipse at 25% 30%, #E9BFC0, transparent 40%),
+    radial-gradient(ellipse at 75% 65%, #BDD3D8, transparent 45%),
+    #F7F0E8;
+}
+
+/* INK OPTIONS */
+
+.ink-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.ink-option {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px;
+  background: #F8F3EB;
+  border: 2px solid transparent;
+  border-radius: 12px;
+  color: var(--brown);
+  text-align: left;
+}
+
+.ink-option.selected {
+  border-color: var(--dark-tan);
+  background: #F0E5D6;
+}
+
+.ink-dot {
+  width: 23px;
+  height: 23px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  border: 1px solid rgba(0,0,0,.12);
+}
+
+.ink-name { font-size: 13px; }
+
+/* SEAL OPTIONS */
+
+.seal-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.seal-option {
+  background: #F8F3EB;
+  border: 2px solid transparent;
+  border-radius: 12px;
+  padding: 12px 5px;
+  color: var(--brown);
+  font-size: 28px;
+  min-height: 70px;
+}
+
+.seal-option.selected {
+  border-color: var(--dark-tan);
+  background: #F0E5D6;
+}
+
+/* LETTER PREVIEW */
+
+.letter-preview-wrap {
+  background: #EDE2D2;
+  border-radius: 16px;
+  padding: 15px;
+  margin: 20px 0;
+}
+
+.preview-label {
+  font-size: 12px;
+  color: var(--light-brown);
+  text-align: center;
+  margin: 0 0 12px;
+}
+
+.letter-preview {
+  min-height: 250px;
+  padding: 25px 20px;
+  border: 1px solid rgba(80,60,40,.2);
+  border-radius: 3px;
+  position: relative;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  font-family: Georgia, serif;
+  font-size: 17px;
+  line-height: 1.7;
+  transition: background .2s;
+}
+
+.letter-preview .preview-placeholder {
+  opacity: .55;
+  font-style: italic;
+}
+
+.preview-seal {
+  position: absolute;
+  right: 12px;
+  bottom: 10px;
+  font-size: 24px;
+}
 
 label {
   display: block;
@@ -263,9 +588,7 @@ textarea {
 }
 
 input::placeholder,
-textarea::placeholder {
-  color: #8B7A69;
-}
+textarea::placeholder { color: #8B7A69; }
 
 .checkbox-line {
   display: flex;
@@ -274,11 +597,30 @@ textarea::placeholder {
   margin: 20px 0;
 }
 
-.checkbox-line input {
-  width: auto;
-}
+.checkbox-line input { width: auto; }
 
 /* FORTUNE DISPLAY */
+
+.envelopes {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 15px;
+  margin: 35px auto;
+}
+
+.envelope {
+  width: 155px;
+  height: 112px;
+  background: var(--tan);
+  color: var(--brown);
+  border-radius: 17px;
+  font-family: Georgia, serif;
+  font-size: 17px;
+}
+
+.envelope:nth-child(2) { background: #C9B49D; }
+.envelope:nth-child(3) { background: #BFA58A; }
 
 .fortune-paper {
   background: var(--paper);
@@ -332,13 +674,9 @@ footer {
 }
 
 @media (max-width: 500px) {
-  #home h1 {
-    margin-bottom: 38px;
-  }
+  #home h1 { margin-bottom: 38px; }
 
-  .home-buttons {
-    gap: 10px;
-  }
+  .home-buttons { gap: 10px; }
 
   .home-choice {
     min-height: 165px;
@@ -346,27 +684,19 @@ footer {
     gap: 11px;
   }
 
-  .home-choice strong {
-    font-size: 13px;
-  }
-
-  .home-choice span:last-child {
-    font-size: 12px;
-  }
+  .home-choice strong { font-size: 13px; }
+  .home-choice span:last-child { font-size: 12px; }
 
   .home-icon svg {
     width: 33px;
     height: 33px;
   }
 
-  .top-nav button {
-    padding: 10px 12px;
-  }
+  .top-nav button { padding: 10px 12px; }
 
-  .envelope {
-    width: 125px;
-    height: 95px;
-  }
+  .option-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .seal-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  .content-card { padding: 17px; }
 }
 </style>
 </head>
@@ -376,11 +706,9 @@ footer {
 <!-- HOMEPAGE -->
 
 <section id="home" class="page active">
-
   <h1>Welcome to Fortune From, Fortune Found</h1>
 
   <div class="home-buttons">
-
     <button class="home-choice" onclick="showPage('leave')">
       <span class="home-icon">
         <svg viewBox="0 0 48 48">
@@ -388,7 +716,6 @@ footer {
           <path d="M6 13 L24 27 L42 13"/>
         </svg>
       </span>
-
       <strong>FORTUNE FROM</strong>
       <span>Write a letter for somebody</span>
     </button>
@@ -399,11 +726,9 @@ footer {
           <path d="M24 4 L29 18 L44 19 L33 29 L36 44 L24 36 L12 44 L15 29 L4 19 L19 18 Z"/>
         </svg>
       </span>
-
       <strong>FORTUNE FOUND</strong>
       <span>Open your fortune</span>
     </button>
-
   </div>
 
   <div class="signature-button-wrap">
@@ -411,7 +736,6 @@ footer {
       CREATE A SIGNATURE
     </button>
   </div>
-
 </section>
 
 
@@ -436,60 +760,116 @@ footer {
 
     <form id="letterForm">
 
-      <label for="letterText">Your letter</label>
+      <!-- ENVELOPE -->
 
-      <textarea id="letterText"
-        maxlength="500"
-        placeholder="A little something for someone to find..."
-        required></textarea>
+      <div class="creator-section">
+        <h3 class="creator-heading">1. Pick your envelope</h3>
+        <p class="creator-description">Choose the outside of your little letter.</p>
 
-      <label for="envelopeColour">Choose an envelope colour</label>
+        <div class="tabs" id="envelopeTabs">
+          <button type="button" class="tab-button active" data-tab="plain">Plain Colours</button>
+          <button type="button" class="tab-button" data-tab="special">Special Designs</button>
+        </div>
 
-      <select id="envelopeColour">
-        <option>Warm tan</option>
-        <option>Dusty rose</option>
-        <option>Sage green</option>
-        <option>Soft blue</option>
-        <option>Lavender</option>
-      </select>
-
-      <label for="sticker">Choose a little sticker</label>
-
-      <select id="sticker">
-        <option>☆ Star</option>
-        <option>♡ Heart</option>
-        <option>✿ Flower</option>
-        <option>☾ Moon</option>
-        <option>☀ Sun</option>
-        <option>☁ Cloud</option>
-        <option>🦆 Duck</option>
-        <option>👢 Boot</option>
-      </select>
-
-      <div class="checkbox-line">
-        <input type="checkbox" id="includeSignature" checked>
-        <label for="includeSignature" style="margin:0">
-          Include my signature
-        </label>
+        <div class="option-grid" id="envelopeOptions"></div>
       </div>
 
-      <button class="main-button" type="submit">
-        Leave for Someone to Find
-      </button>
+      <!-- PAPER -->
+
+      <div class="creator-section">
+        <h3 class="creator-heading">2. Pick your paper</h3>
+        <p class="creator-description">What would you like your letter to be written on?</p>
+
+        <div class="tabs" id="paperTabs">
+          <button type="button" class="tab-button active" data-tab="simple">Plain & Simple</button>
+          <button type="button" class="tab-button" data-tab="special">Special Papers</button>
+          <button type="button" class="tab-button" data-tab="patterns">Patterns & Playful</button>
+        </div>
+
+        <div class="option-grid" id="paperOptions"></div>
+      </div>
+
+      <!-- INK -->
+
+      <div class="creator-section">
+        <h3 class="creator-heading">3. Pick your ink</h3>
+        <p class="creator-description">Choose the colour of your handwriting.</p>
+        <div class="ink-grid" id="inkOptions"></div>
+      </div>
+
+      <!-- SEAL -->
+
+      <div class="creator-section">
+        <h3 class="creator-heading">4. Pick your seal</h3>
+        <p class="creator-description">A tiny finishing touch for the envelope.</p>
+
+        <div class="tabs" id="sealTabs">
+          <button type="button" class="tab-button active" data-tab="hearts">Hearts & Love</button>
+          <button type="button" class="tab-button" data-tab="nature">Flowers & Nature</button>
+          <button type="button" class="tab-button" data-tab="sky">Stars & Sky</button>
+          <button type="button" class="tab-button" data-tab="faces">Faces & Feelings</button>
+          <button type="button" class="tab-button" data-tab="animals">Animals</button>
+          <button type="button" class="tab-button" data-tab="things">Little Things</button>
+          <button type="button" class="tab-button" data-tab="magic">Magic & Mystery</button>
+        </div>
+
+        <div class="seal-grid" id="sealOptions"></div>
+
+        <button type="button" class="secondary-button" id="noSealButton">
+          No Seal
+        </button>
+      </div>
+
+      <!-- WRITE LETTER -->
+
+      <div class="creator-section">
+        <h3 class="creator-heading">5. Write your letter</h3>
+        <p class="creator-description">
+          Your chosen paper and ink will appear in your letter preview.
+        </p>
+
+        <label for="letterText">Your letter</label>
+        <textarea
+          id="letterText"
+          maxlength="500"
+          placeholder="A little something for someone to find..."
+          required
+        ></textarea>
+
+        <div class="letter-preview-wrap">
+          <p class="preview-label">A little preview of your letter</p>
+          <div class="letter-preview paper-cream" id="letterPreview">
+            <span class="preview-placeholder">Your words will appear here...</span>
+            <span class="preview-seal" id="previewSeal"></span>
+          </div>
+        </div>
+
+        <div class="checkbox-line">
+          <input type="checkbox" id="includeSignature" checked>
+          <label for="includeSignature" style="margin:0">
+            Include my signature
+          </label>
+        </div>
+
+        <button class="main-button" type="submit">
+          Leave for Someone to Find
+        </button>
+      </div>
 
     </form>
 
     <div id="letterConfirmation" style="display:none; text-align:center">
       <h3>Your letter has been created!</h3>
       <p id="letterNumber" class="fortune-number"></p>
-      <p>This is a local prototype. Your letter has been saved in this browser, but has not been sent to other visitors.</p>
-      <button class="main-button" onclick="showPage('home')">
-        Back Home
-      </button>
+      <p>
+        This is a local prototype. Your letter has been saved in this
+        browser, but has not been sent to other visitors.
+      </p>
+      <button class="main-button" onclick="showPage('home')">Back Home</button>
+      <button class="secondary-button" onclick="createAnotherLetter()">Write Another Letter</button>
     </div>
 
   </div>
-
 </section>
 
 
@@ -511,38 +891,20 @@ footer {
   </p>
 
   <div class="envelopes">
-
-    <button class="envelope" onclick="openFortune(0)">
-      Open me
-    </button>
-
-    <button class="envelope" onclick="openFortune(1)">
-      Open me
-    </button>
-
-    <button class="envelope" onclick="openFortune(2)">
-      Open me
-    </button>
-
+    <button class="envelope" onclick="openFortune(0)">Open me</button>
+    <button class="envelope" onclick="openFortune(1)">Open me</button>
+    <button class="envelope" onclick="openFortune(2)">Open me</button>
   </div>
 
   <div id="fortuneResult" style="display:none">
-
     <div class="fortune-paper">
       <p id="fortuneText"></p>
       <span id="fortuneNumber" class="fortune-number"></span>
     </div>
 
-    <button class="main-button" onclick="saveFortune()">
-      Save to My Collection
-    </button>
-
-    <button class="secondary-button" onclick="showPage('home')">
-      Back Home
-    </button>
-
+    <button class="main-button" onclick="saveFortune()">Save to My Collection</button>
+    <button class="secondary-button" onclick="showPage('home')">Back Home</button>
   </div>
-
 </section>
 
 
@@ -561,11 +923,9 @@ footer {
   </p>
 
   <div class="content-card">
-
     <form id="signupForm">
 
       <label for="signatureName">Your signature name</label>
-
       <input
         id="signatureName"
         type="text"
@@ -575,7 +935,6 @@ footer {
       >
 
       <label for="country">Country (optional)</label>
-
       <select id="country">
         <option value="">Prefer not to say</option>
         <option>Canada</option>
@@ -592,22 +951,15 @@ footer {
         <option>Other</option>
       </select>
 
-      <button class="main-button" type="submit">
-        Create My Signature
-      </button>
-
+      <button class="main-button" type="submit">Create My Signature</button>
     </form>
 
     <div id="signupConfirmation" style="display:none; text-align:center">
       <h3>Your signature is ready!</h3>
       <p id="signatureDisplay"></p>
-      <button class="main-button" onclick="showPage('home')">
-        Back Home
-      </button>
+      <button class="main-button" onclick="showPage('home')">Back Home</button>
     </div>
-
   </div>
-
 </section>
 
 
@@ -623,16 +975,13 @@ footer {
 
   <h2>My Collection</h2>
 
-  <p class="intro">
-    Little fortunes you've found along the way.
-  </p>
+  <p class="intro">Little fortunes you've found along the way.</p>
 
   <div id="savedFortunes">
     <p class="empty-message">
       Your collection is waiting for its first little fortune.
     </p>
   </div>
-
 </section>
 
 
@@ -654,12 +1003,329 @@ function showPage(pageName) {
 
   document.getElementById(pageName).classList.add('active');
 
-  if (pageName === 'collection') {
-    displayCollection();
-  }
+  if (pageName === 'collection') displayCollection();
 
   window.scrollTo(0, 0);
 }
+
+
+// ENVELOPE CHOICES
+
+const envelopes = {
+  plain: [
+    ["Blush", "#E8BFC0"],
+    ["Dusty Rose", "#C98791"],
+    ["Lavender", "#C8B9D9"],
+    ["Lilac", "#B9A6CE"],
+    ["Powder Blue", "#B8D0DF"],
+    ["Sage", "#A9B9A0"],
+    ["Forest Green", "#536F5B"],
+    ["Butter Yellow", "#E9D99B"],
+    ["Terracotta", "#C77E62"],
+    ["Warm Cream", "#E9DFC9"],
+    ["Soft Grey", "#B9B8B1"],
+    ["Midnight Blue", "#4D5C76"]
+  ],
+  special: [
+    ["Old & Forgotten", "design-aged"],
+    ["Pressed Garden", "design-flowers"],
+    ["Little Artist", "design-child"],
+    ["Moon & Stars", "design-moon"],
+    ["Somewhere Blue", "design-sky"],
+    ["Postcard From Elsewhere", "design-postcard"]
+  ]
+};
+
+let selectedEnvelope = "Blush";
+let selectedEnvelopeStyle = "plain";
+
+function renderEnvelopes(tab) {
+  const container = document.getElementById("envelopeOptions");
+  container.innerHTML = "";
+
+  envelopes[tab].forEach(item => {
+    const button = document.createElement("button");
+    button.type = "button";
+    button.className = "option-card";
+
+    const selected = selectedEnvelope === item[0];
+    if (selected) button.classList.add("selected");
+
+    const preview = document.createElement("div");
+    preview.className = "envelope-preview";
+
+    if (tab === "plain") {
+      preview.style.background = item[1];
+    } else {
+      preview.classList.add(item[1]);
+    }
+
+    const miniSeal = document.createElement("span");
+    miniSeal.className = "mini-seal";
+    miniSeal.textContent = selectedSeal || "♡";
+    preview.appendChild(miniSeal);
+
+    const name = document.createElement("span");
+    name.className = "option-name";
+    name.textContent = item[0];
+
+    button.appendChild(preview);
+    button.appendChild(name);
+
+    button.addEventListener("click", () => {
+      selectedEnvelope = item[0];
+      selectedEnvelopeStyle = tab;
+      renderEnvelopes(tab);
+    });
+
+    container.appendChild(button);
+  });
+}
+
+
+// PAPER CHOICES
+
+const papers = {
+  simple: [
+    ["Bright White", "paper-white"],
+    ["Warm Cream", "paper-cream"],
+    ["Blush Pink", "paper-pink"],
+    ["Powder Blue", "paper-blue"],
+    ["Soft Sage", "paper-sage"],
+    ["Midnight Black", "paper-black"]
+  ],
+  special: [
+    ["Aged & Weathered", "paper-aged"],
+    ["Pressed Flowers", "paper-flowers"],
+    ["Little Artist", "paper-child"],
+    ["Cloud Watching", "paper-clouds"],
+    ["Moonlight", "paper-galaxy"],
+    ["Handmade & Recycled", "paper-recycled"]
+  ],
+  patterns: [
+    ["Tiny Hearts", "paper-hearts"],
+    ["Wildflower Meadow", "paper-meadow"],
+    ["Polka Dots", "paper-dots"],
+    ["Stars & Constellations", "paper-stars"],
+    ["Postage Collage", "paper-postage"],
+    ["Watercolour Wash", "paper-watercolour"]
+  ]
+};
+
+let selectedPaper = "Warm Cream";
+let selectedPaperClass = "paper-cream";
+
+function renderPapers(tab) {
+  const container = document.getElementById("paperOptions");
+  container.innerHTML = "";
+
+  papers[tab].forEach(item => {
+    const button = document.createElement("button");
+    button.type = "button";
+    button.className = "option-card";
+
+    if (selectedPaper === item[0]) button.classList.add("selected");
+
+    const preview = document.createElement("div");
+    preview.className = "paper-preview " + item[1];
+
+    const name = document.createElement("span");
+    name.className = "option-name";
+    name.textContent = item[0];
+
+    button.appendChild(preview);
+    button.appendChild(name);
+
+    button.addEventListener("click", () => {
+      selectedPaper = item[0];
+      selectedPaperClass = item[1];
+      renderPapers(tab);
+      updateLetterPreview();
+      renderInkOptions();
+    });
+
+    container.appendChild(button);
+  });
+}
+
+
+// INK CHOICES
+
+const mainInks = [
+  ["Classic Black", "#222222"],
+  ["Midnight Blue", "#243B60"],
+  ["Royal Blue", "#315E9B"],
+  ["Burgundy", "#702D3B"],
+  ["Deep Green", "#28513B"],
+  ["Forest Green", "#476344"],
+  ["Chocolate Brown", "#65432F"],
+  ["Plum", "#69466F"],
+  ["Charcoal Grey", "#55565A"],
+  ["Copper", "#A65D3C"]
+];
+
+const lightInks = [
+  ["White", "#FFFFFF"],
+  ["Warm Cream", "#F3EBDD"],
+  ["Pale Pink", "#F3C6D1"],
+  ["Silver", "#C7CBD4"]
+];
+
+let selectedInk = "#222222";
+let selectedInkName = "Classic Black";
+
+function renderInkOptions() {
+  const container = document.getElementById("inkOptions");
+  container.innerHTML = "";
+
+  let options = [...mainInks];
+
+  if (selectedPaperClass === "paper-black" ||
+      selectedPaperClass === "paper-galaxy" ||
+      selectedPaperClass === "paper-stars") {
+    options = [...lightInks, ...mainInks];
+  }
+
+  options.forEach(item => {
+    const button = document.createElement("button");
+    button.type = "button";
+    button.className = "ink-option";
+
+    if (selectedInk === item[1]) button.classList.add("selected");
+
+    const dot = document.createElement("span");
+    dot.className = "ink-dot";
+    dot.style.background = item[1];
+
+    const name = document.createElement("span");
+    name.className = "ink-name";
+    name.textContent = item[0];
+
+    button.appendChild(dot);
+    button.appendChild(name);
+
+    button.addEventListener("click", () => {
+      selectedInk = item[1];
+      selectedInkName = item[0];
+      renderInkOptions();
+      updateLetterPreview();
+    });
+
+    container.appendChild(button);
+  });
+}
+
+
+// SEAL CHOICES
+
+const seals = {
+  hearts: ["❤️", "💗", "💌", "💕", "💘", "💝"],
+  nature: ["🌷", "🌸", "🌻", "🍀", "🌿", "🦋"],
+  sky: ["⭐", "🌙", "☀️", "✨", "🌈", "☁️"],
+  faces: ["😊", "🥹", "😌", "😜", "😍", "🤗"],
+  animals: ["🐈", "🐈‍⬛", "🐇", "🦊", "🐝", "🐢"],
+  things: ["🍓", "🍄", "🕯️", "🔑", "🧸", "🎀"],
+  magic: ["🔮", "🪄", "🧿", "🗝️", "🪐", "🪽"]
+};
+
+let selectedSeal = "💌";
+
+function renderSeals(tab) {
+  const container = document.getElementById("sealOptions");
+  container.innerHTML = "";
+
+  seals[tab].forEach(emoji => {
+    const button = document.createElement("button");
+    button.type = "button";
+    button.className = "seal-option";
+    button.textContent = emoji;
+
+    if (selectedSeal === emoji) button.classList.add("selected");
+
+    button.addEventListener("click", () => {
+      selectedSeal = emoji;
+      renderSeals(tab);
+      updateLetterPreview();
+      renderEnvelopes(selectedEnvelopeStyle);
+    });
+
+    container.appendChild(button);
+  });
+}
+
+document.getElementById("noSealButton").addEventListener("click", () => {
+  selectedSeal = "";
+  document.querySelectorAll(".seal-option").forEach(button => {
+    button.classList.remove("selected");
+  });
+  updateLetterPreview();
+  renderEnvelopes(selectedEnvelopeStyle);
+});
+
+
+// TAB CONTROLS
+
+function setupTabs(containerId, renderFunction) {
+  const container = document.getElementById(containerId);
+
+  container.querySelectorAll(".tab-button").forEach(button => {
+    button.addEventListener("click", () => {
+      container.querySelectorAll(".tab-button").forEach(tab => {
+        tab.classList.remove("active");
+      });
+
+      button.classList.add("active");
+      renderFunction(button.dataset.tab);
+    });
+  });
+}
+
+
+// LETTER PREVIEW
+
+function updateLetterPreview() {
+  const preview = document.getElementById("letterPreview");
+  const text = document.getElementById("letterText").value;
+
+  preview.className = "letter-preview " + selectedPaperClass;
+  preview.style.color = selectedInk;
+
+  // Give dark papers readable default text colours.
+  if ((selectedPaperClass === "paper-black" ||
+       selectedPaperClass === "paper-galaxy" ||
+       selectedPaperClass === "paper-stars") &&
+       ["#222222", "#243B60", "#315E9B", "#55565A"].includes(selectedInk)) {
+    preview.style.color = "#F3EBDD";
+  }
+
+  preview.innerHTML = "";
+
+  const words = document.createElement("span");
+  words.textContent = text || "Your words will appear here...";
+  if (!text) words.className = "preview-placeholder";
+
+  const seal = document.createElement("span");
+  seal.className = "preview-seal";
+  seal.textContent = selectedSeal;
+
+  preview.appendChild(words);
+  preview.appendChild(seal);
+}
+
+document.getElementById("letterText").addEventListener("input", updateLetterPreview);
+
+
+// START THE CREATOR
+
+setupTabs("envelopeTabs", renderEnvelopes);
+setupTabs("paperTabs", renderPapers);
+setupTabs("sealTabs", renderSeals);
+
+renderEnvelopes("plain");
+renderPapers("simple");
+renderInkOptions();
+renderSeals("hearts");
+updateLetterPreview();
 
 
 // SAMPLE FORTUNES
@@ -686,58 +1352,46 @@ let currentFortuneNumber = null;
 // OPEN A FORTUNE
 
 function openFortune(envelopeNumber) {
-
   const randomIndex = Math.floor(Math.random() * fortunes.length);
-
   currentFortune = fortunes[randomIndex];
 
   currentFortuneNumber =
     "Letter No. " + String(Math.floor(Math.random() * 90000) + 10000);
 
-  document.getElementById('fortuneText').textContent = currentFortune;
-  document.getElementById('fortuneNumber').textContent =
-    currentFortuneNumber;
-
-  document.getElementById('fortuneResult').style.display = 'block';
+  document.getElementById("fortuneText").textContent = currentFortune;
+  document.getElementById("fortuneNumber").textContent = currentFortuneNumber;
+  document.getElementById("fortuneResult").style.display = "block";
 }
 
 
 // SAVE A FORTUNE
 
 function saveFortune() {
-
   if (!currentFortune) return;
 
-  let saved = JSON.parse(
-    localStorage.getItem('savedFortunes') || '[]'
-  );
+  let saved = JSON.parse(localStorage.getItem("savedFortunes") || "[]");
 
   saved.push({
     text: currentFortune,
     number: currentFortuneNumber
   });
 
-  localStorage.setItem('savedFortunes', JSON.stringify(saved));
+  localStorage.setItem("savedFortunes", JSON.stringify(saved));
 
-  alert('Your fortune has been saved to My Collection!');
+  alert("Your fortune has been saved to My Collection!");
 
   currentFortune = null;
-
-  showPage('collection');
+  showPage("collection");
 }
 
 
 // DISPLAY COLLECTION
 
 function displayCollection() {
+  const saved = JSON.parse(localStorage.getItem("savedFortunes") || "[]");
+  const container = document.getElementById("savedFortunes");
 
-  const saved = JSON.parse(
-    localStorage.getItem('savedFortunes') || '[]'
-  );
-
-  const container = document.getElementById('savedFortunes');
-
-  container.innerHTML = '';
+  container.innerHTML = "";
 
   if (saved.length === 0) {
     container.innerHTML =
@@ -746,93 +1400,90 @@ function displayCollection() {
   }
 
   saved.forEach(fortune => {
+    const item = document.createElement("div");
+    item.className = "saved-item";
 
-    const item = document.createElement('div');
-    item.className = 'saved-item';
-
-    const text = document.createElement('p');
+    const text = document.createElement("p");
     text.textContent = fortune.text;
 
-    const number = document.createElement('small');
+    const number = document.createElement("small");
     number.textContent = fortune.number;
 
     item.appendChild(text);
     item.appendChild(number);
-
     container.appendChild(item);
-
   });
 }
 
 
 // LEAVE A LETTER
 
-document.getElementById('letterForm').addEventListener('submit', function(event) {
-
+document.getElementById("letterForm").addEventListener("submit", function(event) {
   event.preventDefault();
 
-  const letterText =
-    document.getElementById('letterText').value.trim();
-
+  const letterText = document.getElementById("letterText").value.trim();
   if (!letterText) return;
 
   const letterNumber =
     "Letter No. " + String(Math.floor(Math.random() * 90000) + 10000);
 
-  const signature = localStorage.getItem('signatureName') || '';
-
-  const includeSignature =
-    document.getElementById('includeSignature').checked;
+  const signature = localStorage.getItem("signatureName") || "";
+  const includeSignature = document.getElementById("includeSignature").checked;
 
   const letter = {
     text: letterText,
     number: letterNumber,
-    signature: includeSignature ? signature : '',
-    envelope: document.getElementById('envelopeColour').value,
-    sticker: document.getElementById('sticker').value
+    signature: includeSignature ? signature : "",
+    envelope: selectedEnvelope,
+    envelopeStyle: selectedEnvelopeStyle,
+    paper: selectedPaper,
+    paperStyle: selectedPaperClass,
+    ink: selectedInkName,
+    seal: selectedSeal
   };
 
-  let sent = JSON.parse(
-    localStorage.getItem('sentLetters') || '[]'
-  );
-
+  let sent = JSON.parse(localStorage.getItem("sentLetters") || "[]");
   sent.push(letter);
+  localStorage.setItem("sentLetters", JSON.stringify(sent));
 
-  localStorage.setItem('sentLetters', JSON.stringify(sent));
-
-  document.getElementById('letterNumber').textContent = letterNumber;
-
-  document.getElementById('letterForm').style.display = 'none';
-
-  document.getElementById('letterConfirmation').style.display = 'block';
-
+  document.getElementById("letterNumber").textContent = letterNumber;
+  document.getElementById("letterForm").style.display = "none";
+  document.getElementById("letterConfirmation").style.display = "block";
 });
+
+
+// START ANOTHER LETTER
+
+function createAnotherLetter() {
+  document.getElementById("letterForm").reset();
+  document.getElementById("letterForm").style.display = "block";
+  document.getElementById("letterConfirmation").style.display = "none";
+
+  document.getElementById("letterText").value = "";
+  updateLetterPreview();
+
+  window.scrollTo(0, 0);
+}
 
 
 // CREATE A SIGNATURE
 
-document.getElementById('signupForm').addEventListener('submit', function(event) {
-
+document.getElementById("signupForm").addEventListener("submit", function(event) {
   event.preventDefault();
 
-  const name =
-    document.getElementById('signatureName').value.trim();
-
-  const country =
-    document.getElementById('country').value;
+  const name = document.getElementById("signatureName").value.trim();
+  const country = document.getElementById("country").value;
 
   if (!name) return;
 
-  localStorage.setItem('signatureName', name);
-  localStorage.setItem('signatureCountry', country);
+  localStorage.setItem("signatureName", name);
+  localStorage.setItem("signatureCountry", country);
 
-  document.getElementById('signatureDisplay').textContent =
-    name + (country ? ' · ' + country : '');
+  document.getElementById("signatureDisplay").textContent =
+    name + (country ? " · " + country : "");
 
-  document.getElementById('signupForm').style.display = 'none';
-
-  document.getElementById('signupConfirmation').style.display = 'block';
-
+  document.getElementById("signupForm").style.display = "none";
+  document.getElementById("signupConfirmation").style.display = "block";
 });
 
 </script>
