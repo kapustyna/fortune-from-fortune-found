@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>The Little Collection</title>
+
+<style>
+:root {
+  --cream: #f7f3e9;
+  --paper: #fffdf8;
+  --ink: #493f37;
+  --muted: #897e72;
+  --border: #d9d0c2;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--cream);
+  color: var(--ink);
+  font-family: Georgia, serif;
+}
+
+header {
+  max-width: 1050px;
+  margin: auto;
+  padding: 25px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+.brand {
+  font-size: 26px;
+}
+
+.tagline {
+  color: var(--muted);
+  font: 11px Arial, sans-serif;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+}
+
+nav button {
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: 25px;
+  padding: 9px 13px;
+  color: var(--muted);
+  cursor: pointer;
+}
+
+nav button:hover,
+nav button.active {
+  border-color: var(--border);
+  background: #ffffff88;
+}
+
+main {
+  max-width: 900px;
+  margin: 30px auto 70px;
+  padding: 0 20px;
+}
+
+.panel {
+  background: var(--paper);
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  padding: 40px;
+}
+
+.hero {
+  text-align: center;
+  padding: 65px 20px;
+}
+
+h1 {
+  font-size: clamp(38px, 7vw, 60px);
+  font-weight: normal;
+  line-height: 1.1;
+}
+
+h2 {
+  font-size: 32px;
+  font-weight: normal;
+}
+
+p {
+  line-height: 1.7;
+}
+
+.small {
+  color: var(--muted);
+  font: 12px Arial, sans-serif;
+}
+
+.eyebrow {
+  color: var(--muted);
+  font: 11px Arial, sans-serif;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+}
+
+button {
+  font-family: Arial, sans-serif;
+}
+
+.primary,
+.secondary {
+  padding: 12px 21px;
+  border-radius: 25px;
+  cursor: pointer;
+}
+
+.primary {
+  background: var(--ink);
+  color: white;
+  border: 1px solid var(--ink);
+}
+
+.secondary {
+  background: transparent;
+  color: var(--ink);
+  border: 1px solid var(--border);
+}
+
+.actions {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 25px;
+}
+
+.hidden {
+  display: none !important;
+}
+
+footer {
+  text-align: center;
+  padding: 25px;
+  color: var(--muted);
+  font: 11px Arial, sans-serif;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <div>
+    <div class="brand">The Little Collection</div>
+    <div class="tagline">A small thing left for a stranger</div>
+  </div>
+
+  <nav>
+    <button class="active" data-page="home">Home</button>
+    <button data-page="receive">Find a fortune</button>
+    <button data-page="leave">Leave a fortune</button>
+    <button data-page="collection">My collection</button>
+  </nav>
+</header>
+
+<main>
+
+<section id="home" class="page panel hero">
+  <div class="eyebrow">A note from somewhere</div>
+
+  <h1>
+    Something small<br>
+    is waiting for you.
+  </h1>
+
+  <p>
+    A thought, a wish, a strange little prediction.
+    Left by someone you may never meet,
+    and found by you today.
+  </p>
+
+  <div class="actions">
+    <button class="primary" data-go="receive">
+      Find today's fortune
+    </button>
+
+    <button class="secondary" data-go="leave">
+      Leave something behind
+    </button>
+  </div>
+
+  <p class="small">
+    No streaks. No rush. Just little things passed along.
+  </p>
+</section>
+
+<section id="receive" class="page panel hidden">
+  <div class="eyebrow">Choose a little envelope</div>
+  <h2>Which one is calling to you?</h2>
+
+  <div id="envelopes"></div>
+
+  <div id="reveal" class="hidden">
+    <h2 id="fortuneText"></h2>
+    <button id="saveFortune" class="primary">
+      Save to my collection
+    </button>
+  </div>
+</section>
+
+<section id="leave" class="page panel hidden">
+  <div class="eyebrow">Leave a little something</div>
+  <h2>Make a note for a stranger.</h2>
+
+  <label>Your note</label>
+  <textarea id="note"></textarea>
+
+  <button id="leaveButton" class="primary">
+    Leave this fortune
+  </button>
+</section>
+
+<section id="collection" class="page panel hidden">
+  <div class="eyebrow">Your corner of the world</div>
+  <h2>My little collection</h2>
+
+  <div id="savedLetters"></div>
+</section>
+
+</main>
+
+<footer>
+  The Little Collection · A tiny corner of the internet
+</footer>
+
+</body>
+</html>
