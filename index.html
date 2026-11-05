@@ -3,126 +3,193 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>The Little Collection</title>
-
+<title>Welcome to Fortune From, Fortune Found</title>
 <style>
 :root {
-  --cream: #f7f3e9;
+  --cream: #f8f5ed;
   --paper: #fffdf8;
-  --ink: #493f37;
-  --muted: #897e72;
-  --border: #d9d0c2;
+  --ink: #51483f;
+  --muted: #918477;
+  --line: #e5ded1;
 }
-
-* {
-  box-sizing: border-box;
-}
+* { box-sizing: border-box; }
 
 body {
   margin: 0;
   background: var(--cream);
   color: var(--ink);
-  font-family: Georgia, serif;
+  font-family: Arial, sans-serif;
+  line-height: 1.6;
 }
 
 header {
-  max-width: 1050px;
-  margin: auto;
-  padding: 25px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 15px;
+  text-align: center;
+  padding: 28px 18px;
+  border-bottom: 1px solid var(--line);
 }
 
 .brand {
-  font-size: 26px;
-}
-
-.tagline {
-  color: var(--muted);
-  font: 11px Arial, sans-serif;
-  letter-spacing: 2px;
-  text-transform: uppercase;
+  font-family: Georgia, serif;
+  font-size: clamp(25px, 5vw, 36px);
+  font-weight: normal;
+  letter-spacing: -1px;
 }
 
 nav {
   display: flex;
+  justify-content: center;
+  gap: 10px;
   flex-wrap: wrap;
-  gap: 7px;
+  padding: 16px 10px;
 }
 
 nav button {
+  border: 1px solid var(--line);
   background: transparent;
-  border: 1px solid transparent;
+  color: var(--ink);
   border-radius: 25px;
-  padding: 9px 13px;
-  color: var(--muted);
+  padding: 7px 15px;
   cursor: pointer;
 }
 
-nav button:hover,
-nav button.active {
-  border-color: var(--border);
-  background: #ffffff88;
+nav button:hover {
+  background: var(--paper);
 }
 
 main {
-  max-width: 900px;
-  margin: 30px auto 70px;
-  padding: 0 20px;
+  width: min(760px, 90%);
+  margin: 45px auto 80px;
 }
 
-.panel {
-  background: var(--paper);
-  border: 1px solid var(--border);
-  border-radius: 18px;
-  padding: 40px;
-}
+.page { display: none; }
+.page.active { display: block; }
 
-.hero {
+.welcome {
   text-align: center;
-  padding: 65px 20px;
+  padding: 35px 0 25px;
 }
 
-h1 {
-  font-size: clamp(38px, 7vw, 60px);
+.welcome h1 {
+  font-family: Georgia, serif;
+  font-size: clamp(34px, 6vw, 49px);
   font-weight: normal;
-  line-height: 1.1;
+  line-height: 1.2;
+  margin: 0 auto 22px;
+}
+
+.subtitle {
+  max-width: 570px;
+  margin: 0 auto;
+  color: var(--muted);
+  font-family: Georgia, serif;
+  font-size: 18px;
+  line-height: 1.8;
+}
+
+.button-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px;
+  max-width: 580px;
+  margin: 48px auto 20px;
+}
+
+.choice-button {
+  aspect-ratio: 1 / 1;
+  border: 1px solid #d9d0c2;
+  background: var(--paper);
+  color: var(--ink);
+  padding: 20px;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 13px;
+  transition: transform .2s, box-shadow .2s;
+}
+
+.choice-button:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 20px #51483f12;
+}
+
+.choice-button .symbol {
+  font-size: 36px;
+}
+
+.choice-button strong {
+  font-size: 15px;
+  letter-spacing: 1.5px;
+  font-weight: normal;
+}
+
+.choice-button span:last-child {
+  color: var(--muted);
+  font-size: 14px;
+}
+
+.small-note {
+  color: var(--muted);
+  font-size: 13px;
+  text-align: center;
+  margin-top: 25px;
 }
 
 h2 {
-  font-size: 32px;
+  font-family: Georgia, serif;
   font-weight: normal;
+  font-size: 29px;
 }
 
-p {
-  line-height: 1.7;
+.center { text-align: center; }
+
+.envelopes {
+  display: flex;
+  justify-content: center;
+  gap: 18px;
+  flex-wrap: wrap;
+  margin: 35px 0;
 }
 
-.small {
-  color: var(--muted);
-  font: 12px Arial, sans-serif;
-}
-
-.eyebrow {
-  color: var(--muted);
-  font: 11px Arial, sans-serif;
-  letter-spacing: 3px;
-  text-transform: uppercase;
-}
-
-button {
-  font-family: Arial, sans-serif;
-}
-
-.primary,
-.secondary {
-  padding: 12px 21px;
-  border-radius: 25px;
+.envelope {
+  width: 145px;
+  height: 110px;
+  border: 1px solid #b8aa98;
+  border-radius: 5px;
+  display: grid;
+  place-items: center;
+  font-size: 32px;
   cursor: pointer;
+  box-shadow: 0 4px 12px #51483f12;
+  transition: transform .2s;
+}
+
+.envelope:hover { transform: translateY(-5px); }
+.envelope:nth-child(1) { background: #d9c5b1; }
+.envelope:nth-child(2) { background: #c4cdbb; }
+.envelope:nth-child(3) { background: #c4cfd7; }
+
+.letter {
+  background: var(--paper);
+  border: 1px solid var(--line);
+  padding: 30px;
+  max-width: 480px;
+  margin: 25px auto;
+  box-shadow: 0 5px 18px #51483f0b;
+}
+
+.letter p {
+  font-family: Georgia, serif;
+  font-size: 22px;
+  line-height: 1.6;
+}
+
+.primary, .secondary {
+  border-radius: 25px;
+  padding: 11px 22px;
+  cursor: pointer;
+  margin: 5px;
 }
 
 .primary {
@@ -134,26 +201,45 @@ button {
 .secondary {
   background: transparent;
   color: var(--ink);
-  border: 1px solid var(--border);
+  border: 1px solid var(--line);
 }
 
-.actions {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 12px;
-  margin-top: 25px;
+label { display: block; margin: 18px 0 7px; }
+
+textarea {
+  width: 100%;
+  min-height: 150px;
+  padding: 14px;
+  border: 1px solid var(--line);
+  border-radius: 5px;
+  background: var(--paper);
+  color: var(--ink);
+  font: inherit;
+  resize: vertical;
 }
 
-.hidden {
-  display: none !important;
+.saved-item {
+  background: var(--paper);
+  border: 1px solid var(--line);
+  padding: 17px;
+  margin: 12px 0;
+  border-radius: 4px;
 }
 
 footer {
   text-align: center;
-  padding: 25px;
+  border-top: 1px solid var(--line);
+  padding: 25px 15px;
   color: var(--muted);
-  font: 11px Arial, sans-serif;
+  font-family: Georgia, serif;
+  font-size: 14px;
+}
+
+@media (max-width: 480px) {
+  .button-grid { gap: 12px; }
+  .choice-button { padding: 12px; }
+  .choice-button strong { font-size: 12px; }
+  .choice-button span:last-child { font-size: 12px; }
 }
 </style>
 </head>
@@ -161,88 +247,180 @@ footer {
 <body>
 
 <header>
-  <div>
-    <div class="brand">The Little Collection</div>
-    <div class="tagline">A small thing left for a stranger</div>
-  </div>
-
-  <nav>
-    <button class="active" data-page="home">Home</button>
-    <button data-page="receive">Find a fortune</button>
-    <button data-page="leave">Leave a fortune</button>
-    <button data-page="collection">My collection</button>
-  </nav>
+  <div class="brand">Fortune From, Fortune Found</div>
 </header>
+
+<nav>
+  <button onclick="showPage('home')">Home</button>
+  <button onclick="showPage('receive')">Find a fortune</button>
+  <button onclick="showPage('leave')">Leave a fortune</button>
+  <button onclick="showPage('collection')">My Collection</button>
+</nav>
 
 <main>
 
-<section id="home" class="page panel hero">
-  <div class="eyebrow">A note from somewhere</div>
+<section id="home" class="page active">
+  <div class="welcome">
+    <h1>Welcome to Fortune From, Fortune Found</h1>
 
-  <h1>
-    Something small<br>
-    is waiting for you.
-  </h1>
+    <p class="subtitle">
+      A place to receive daily fortunes, wishes and thoughts
+      from someone you may never meet — and leave a little
+      something for someone to find.
+    </p>
 
-  <p>
-    A thought, a wish, a strange little prediction.
-    Left by someone you may never meet,
-    and found by you today.
-  </p>
+    <div class="button-grid">
+      <button class="choice-button" onclick="showPage('leave')">
+        <span class="symbol">✉</span>
+        <strong>FORTUNE FROM</strong>
+        <span>Write somebody a fortune</span>
+      </button>
 
-  <div class="actions">
-    <button class="primary" data-go="receive">
-      Find today's fortune
-    </button>
+      <button class="choice-button" onclick="showPage('receive')">
+        <span class="symbol">✧</span>
+        <strong>FORTUNE FOUND</strong>
+        <span>Open your daily fortune</span>
+      </button>
+    </div>
 
-    <button class="secondary" data-go="leave">
-      Leave something behind
-    </button>
-  </div>
-
-  <p class="small">
-    No streaks. No rush. Just little things passed along.
-  </p>
-</section>
-
-<section id="receive" class="page panel hidden">
-  <div class="eyebrow">Choose a little envelope</div>
-  <h2>Which one is calling to you?</h2>
-
-  <div id="envelopes"></div>
-
-  <div id="reveal" class="hidden">
-    <h2 id="fortuneText"></h2>
-    <button id="saveFortune" class="primary">
-      Save to my collection
-    </button>
+    <p class="small-note">
+      A little something from someone, somewhere.
+    </p>
   </div>
 </section>
 
-<section id="leave" class="page panel hidden">
-  <div class="eyebrow">Leave a little something</div>
-  <h2>Make a note for a stranger.</h2>
+<section id="receive" class="page center">
+  <p>✦ For you, today ✦</p>
+  <h2>Choose an envelope.</h2>
+  <p>There are three little surprises waiting.</p>
 
-  <label>Your note</label>
-  <textarea id="note"></textarea>
+  <div class="envelopes">
+    <button class="envelope" onclick="openFortune()">✉</button>
+    <button class="envelope" onclick="openFortune()">✉</button>
+    <button class="envelope" onclick="openFortune()">✉</button>
+  </div>
 
-  <button id="leaveButton" class="primary">
-    Leave this fortune
-  </button>
+  <div id="reveal" hidden>
+    <div class="letter">
+      <div>✦ A little fortune for you ✦</div>
+      <p id="fortuneText"></p>
+      <small>Left by someone, somewhere.</small>
+    </div>
+    <button class="secondary" onclick="saveFortune()">Save to My Collection</button>
+    <button class="secondary" onclick="showPage('home')">Back home</button>
+  </div>
 </section>
 
-<section id="collection" class="page panel hidden">
-  <div class="eyebrow">Your corner of the world</div>
-  <h2>My little collection</h2>
+<section id="leave" class="page">
+  <div class="center">
+    <p>✦ Leave a little something ✦</p>
+    <h2>A note for someone you haven't met.</h2>
+    <p>It could be a wish, a thought, a reminder, or something wonderfully strange.</p>
+  </div>
 
-  <div id="savedLetters"></div>
+  <form onsubmit="leaveFortune(event)">
+    <label for="note">Your little note</label>
+    <textarea id="note" maxlength="300" placeholder="Dear stranger..." required></textarea>
+    <label><input type="checkbox" id="anonymous" checked> Leave without a signature</label>
+    <div class="center" style="margin-top:22px">
+      <button class="primary" type="submit">Leave this fortune</button>
+    </div>
+  </form>
+
+  <div id="thanks" class="center" hidden>
+    <div class="letter">
+      <h2>Left for someone to find.</h2>
+      <p>Somewhere, someone might come across your little note.</p>
+      <div>✦ Letter No. <span id="letterNumber"></span> ✦</div>
+    </div>
+    <button class="secondary" onclick="showPage('home')">Return home</button>
+  </div>
+</section>
+
+<section id="collection" class="page">
+  <div class="center">
+    <p>✦ Kept close ✦</p>
+    <h2>My Collection</h2>
+    <p>Little things you've found along the way.</p>
+  </div>
+  <div id="savedLetters">
+    <p class="small-note">Your collection is waiting for its first fortune.</p>
+  </div>
 </section>
 
 </main>
 
 <footer>
-  The Little Collection · A tiny corner of the internet
+  A little world of things left and found.
 </footer>
+
+<script>
+const fortunes = [
+  "A small and unexpected thing will make you smile soon.",
+  "You are allowed to take the longer, more interesting way.",
+  "Somewhere, a stranger is having a day a little like yours.",
+  "Keep an eye out for an unusually shaped cloud.",
+  "Something you thought was lost may turn up in an unexpected place.",
+  "Today is a perfectly good day to begin something small.",
+  "A little kindness has a longer journey than you think.",
+  "You do not have to have everything figured out just yet.",
+  "An ordinary day may leave you with an extraordinary memory."
+];
+
+let currentFortune = "";
+let saved = [];
+
+function showPage(page) {
+  document.querySelectorAll(".page").forEach(section => {
+    section.classList.remove("active");
+  });
+  document.getElementById(page).classList.add("active");
+  window.scrollTo({ top: 0, behavior: "smooth" });
+}
+
+function openFortune() {
+  currentFortune = fortunes[Math.floor(Math.random() * fortunes.length)];
+  document.getElementById("fortuneText").textContent = currentFortune;
+  document.getElementById("reveal").hidden = false;
+}
+
+function saveFortune() {
+  if (!currentFortune) return;
+  saved.push(currentFortune);
+  renderCollection();
+  showPage("collection");
+}
+
+function renderCollection() {
+  const area = document.getElementById("savedLetters");
+  area.innerHTML = "";
+
+  saved.forEach((fortune, index) => {
+    const item = document.createElement("div");
+    item.className = "saved-item";
+
+    const number = document.createElement("small");
+    number.textContent = "Fortune No. " + (index + 1);
+
+    const text = document.createElement("p");
+    text.textContent = fortune;
+
+    item.append(number, text);
+    area.appendChild(item);
+  });
+}
+
+function leaveFortune(event) {
+  event.preventDefault();
+  const note = document.getElementById("note").value.trim();
+  if (!note) return;
+
+  const number = Math.floor(10000 + Math.random() * 90000);
+  document.getElementById("letterNumber").textContent = number;
+  document.getElementById("thanks").hidden = false;
+  document.querySelector("#leave form").hidden = true;
+}
+</script>
 
 </body>
 </html>
