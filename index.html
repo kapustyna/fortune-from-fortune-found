@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -42,7 +43,7 @@ h1 {
 h2 {
   font-size: 27px;
   text-align: center;
-  margin-bottom: 15px;
+  margin-bottom: 20px;
 }
 
 p { line-height: 1.7; }
@@ -52,10 +53,10 @@ button {
   cursor: pointer;
   border: none;
   border-radius: 20px;
-  transition: opacity 0.2s;
+  transition: opacity .2s;
 }
 
-button:hover { opacity: 0.85; }
+button:hover { opacity: .85; }
 
 button:focus-visible,
 input:focus-visible,
@@ -166,7 +167,7 @@ select:focus-visible {
   font-size: 13px;
 }
 
-/* GENERAL CONTENT */
+/* GENERAL */
 
 .content-card {
   background: var(--paper);
@@ -199,46 +200,24 @@ select:focus-visible {
   margin: 12px auto;
 }
 
-/* LETTER CREATOR */
+/* CREATOR SECTIONS */
 
 .creator-section {
-  margin: 35px 0;
+  margin: 38px 0;
 }
 
 .creator-heading {
   font-family: Georgia, serif;
-  font-size: 22px;
+  font-size: 23px;
   font-weight: normal;
-  margin-bottom: 7px;
-}
-
-.creator-description {
-  color: var(--light-brown);
-  font-size: 13px;
-  margin-top: 0;
   margin-bottom: 18px;
 }
 
-/* TABS */
-
-.tabs {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  margin: 15px 0 20px;
-}
-
-.tab-button {
-  background: var(--soft-cream);
-  color: var(--brown);
-  padding: 11px 15px;
-  border-radius: 18px;
-  font-size: 13px;
-}
-
-.tab-button.active {
-  background: var(--dark-tan);
-  color: white;
+.option-category {
+  font-size: 12px;
+  letter-spacing: 1.2px;
+  color: var(--light-brown);
+  margin: 20px 0 12px;
 }
 
 /* OPTION GRID */
@@ -267,11 +246,11 @@ select:focus-visible {
 .option-name {
   display: block;
   font-size: 12px;
-  margin-top: 8px;
+  margin-top: 9px;
   line-height: 1.3;
 }
 
-/* ENVELOPE PREVIEWS */
+/* ENVELOPES */
 
 .envelope-preview {
   width: 100%;
@@ -282,7 +261,7 @@ select:focus-visible {
   display: flex;
   align-items: center;
   justify-content: center;
-  border: 1px solid rgba(80,60,40,0.18);
+  border: 1px solid rgba(80,60,40,.18);
 }
 
 .envelope-preview::before {
@@ -290,71 +269,50 @@ select:focus-visible {
   position: absolute;
   inset: 0;
   background:
-    linear-gradient(145deg, transparent 49.5%, rgba(80,60,40,.18) 50%, transparent 50.8%),
-    linear-gradient(215deg, transparent 49.5%, rgba(80,60,40,.18) 50%, transparent 50.8%);
+    linear-gradient(145deg, transparent 49.5%, rgba(80,60,40,.2) 50%, transparent 50.8%),
+    linear-gradient(215deg, transparent 49.5%, rgba(80,60,40,.2) 50%, transparent 50.8%);
 }
 
 .envelope-preview::after {
   content: "";
   position: absolute;
+  width: 25%;
+  aspect-ratio: 1;
   left: 50%;
-  top: 0;
-  width: 70%;
-  height: 70%;
-  transform: translateX(-50%) rotate(45deg);
-  border-left: 1px solid rgba(80,60,40,.15);
-  border-top: 1px solid rgba(80,60,40,.15);
-  pointer-events: none;
+  top: 50%;
+  transform: translate(-50%,-50%) rotate(45deg);
+  border: 1px solid rgba(80,60,40,.16);
 }
 
 .envelope-preview .mini-seal {
-  z-index: 2;
   position: relative;
-  font-size: 17px;
+  z-index: 2;
+  font-size: 19px;
 }
 
-/* SPECIAL ENVELOPE DESIGNS */
+/* SHARED SPECIAL DESIGNS */
 
-.design-aged {
+.design-forgotten {
   background:
-    radial-gradient(ellipse at 20% 25%, #9B7950 0 2%, transparent 18%),
-    radial-gradient(ellipse at 85% 75%, #A27A4F 0 3%, transparent 20%),
-    linear-gradient(130deg, #E8D3A9, #C6A477, #EAD9B6);
+    radial-gradient(ellipse at 5% 15%, rgba(110,65,30,.4), transparent 23%),
+    radial-gradient(ellipse at 95% 85%, rgba(120,70,25,.35), transparent 25%),
+    linear-gradient(135deg,#D7BC8D,#F0DFB9,#C6A477);
 }
 
-.design-flowers {
+.design-rainbow {
   background:
-    radial-gradient(circle at 20% 25%, #D58C9A 0 4%, transparent 5%),
-    radial-gradient(circle at 26% 30%, #E9C7A7 0 3%, transparent 4%),
-    radial-gradient(circle at 75% 70%, #D58C9A 0 5%, transparent 6%),
-    linear-gradient(135deg, #F1E7D5, #D8E3CF);
+    radial-gradient(ellipse at 10% 20%,#E9B9B5,transparent 40%),
+    radial-gradient(ellipse at 85% 25%,#D5C1E8,transparent 42%),
+    radial-gradient(ellipse at 50% 95%,#B9D8D3,transparent 45%),
+    linear-gradient(135deg,#F6E8D9,#F9F2E7);
 }
 
-.design-child {
+.design-clouds {
   background:
-    radial-gradient(circle at 25% 30%, #E5A2A2 0 5%, transparent 6%),
-    radial-gradient(circle at 70% 65%, #E7C46E 0 6%, transparent 7%),
-    linear-gradient(135deg, #FFF1D9, #F4DCCB);
-}
-
-.design-moon {
-  background:
-    radial-gradient(circle at 25% 25%, #F6E8B0 0 3%, transparent 4%),
-    radial-gradient(circle at 75% 65%, #F6E8B0 0 2%, transparent 3%),
-    linear-gradient(135deg, #18243E, #44456A, #202C4A);
-}
-
-.design-sky {
-  background:
-    radial-gradient(ellipse at 25% 35%, white 0 12%, transparent 13%),
-    radial-gradient(ellipse at 75% 65%, #FFFFFF 0 15%, transparent 16%),
-    linear-gradient(135deg, #9DC5DF, #D6E9EF);
-}
-
-.design-postcard {
-  background:
-    repeating-linear-gradient(45deg, transparent 0 12px, rgba(160,100,70,.12) 13px 15px),
-    linear-gradient(135deg, #EAD9BB, #F4EBD8);
+    radial-gradient(ellipse at 20% 35%,white 0 13%,transparent 14%),
+    radial-gradient(ellipse at 70% 65%,white 0 17%,transparent 18%),
+    radial-gradient(ellipse at 90% 25%,#FFFFFF 0 10%,transparent 11%),
+    linear-gradient(135deg,#9CC5DF,#E4F0F2);
 }
 
 /* PAPER PREVIEWS */
@@ -369,102 +327,24 @@ select:focus-visible {
   box-shadow: 0 1px 3px rgba(60,40,20,.08);
 }
 
-.paper-white { background: #FFFFFF; }
-.paper-cream { background: #F3EBDD; }
-.paper-pink { background: #F0D9D4; }
-.paper-blue { background: #DCE7E9; }
-.paper-sage { background: #DCE4D7; }
-.paper-black { background: #252525; }
+.paper-dusty-rose { background: #BD858C; }
+.paper-blush { background: #E8B9BD; }
+.paper-terracotta { background: #B96E53; }
+.paper-lavender { background: #B8A5CF; }
+.paper-blue { background: #A9C9DC; }
+.paper-midnight { background: #263D59; }
+.paper-sage { background: #A5B49A; }
+.paper-cream { background: #E9DFC8; }
+.paper-grey { background: #AAA9A5; }
+.paper-black { background: #33302F; }
 
-.paper-aged {
-  background:
-    radial-gradient(ellipse at 5% 10%, rgba(110,70,30,.35), transparent 25%),
-    radial-gradient(ellipse at 95% 90%, rgba(120,70,25,.3), transparent 24%),
-    radial-gradient(ellipse at 80% 15%, rgba(140,90,40,.2), transparent 20%),
-    linear-gradient(135deg, #D5B77D, #F0D9A9, #D7BB87);
+.paper-preview.design-forgotten,
+.paper-preview.design-rainbow,
+.paper-preview.design-clouds {
+  border-color: rgba(80,60,40,.2);
 }
 
-.paper-flowers {
-  background:
-    radial-gradient(circle at 20% 30%, #D88D9B 0 3%, transparent 4%),
-    radial-gradient(circle at 25% 34%, #E6B8A0 0 2%, transparent 3%),
-    radial-gradient(circle at 70% 65%, #C98CA1 0 4%, transparent 5%),
-    linear-gradient(135deg, #F4EADB, #E5E8D8);
-}
-
-.paper-child {
-  background:
-    radial-gradient(circle at 20% 25%, #E99A9A 0 5%, transparent 6%),
-    radial-gradient(circle at 75% 65%, #E8C36E 0 5%, transparent 6%),
-    radial-gradient(circle at 45% 75%, #A6C7A1 0 4%, transparent 5%),
-    #FFF3E5;
-}
-
-.paper-clouds {
-  background:
-    radial-gradient(ellipse at 25% 30%, white 0 12%, transparent 13%),
-    radial-gradient(ellipse at 70% 60%, white 0 17%, transparent 18%),
-    linear-gradient(#A9CDE2, #E3F0F2);
-}
-
-.paper-galaxy {
-  background:
-    radial-gradient(circle at 25% 25%, #F3E4B4 0 2%, transparent 3%),
-    radial-gradient(circle at 70% 65%, #F3E4B4 0 2%, transparent 3%),
-    radial-gradient(ellipse at 50% 50%, #65537E, transparent 60%),
-    linear-gradient(135deg, #171B39, #34375E);
-}
-
-.paper-recycled {
-  background:
-    radial-gradient(circle at 20% 30%, #B5A78E 0 1px, transparent 2px),
-    radial-gradient(circle at 70% 60%, #A99C83 0 1px, transparent 2px),
-    radial-gradient(circle at 45% 80%, #C1B39A 0 1px, transparent 2px),
-    #E8DFCC;
-}
-
-.paper-hearts {
-  background:
-    radial-gradient(circle at 25% 30%, #E6A8A8 0 4%, transparent 5%),
-    radial-gradient(circle at 75% 70%, #E6A8A8 0 4%, transparent 5%),
-    #F8E8E5;
-}
-
-.paper-meadow {
-  background:
-    radial-gradient(circle at 20% 20%, #D98C9B 0 3%, transparent 4%),
-    radial-gradient(circle at 70% 60%, #E7C47D 0 3%, transparent 4%),
-    linear-gradient(135deg, #DCE5D4, #F1EAD8);
-}
-
-.paper-dots {
-  background:
-    radial-gradient(circle, #C9A8A0 1.5px, transparent 2px),
-    #F5EDE2;
-  background-size: 18px 18px;
-}
-
-.paper-stars {
-  background:
-    radial-gradient(circle, #D7C28B 1.5px, transparent 2px),
-    #29324F;
-  background-size: 23px 23px;
-}
-
-.paper-postage {
-  background:
-    repeating-linear-gradient(45deg, transparent 0 13px, rgba(130,90,60,.13) 14px 16px),
-    #EADCC4;
-}
-
-.paper-watercolour {
-  background:
-    radial-gradient(ellipse at 25% 30%, #E9BFC0, transparent 40%),
-    radial-gradient(ellipse at 75% 65%, #BDD3D8, transparent 45%),
-    #F7F0E8;
-}
-
-/* INK OPTIONS */
+/* INK */
 
 .ink-grid {
   display: grid;
@@ -499,7 +379,7 @@ select:focus-visible {
 
 .ink-name { font-size: 13px; }
 
-/* SEAL OPTIONS */
+/* SEALS */
 
 .seal-grid {
   display: grid;
@@ -514,7 +394,7 @@ select:focus-visible {
   padding: 12px 5px;
   color: var(--brown);
   font-size: 28px;
-  min-height: 70px;
+  min-height: 65px;
 }
 
 .seal-option.selected {
@@ -522,47 +402,7 @@ select:focus-visible {
   background: #F0E5D6;
 }
 
-/* LETTER PREVIEW */
-
-.letter-preview-wrap {
-  background: #EDE2D2;
-  border-radius: 16px;
-  padding: 15px;
-  margin: 20px 0;
-}
-
-.preview-label {
-  font-size: 12px;
-  color: var(--light-brown);
-  text-align: center;
-  margin: 0 0 12px;
-}
-
-.letter-preview {
-  min-height: 250px;
-  padding: 25px 20px;
-  border: 1px solid rgba(80,60,40,.2);
-  border-radius: 3px;
-  position: relative;
-  white-space: pre-wrap;
-  overflow-wrap: anywhere;
-  font-family: Georgia, serif;
-  font-size: 17px;
-  line-height: 1.7;
-  transition: background .2s;
-}
-
-.letter-preview .preview-placeholder {
-  opacity: .55;
-  font-style: italic;
-}
-
-.preview-seal {
-  position: absolute;
-  right: 12px;
-  bottom: 10px;
-  font-size: 24px;
-}
+/* WRITING */
 
 label {
   display: block;
@@ -571,7 +411,7 @@ label {
   font-size: 14px;
 }
 
-input, textarea, select {
+textarea, input, select {
   width: 100%;
   padding: 14px;
   border: none;
@@ -583,7 +423,7 @@ input, textarea, select {
 }
 
 textarea {
-  min-height: 155px;
+  min-height: 180px;
   resize: vertical;
 }
 
@@ -599,7 +439,168 @@ textarea::placeholder { color: #8B7A69; }
 
 .checkbox-line input { width: auto; }
 
-/* FORTUNE DISPLAY */
+/* PREVIEW */
+
+.recipient-preview {
+  text-align: center;
+  background: #EDE2D2;
+  border-radius: 18px;
+  padding: 25px 15px;
+  margin-top: 20px;
+  overflow: hidden;
+}
+
+.recipient-envelope {
+  position: relative;
+  width: min(100%, 380px);
+  aspect-ratio: 1.45;
+  margin: 25px auto;
+  border-radius: 7px;
+  border: 1px solid rgba(70,50,30,.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  touch-action: pan-y;
+  user-select: none;
+}
+
+.recipient-envelope::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(145deg,transparent 49.5%,rgba(60,40,20,.2) 50%,transparent 50.8%),
+    linear-gradient(215deg,transparent 49.5%,rgba(60,40,20,.2) 50%,transparent 50.8%);
+}
+
+.recipient-envelope::after {
+  content: "";
+  position: absolute;
+  width: 25%;
+  aspect-ratio: 1;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%,-50%) rotate(45deg);
+  border: 1px solid rgba(60,40,20,.18);
+}
+
+.recipient-envelope .mini-seal {
+  position: relative;
+  z-index: 2;
+  font-size: 36px;
+}
+
+.opening-instruction {
+  font-family: Georgia, serif;
+  font-size: 19px;
+  margin: 15px 0;
+}
+
+.open-button {
+  display: block;
+  width: min(100%, 320px);
+  margin: 20px auto;
+  padding: 17px;
+  border-radius: 25px;
+  background: var(--dark-tan);
+  color: white;
+  font-size: 15px;
+  letter-spacing: .5px;
+}
+
+/* STARDUST */
+
+.stardust {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  pointer-events: none;
+  overflow: hidden;
+  display: none;
+}
+
+.stardust.active { display: block; }
+
+.star {
+  position: absolute;
+  left: var(--x);
+  top: var(--y);
+  color: #C49A62;
+  font-size: var(--size);
+  opacity: 0;
+  animation: sparkle 1.8s ease-out forwards;
+  animation-delay: var(--delay);
+}
+
+@keyframes sparkle {
+  0% { opacity: 0; transform: scale(.2) rotate(0deg); }
+  30% { opacity: 1; }
+  100% { opacity: 0; transform: translate(var(--move-x),var(--move-y)) scale(1.5) rotate(90deg); }
+}
+
+/* LETTER REVEAL */
+
+.reveal-area {
+  display: none;
+  margin: 25px auto;
+  perspective: 1000px;
+}
+
+.reveal-area.visible { display: block; }
+
+.reveal-letter {
+  position: relative;
+  width: 100%;
+  max-width: 480px;
+  min-height: 300px;
+  margin: 0 auto;
+  padding: 35px 25px;
+  border: 1px solid rgba(80,60,40,.2);
+  border-radius: 4px;
+  box-shadow: 0 8px 20px rgba(60,40,20,.12);
+  text-align: left;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  font-family: Georgia, serif;
+  font-size: 18px;
+  line-height: 1.8;
+  transform: translateY(130px);
+  opacity: 0;
+}
+
+.reveal-area.visible .reveal-letter {
+  animation: letterRise 1.2s cubic-bezier(.2,.75,.25,1) forwards;
+}
+
+@keyframes letterRise {
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.reveal-seal {
+  position: absolute;
+  bottom: 15px;
+  right: 18px;
+  font-size: 25px;
+}
+
+.final-button {
+  display: none;
+  width: min(100%, 390px);
+  margin: 25px auto 5px;
+  padding: 17px 20px;
+  background: var(--dark-tan);
+  color: white;
+  font-size: 15px;
+  border-radius: 25px;
+}
+
+.final-button.visible { display: block; }
+
+/* FORTUNE FOUND */
 
 .envelopes {
   display: flex;
@@ -630,9 +631,6 @@ textarea::placeholder { color: #8B7A69; }
   margin: 25px auto;
   max-width: 570px;
   min-height: 150px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
 }
 
 .fortune-paper p {
@@ -675,7 +673,6 @@ footer {
 
 @media (max-width: 500px) {
   #home h1 { margin-bottom: 38px; }
-
   .home-buttons { gap: 10px; }
 
   .home-choice {
@@ -693,7 +690,6 @@ footer {
   }
 
   .top-nav button { padding: 10px 12px; }
-
   .option-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .seal-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
   .content-card { padding: 17px; }
@@ -739,7 +735,7 @@ footer {
 </section>
 
 
-<!-- LEAVE A FORTUNE -->
+<!-- FORTUNE FROM -->
 
 <section id="leave" class="page">
 
@@ -749,59 +745,47 @@ footer {
     <button onclick="showPage('collection')">My Collection</button>
   </nav>
 
-  <h2>Leave a Little Fortune</h2>
-
-  <p class="intro">
-    Write something for somebody you may never meet.
-    A wish, a thought, a reminder or a little mystery.
-  </p>
+  <h2>Fortune From</h2>
 
   <div class="content-card">
 
     <form id="letterForm">
 
-      <!-- ENVELOPE -->
+      <!-- 1. ENVELOPE -->
 
       <div class="creator-section">
-        <h3 class="creator-heading">1. Pick your envelope</h3>
-        <p class="creator-description">Choose the outside of your little letter.</p>
+        <h3 class="creator-heading">1. Envelope</h3>
 
-        <div class="tabs" id="envelopeTabs">
-          <button type="button" class="tab-button active" data-tab="plain">Plain Colours</button>
-          <button type="button" class="tab-button" data-tab="special">Special Designs</button>
-        </div>
+        <p class="option-category">COLOURS</p>
+        <div class="option-grid" id="envelopeColours"></div>
 
-        <div class="option-grid" id="envelopeOptions"></div>
+        <p class="option-category">SPECIAL DESIGNS</p>
+        <div class="option-grid" id="envelopeSpecial"></div>
       </div>
 
-      <!-- PAPER -->
+      <!-- 2. PAPER -->
 
       <div class="creator-section">
-        <h3 class="creator-heading">2. Pick your paper</h3>
-        <p class="creator-description">What would you like your letter to be written on?</p>
+        <h3 class="creator-heading">2. Paper</h3>
 
-        <div class="tabs" id="paperTabs">
-          <button type="button" class="tab-button active" data-tab="simple">Plain & Simple</button>
-          <button type="button" class="tab-button" data-tab="special">Special Papers</button>
-          <button type="button" class="tab-button" data-tab="patterns">Patterns & Playful</button>
-        </div>
+        <p class="option-category">COLOURS</p>
+        <div class="option-grid" id="paperColours"></div>
 
-        <div class="option-grid" id="paperOptions"></div>
+        <p class="option-category">SPECIAL DESIGNS</p>
+        <div class="option-grid" id="paperSpecial"></div>
       </div>
 
-      <!-- INK -->
+      <!-- 3. INK -->
 
       <div class="creator-section">
-        <h3 class="creator-heading">3. Pick your ink</h3>
-        <p class="creator-description">Choose the colour of your handwriting.</p>
+        <h3 class="creator-heading">3. Ink</h3>
         <div class="ink-grid" id="inkOptions"></div>
       </div>
 
-      <!-- SEAL -->
+      <!-- 4. SEAL -->
 
       <div class="creator-section">
-        <h3 class="creator-heading">4. Pick your seal</h3>
-        <p class="creator-description">A tiny finishing touch for the envelope.</p>
+        <h3 class="creator-heading">4. Seal</h3>
 
         <div class="tabs" id="sealTabs">
           <button type="button" class="tab-button active" data-tab="hearts">Hearts & Love</button>
@@ -820,15 +804,11 @@ footer {
         </button>
       </div>
 
-      <!-- WRITE LETTER -->
+      <!-- 5. WRITE -->
 
       <div class="creator-section">
-        <h3 class="creator-heading">5. Write your letter</h3>
-        <p class="creator-description">
-          Your chosen paper and ink will appear in your letter preview.
-        </p>
+        <h3 class="creator-heading">5. Write Your Fortune</h3>
 
-        <label for="letterText">Your letter</label>
         <textarea
           id="letterText"
           maxlength="500"
@@ -836,44 +816,66 @@ footer {
           required
         ></textarea>
 
-        <div class="letter-preview-wrap">
-          <p class="preview-label">A little preview of your letter</p>
-          <div class="letter-preview paper-cream" id="letterPreview">
-            <span class="preview-placeholder">Your words will appear here...</span>
-            <span class="preview-seal" id="previewSeal"></span>
-          </div>
-        </div>
-
         <div class="checkbox-line">
           <input type="checkbox" id="includeSignature" checked>
           <label for="includeSignature" style="margin:0">
             Include my signature
           </label>
         </div>
+      </div>
 
-        <button class="main-button" type="submit">
-          Leave for Someone to Find
-        </button>
+      <!-- 6. PREVIEW -->
+
+      <div class="creator-section">
+        <h3 class="creator-heading">6. Preview</h3>
+
+        <div class="recipient-preview" id="recipientPreview">
+
+          <p class="preview-label">WHAT THE FORTUNE RECIPIENT WILL SEE</p>
+
+          <div class="recipient-envelope" id="recipientEnvelope">
+            <span class="mini-seal" id="envelopeSeal">💌</span>
+          </div>
+
+          <div id="openingPrompt">
+            <p class="opening-instruction">A little letter is waiting for you.</p>
+            <button type="button" class="open-button" id="openFortuneButton">
+              Open My Fortune
+            </button>
+          </div>
+
+          <div class="reveal-area" id="revealArea">
+            <div class="reveal-letter" id="revealLetter">
+              <span id="revealedText"></span>
+              <span class="reveal-seal" id="revealedSeal"></span>
+            </div>
+          </div>
+
+          <button type="button" class="final-button" id="leaveFortuneButton">
+            Leave this fortune for someone to find
+          </button>
+
+        </div>
       </div>
 
     </form>
 
-    <div id="letterConfirmation" style="display:none; text-align:center">
-      <h3>Your letter has been created!</h3>
+    <div id="letterConfirmation" style="display:none;text-align:center">
+      <h3>Your fortune is ready!</h3>
       <p id="letterNumber" class="fortune-number"></p>
       <p>
-        This is a local prototype. Your letter has been saved in this
-        browser, but has not been sent to other visitors.
+        Your letter has been saved in this browser.
+        It has not yet been shared with other visitors.
       </p>
       <button class="main-button" onclick="showPage('home')">Back Home</button>
-      <button class="secondary-button" onclick="createAnotherLetter()">Write Another Letter</button>
+      <button class="secondary-button" onclick="createAnotherLetter()">Write Another Fortune</button>
     </div>
 
   </div>
 </section>
 
 
-<!-- RECEIVE A FORTUNE -->
+<!-- FORTUNE FOUND -->
 
 <section id="receive" class="page">
 
@@ -908,7 +910,7 @@ footer {
 </section>
 
 
-<!-- CREATE A SIGNATURE -->
+<!-- SIGNATURE -->
 
 <section id="signup" class="page">
 
@@ -954,7 +956,7 @@ footer {
       <button class="main-button" type="submit">Create My Signature</button>
     </form>
 
-    <div id="signupConfirmation" style="display:none; text-align:center">
+    <div id="signupConfirmation" style="display:none;text-align:center">
       <h3>Your signature is ready!</h3>
       <p id="signatureDisplay"></p>
       <button class="main-button" onclick="showPage('home')">Back Home</button>
@@ -984,6 +986,7 @@ footer {
   </div>
 </section>
 
+<div class="stardust" id="stardust"></div>
 
 <footer>
   Fortune From, Fortune Found
@@ -997,196 +1000,236 @@ footer {
 // PAGE NAVIGATION
 
 function showPage(pageName) {
-  document.querySelectorAll('.page').forEach(page => {
-    page.classList.remove('active');
+  document.querySelectorAll(".page").forEach(page => {
+    page.classList.remove("active");
   });
 
-  document.getElementById(pageName).classList.add('active');
+  document.getElementById(pageName).classList.add("active");
 
-  if (pageName === 'collection') displayCollection();
+  if (pageName === "collection") displayCollection();
 
   window.scrollTo(0, 0);
 }
 
 
-// ENVELOPE CHOICES
+// ENVELOPE AND PAPER OPTIONS
 
-const envelopes = {
-  plain: [
-    ["Blush", "#E8BFC0"],
-    ["Dusty Rose", "#C98791"],
-    ["Lavender", "#C8B9D9"],
-    ["Lilac", "#B9A6CE"],
-    ["Powder Blue", "#B8D0DF"],
-    ["Sage", "#A9B9A0"],
-    ["Forest Green", "#536F5B"],
-    ["Butter Yellow", "#E9D99B"],
-    ["Terracotta", "#C77E62"],
-    ["Warm Cream", "#E9DFC9"],
-    ["Soft Grey", "#B9B8B1"],
-    ["Midnight Blue", "#4D5C76"]
-  ],
-  special: [
-    ["Old & Forgotten", "design-aged"],
-    ["Pressed Garden", "design-flowers"],
-    ["Little Artist", "design-child"],
-    ["Moon & Stars", "design-moon"],
-    ["Somewhere Blue", "design-sky"],
-    ["Postcard From Elsewhere", "design-postcard"]
-  ]
-};
+const stationeryColours = [
+  {name:"Dusty Rose", colour:"#BD858C"},
+  {name:"Blush", colour:"#E8B9BD"},
+  {name:"Terracotta", colour:"#B96E53"},
+  {name:"Lavender", colour:"#B8A5CF"},
+  {name:"Powder Blue", colour:"#A9C9DC"},
+  {name:"Midnight Blue", colour:"#263D59"},
+  {name:"Sage", colour:"#A5B49A"},
+  {name:"Warm Cream", colour:"#E9DFC8"},
+  {name:"Soft Grey", colour:"#AAA9A5"},
+  {name:"Dusk Black", colour:"#33302F"}
+];
+
+const specialDesigns = [
+  {name:"Forgotten", style:"design-forgotten"},
+  {name:"Rainbow Watercolour", style:"design-rainbow"},
+  {name:"Clouds", style:"design-clouds"}
+];
 
 let selectedEnvelope = "Blush";
-let selectedEnvelopeStyle = "plain";
+let selectedEnvelopeStyle = "colour";
+let selectedEnvelopeColour = "#E8B9BD";
 
-function renderEnvelopes(tab) {
-  const container = document.getElementById("envelopeOptions");
-  container.innerHTML = "";
+let selectedPaper = "Warm Cream";
+let selectedPaperStyle = "colour";
+let selectedPaperColour = "#E9DFC8";
 
-  envelopes[tab].forEach(item => {
+function createOption(name, previewClass, colour, type, selected, onClick) {
+  const button = document.createElement("button");
+  button.type = "button";
+  button.className = "option-card";
+
+  if (selected) button.classList.add("selected");
+
+  const preview = document.createElement("div");
+  preview.className = previewClass;
+
+  if (colour) preview.style.background = colour;
+  if (type === "special") preview.classList.add(previewClass.includes("paper") ? "" : "");
+  if (type === "special") preview.classList.add(...previewClass.split(" ").filter(Boolean));
+
+  const label = document.createElement("span");
+  label.className = "option-name";
+  label.textContent = name;
+
+  button.appendChild(preview);
+  button.appendChild(label);
+  button.addEventListener("click", onClick);
+
+  return button;
+}
+
+
+// ENVELOPE RENDERING
+
+function renderEnvelopeOptions() {
+  const colours = document.getElementById("envelopeColours");
+  const special = document.getElementById("envelopeSpecial");
+
+  colours.innerHTML = "";
+  special.innerHTML = "";
+
+  stationeryColours.forEach(item => {
     const button = document.createElement("button");
     button.type = "button";
     button.className = "option-card";
 
-    const selected = selectedEnvelope === item[0];
-    if (selected) button.classList.add("selected");
+    if (selectedEnvelope === item.name) button.classList.add("selected");
 
     const preview = document.createElement("div");
     preview.className = "envelope-preview";
+    preview.style.background = item.colour;
 
-    if (tab === "plain") {
-      preview.style.background = item[1];
-    } else {
-      preview.classList.add(item[1]);
-    }
-
-    const miniSeal = document.createElement("span");
-    miniSeal.className = "mini-seal";
-    miniSeal.textContent = selectedSeal || "♡";
-    preview.appendChild(miniSeal);
+    const seal = document.createElement("span");
+    seal.className = "mini-seal";
+    seal.textContent = selectedSeal || "♡";
+    preview.appendChild(seal);
 
     const name = document.createElement("span");
     name.className = "option-name";
-    name.textContent = item[0];
+    name.textContent = item.name;
 
-    button.appendChild(preview);
-    button.appendChild(name);
+    button.append(preview, name);
 
     button.addEventListener("click", () => {
-      selectedEnvelope = item[0];
-      selectedEnvelopeStyle = tab;
-      renderEnvelopes(tab);
+      selectedEnvelope = item.name;
+      selectedEnvelopeStyle = "colour";
+      selectedEnvelopeColour = item.colour;
+      renderEnvelopeOptions();
+      updateRecipientPreview();
     });
 
-    container.appendChild(button);
+    colours.appendChild(button);
   });
-}
 
-
-// PAPER CHOICES
-
-const papers = {
-  simple: [
-    ["Bright White", "paper-white"],
-    ["Warm Cream", "paper-cream"],
-    ["Blush Pink", "paper-pink"],
-    ["Powder Blue", "paper-blue"],
-    ["Soft Sage", "paper-sage"],
-    ["Midnight Black", "paper-black"]
-  ],
-  special: [
-    ["Aged & Weathered", "paper-aged"],
-    ["Pressed Flowers", "paper-flowers"],
-    ["Little Artist", "paper-child"],
-    ["Cloud Watching", "paper-clouds"],
-    ["Moonlight", "paper-galaxy"],
-    ["Handmade & Recycled", "paper-recycled"]
-  ],
-  patterns: [
-    ["Tiny Hearts", "paper-hearts"],
-    ["Wildflower Meadow", "paper-meadow"],
-    ["Polka Dots", "paper-dots"],
-    ["Stars & Constellations", "paper-stars"],
-    ["Postage Collage", "paper-postage"],
-    ["Watercolour Wash", "paper-watercolour"]
-  ]
-};
-
-let selectedPaper = "Warm Cream";
-let selectedPaperClass = "paper-cream";
-
-function renderPapers(tab) {
-  const container = document.getElementById("paperOptions");
-  container.innerHTML = "";
-
-  papers[tab].forEach(item => {
+  specialDesigns.forEach(item => {
     const button = document.createElement("button");
     button.type = "button";
     button.className = "option-card";
 
-    if (selectedPaper === item[0]) button.classList.add("selected");
+    if (selectedEnvelope === item.name) button.classList.add("selected");
 
     const preview = document.createElement("div");
-    preview.className = "paper-preview " + item[1];
+    preview.className = "envelope-preview " + item.style;
+
+    const seal = document.createElement("span");
+    seal.className = "mini-seal";
+    seal.textContent = selectedSeal || "♡";
+    preview.appendChild(seal);
 
     const name = document.createElement("span");
     name.className = "option-name";
-    name.textContent = item[0];
+    name.textContent = item.name;
 
-    button.appendChild(preview);
-    button.appendChild(name);
+    button.append(preview, name);
 
     button.addEventListener("click", () => {
-      selectedPaper = item[0];
-      selectedPaperClass = item[1];
-      renderPapers(tab);
-      updateLetterPreview();
-      renderInkOptions();
+      selectedEnvelope = item.name;
+      selectedEnvelopeStyle = item.style;
+      selectedEnvelopeColour = "";
+      renderEnvelopeOptions();
+      updateRecipientPreview();
     });
 
-    container.appendChild(button);
+    special.appendChild(button);
   });
 }
 
 
-// INK CHOICES
+// PAPER RENDERING
 
-const mainInks = [
-  ["Classic Black", "#222222"],
-  ["Midnight Blue", "#243B60"],
-  ["Royal Blue", "#315E9B"],
-  ["Burgundy", "#702D3B"],
-  ["Deep Green", "#28513B"],
-  ["Forest Green", "#476344"],
-  ["Chocolate Brown", "#65432F"],
-  ["Plum", "#69466F"],
-  ["Charcoal Grey", "#55565A"],
-  ["Copper", "#A65D3C"]
+function renderPaperOptions() {
+  const colours = document.getElementById("paperColours");
+  const special = document.getElementById("paperSpecial");
+
+  colours.innerHTML = "";
+  special.innerHTML = "";
+
+  stationeryColours.forEach(item => {
+    const button = document.createElement("button");
+    button.type = "button";
+    button.className = "option-card";
+
+    if (selectedPaper === item.name) button.classList.add("selected");
+
+    const preview = document.createElement("div");
+    preview.className = "paper-preview";
+    preview.style.background = item.colour;
+
+    const name = document.createElement("span");
+    name.className = "option-name";
+    name.textContent = item.name;
+
+    button.append(preview, name);
+
+    button.addEventListener("click", () => {
+      selectedPaper = item.name;
+      selectedPaperStyle = "colour";
+      selectedPaperColour = item.colour;
+      renderPaperOptions();
+      updateRecipientPreview();
+    });
+
+    colours.appendChild(button);
+  });
+
+  specialDesigns.forEach(item => {
+    const button = document.createElement("button");
+    button.type = "button";
+    button.className = "option-card";
+
+    if (selectedPaper === item.name) button.classList.add("selected");
+
+    const preview = document.createElement("div");
+    preview.className = "paper-preview " + item.style;
+
+    const name = document.createElement("span");
+    name.className = "option-name";
+    name.textContent = item.name;
+
+    button.append(preview, name);
+
+    button.addEventListener("click", () => {
+      selectedPaper = item.name;
+      selectedPaperStyle = item.style;
+      selectedPaperColour = "";
+      renderPaperOptions();
+      updateRecipientPreview();
+    });
+
+    special.appendChild(button);
+  });
+}
+
+
+// INK OPTIONS
+
+const inks = [
+  ["Black","#242424"],
+  ["Blue","#315D9A"],
+  ["Burgundy","#762B42"],
+  ["Forest Green","#24513C"],
+  ["Chocolate Brown","#67432F"],
+  ["Charcoal Grey","#55565A"],
+  ["Plum","#69446F"],
+  ["Copper","#AD7047"]
 ];
 
-const lightInks = [
-  ["White", "#FFFFFF"],
-  ["Warm Cream", "#F3EBDD"],
-  ["Pale Pink", "#F3C6D1"],
-  ["Silver", "#C7CBD4"]
-];
-
-let selectedInk = "#222222";
-let selectedInkName = "Classic Black";
+let selectedInk = "#242424";
+let selectedInkName = "Black";
 
 function renderInkOptions() {
   const container = document.getElementById("inkOptions");
   container.innerHTML = "";
 
-  let options = [...mainInks];
-
-  if (selectedPaperClass === "paper-black" ||
-      selectedPaperClass === "paper-galaxy" ||
-      selectedPaperClass === "paper-stars") {
-    options = [...lightInks, ...mainInks];
-  }
-
-  options.forEach(item => {
+  inks.forEach(item => {
     const button = document.createElement("button");
     button.type = "button";
     button.className = "ink-option";
@@ -1201,14 +1244,13 @@ function renderInkOptions() {
     name.className = "ink-name";
     name.textContent = item[0];
 
-    button.appendChild(dot);
-    button.appendChild(name);
+    button.append(dot, name);
 
     button.addEventListener("click", () => {
       selectedInk = item[1];
       selectedInkName = item[0];
       renderInkOptions();
-      updateLetterPreview();
+      updateRecipientPreview();
     });
 
     container.appendChild(button);
@@ -1216,21 +1258,23 @@ function renderInkOptions() {
 }
 
 
-// SEAL CHOICES
+// SEAL OPTIONS
 
 const seals = {
-  hearts: ["❤️", "💗", "💌", "💕", "💘", "💝"],
-  nature: ["🌷", "🌸", "🌻", "🍀", "🌿", "🦋"],
-  sky: ["⭐", "🌙", "☀️", "✨", "🌈", "☁️"],
-  faces: ["😊", "🥹", "😌", "😜", "😍", "🤗"],
-  animals: ["🐈", "🐈‍⬛", "🐇", "🦊", "🐝", "🐢"],
-  things: ["🍓", "🍄", "🕯️", "🔑", "🧸", "🎀"],
-  magic: ["🔮", "🪄", "🧿", "🗝️", "🪐", "🪽"]
+  hearts:["❤️","💗","💌","💕","💘","💝"],
+  nature:["🌷","🌸","🌻","🍀","🌿","🦋"],
+  sky:["⭐","🌙","☀️","✨","🌈","☁️"],
+  faces:["😊","🥹","😌","😜","😍","🤗"],
+  animals:["🐈","🐈‍⬛","🐇","🦊","🐝","🐢"],
+  things:["🍓","🍄","🕯️","🔑","🧸","🎀"],
+  magic:["🔮","🪄","🧿","🗝️","🪐","🪽"]
 };
 
 let selectedSeal = "💌";
+let activeSealTab = "hearts";
 
 function renderSeals(tab) {
+  activeSealTab = tab;
   const container = document.getElementById("sealOptions");
   container.innerHTML = "";
 
@@ -1244,88 +1288,234 @@ function renderSeals(tab) {
 
     button.addEventListener("click", () => {
       selectedSeal = emoji;
-      renderSeals(tab);
-      updateLetterPreview();
-      renderEnvelopes(selectedEnvelopeStyle);
+      renderSeals(activeSealTab);
+      renderEnvelopeOptions();
+      updateRecipientPreview();
     });
 
     container.appendChild(button);
   });
+
+  document.querySelectorAll("#sealTabs .tab-button").forEach(button => {
+    button.classList.toggle("active", button.dataset.tab === tab);
+  });
+
+  document.getElementById("noSealButton").classList.toggle("selected", !selectedSeal);
 }
+
+document.querySelectorAll("#sealTabs .tab-button").forEach(button => {
+  button.addEventListener("click", () => renderSeals(button.dataset.tab));
+});
 
 document.getElementById("noSealButton").addEventListener("click", () => {
   selectedSeal = "";
-  document.querySelectorAll(".seal-option").forEach(button => {
-    button.classList.remove("selected");
-  });
-  updateLetterPreview();
-  renderEnvelopes(selectedEnvelopeStyle);
+  renderSeals(activeSealTab);
+  renderEnvelopeOptions();
+  updateRecipientPreview();
 });
 
 
-// TAB CONTROLS
+// RECIPIENT PREVIEW
 
-function setupTabs(containerId, renderFunction) {
-  const container = document.getElementById(containerId);
-
-  container.querySelectorAll(".tab-button").forEach(button => {
-    button.addEventListener("click", () => {
-      container.querySelectorAll(".tab-button").forEach(tab => {
-        tab.classList.remove("active");
-      });
-
-      button.classList.add("active");
-      renderFunction(button.dataset.tab);
-    });
-  });
+function getEnvelopeClass() {
+  if (selectedEnvelopeStyle === "colour") return "";
+  return selectedEnvelopeStyle;
 }
 
+function getPaperClass() {
+  if (selectedPaperStyle === "colour") return "";
+  return selectedPaperStyle;
+}
 
-// LETTER PREVIEW
+function updateRecipientPreview() {
+  const envelope = document.getElementById("recipientEnvelope");
+  const seal = document.getElementById("envelopeSeal");
 
-function updateLetterPreview() {
-  const preview = document.getElementById("letterPreview");
-  const text = document.getElementById("letterText").value;
+  envelope.className = "recipient-envelope";
 
-  preview.className = "letter-preview " + selectedPaperClass;
-  preview.style.color = selectedInk;
-
-  // Give dark papers readable default text colours.
-  if ((selectedPaperClass === "paper-black" ||
-       selectedPaperClass === "paper-galaxy" ||
-       selectedPaperClass === "paper-stars") &&
-       ["#222222", "#243B60", "#315E9B", "#55565A"].includes(selectedInk)) {
-    preview.style.color = "#F3EBDD";
+  if (selectedEnvelopeStyle === "colour") {
+    envelope.style.background = selectedEnvelopeColour;
+  } else {
+    envelope.style.background = "";
+    envelope.classList.add(selectedEnvelopeStyle);
   }
 
-  preview.innerHTML = "";
+  seal.textContent = selectedSeal || "";
 
-  const words = document.createElement("span");
-  words.textContent = text || "Your words will appear here...";
-  if (!text) words.className = "preview-placeholder";
+  const writing = document.getElementById("letterText").value;
+  const revealedText = document.getElementById("revealedText");
 
-  const seal = document.createElement("span");
-  seal.className = "preview-seal";
-  seal.textContent = selectedSeal;
+  revealedText.textContent = writing || "Your fortune will appear here.";
 
-  preview.appendChild(words);
-  preview.appendChild(seal);
+  const letter = document.getElementById("revealLetter");
+  letter.style.background = "";
+
+  if (selectedPaperStyle === "colour") {
+    letter.style.background = selectedPaperColour;
+  } else {
+    letter.style.background = "";
+    letter.classList.add(selectedPaperStyle);
+  }
+
+  letter.style.color = selectedInk;
+
+  if (selectedPaper === "Midnight Blue" || selectedPaper === "Dusk Black") {
+    letter.style.color = "#FFFFFF";
+  }
+
+  document.getElementById("revealedSeal").textContent = selectedSeal;
 }
 
-document.getElementById("letterText").addEventListener("input", updateLetterPreview);
+document.getElementById("letterText").addEventListener("input", updateRecipientPreview);
 
 
-// START THE CREATOR
+// PREVIEW OPENING ANIMATION
 
-setupTabs("envelopeTabs", renderEnvelopes);
-setupTabs("paperTabs", renderPapers);
-setupTabs("sealTabs", renderSeals);
+let fortuneOpened = false;
 
-renderEnvelopes("plain");
-renderPapers("simple");
+function openRecipientLetter() {
+  if (fortuneOpened) return;
+
+  const message = document.getElementById("letterText").value.trim();
+
+  if (!message) {
+    alert("Write your fortune before opening the preview.");
+    document.getElementById("letterText").focus();
+    return;
+  }
+
+  fortuneOpened = true;
+
+  const dust = document.getElementById("stardust");
+  dust.innerHTML = "";
+
+  const symbols = ["✦","✧","⋆","✴","·","✧","✦","⋆"];
+
+  for (let i = 0; i < 32; i++) {
+    const star = document.createElement("span");
+    star.className = "star";
+    star.textContent = symbols[i % symbols.length];
+
+    star.style.setProperty("--x", Math.random() * 100 + "%");
+    star.style.setProperty("--y", Math.random() * 80 + 10 + "%");
+    star.style.setProperty("--size", (12 + Math.random() * 16) + "px");
+    star.style.setProperty("--delay", (Math.random() * .7) + "s");
+    star.style.setProperty("--move-x", (Math.random() * 180 - 90) + "px");
+    star.style.setProperty("--move-y", (Math.random() * -180 - 30) + "px");
+
+    dust.appendChild(star);
+  }
+
+  dust.classList.add("active");
+
+  document.getElementById("openingPrompt").style.display = "none";
+
+  setTimeout(() => {
+    document.getElementById("revealArea").classList.add("visible");
+    document.getElementById("finalButton").classList.add("visible");
+    dust.classList.remove("active");
+  }, 650);
+}
+
+document.getElementById("openFortuneButton").addEventListener("click", openRecipientLetter);
+
+
+// ALLOW SWIPE UP TO OPEN
+
+let touchStartY = 0;
+
+document.getElementById("recipientEnvelope").addEventListener("touchstart", event => {
+  touchStartY = event.changedTouches[0].screenY;
+}, {passive:true});
+
+document.getElementById("recipientEnvelope").addEventListener("touchend", event => {
+  const touchEndY = event.changedTouches[0].screenY;
+
+  if (touchStartY - touchEndY > 45) {
+    openRecipientLetter();
+  }
+}, {passive:true});
+
+
+// FINAL SUBMISSION
+
+document.getElementById("leaveFortuneButton").addEventListener("click", saveCreatedFortune);
+
+function saveCreatedFortune() {
+  const message = document.getElementById("letterText").value.trim();
+  if (!message) return;
+
+  const number = "Letter No. " + String(Math.floor(Math.random() * 90000) + 10000);
+  const signature = localStorage.getItem("signatureName") || "";
+  const includeSignature = document.getElementById("includeSignature").checked;
+
+  const letter = {
+    text: message,
+    number: number,
+    signature: includeSignature ? signature : "",
+    envelope: selectedEnvelope,
+    envelopeStyle: selectedEnvelopeStyle,
+    paper: selectedPaper,
+    paperStyle: selectedPaperStyle,
+    ink: selectedInkName,
+    seal: selectedSeal,
+    date: new Date().toISOString()
+  };
+
+  let sent = JSON.parse(localStorage.getItem("sentLetters") || "[]");
+  sent.push(letter);
+  localStorage.setItem("sentLetters", JSON.stringify(sent));
+
+  document.getElementById("letterNumber").textContent = number;
+  document.getElementById("letterForm").style.display = "none";
+  document.getElementById("letterConfirmation").style.display = "block";
+  window.scrollTo(0, 0);
+}
+
+
+// RESET CREATOR
+
+function createAnotherLetter() {
+  document.getElementById("letterForm").reset();
+
+  document.getElementById("letterForm").style.display = "block";
+  document.getElementById("letterConfirmation").style.display = "none";
+
+  selectedEnvelope = "Blush";
+  selectedEnvelopeStyle = "colour";
+  selectedEnvelopeColour = "#E8B9BD";
+
+  selectedPaper = "Warm Cream";
+  selectedPaperStyle = "colour";
+  selectedPaperColour = "#E9DFC8";
+
+  selectedInk = "#242424";
+  selectedInkName = "Black";
+  selectedSeal = "💌";
+
+  fortuneOpened = false;
+
+  document.getElementById("openingPrompt").style.display = "block";
+  document.getElementById("revealArea").classList.remove("visible");
+  document.getElementById("finalButton").classList.remove("visible");
+
+  renderEnvelopeOptions();
+  renderPaperOptions();
+  renderInkOptions();
+  renderSeals("hearts");
+  updateRecipientPreview();
+
+  window.scrollTo(0, 0);
+}
+
+
+// INITIALISE CREATOR
+
+renderEnvelopeOptions();
+renderPaperOptions();
 renderInkOptions();
 renderSeals("hearts");
-updateLetterPreview();
+updateRecipientPreview();
 
 
 // SAMPLE FORTUNES
@@ -1348,9 +1538,6 @@ const fortunes = [
 let currentFortune = null;
 let currentFortuneNumber = null;
 
-
-// OPEN A FORTUNE
-
 function openFortune(envelopeNumber) {
   const randomIndex = Math.floor(Math.random() * fortunes.length);
   currentFortune = fortunes[randomIndex];
@@ -1362,9 +1549,6 @@ function openFortune(envelopeNumber) {
   document.getElementById("fortuneNumber").textContent = currentFortuneNumber;
   document.getElementById("fortuneResult").style.display = "block";
 }
-
-
-// SAVE A FORTUNE
 
 function saveFortune() {
   if (!currentFortune) return;
@@ -1409,60 +1593,9 @@ function displayCollection() {
     const number = document.createElement("small");
     number.textContent = fortune.number;
 
-    item.appendChild(text);
-    item.appendChild(number);
+    item.append(text, number);
     container.appendChild(item);
   });
-}
-
-
-// LEAVE A LETTER
-
-document.getElementById("letterForm").addEventListener("submit", function(event) {
-  event.preventDefault();
-
-  const letterText = document.getElementById("letterText").value.trim();
-  if (!letterText) return;
-
-  const letterNumber =
-    "Letter No. " + String(Math.floor(Math.random() * 90000) + 10000);
-
-  const signature = localStorage.getItem("signatureName") || "";
-  const includeSignature = document.getElementById("includeSignature").checked;
-
-  const letter = {
-    text: letterText,
-    number: letterNumber,
-    signature: includeSignature ? signature : "",
-    envelope: selectedEnvelope,
-    envelopeStyle: selectedEnvelopeStyle,
-    paper: selectedPaper,
-    paperStyle: selectedPaperClass,
-    ink: selectedInkName,
-    seal: selectedSeal
-  };
-
-  let sent = JSON.parse(localStorage.getItem("sentLetters") || "[]");
-  sent.push(letter);
-  localStorage.setItem("sentLetters", JSON.stringify(sent));
-
-  document.getElementById("letterNumber").textContent = letterNumber;
-  document.getElementById("letterForm").style.display = "none";
-  document.getElementById("letterConfirmation").style.display = "block";
-});
-
-
-// START ANOTHER LETTER
-
-function createAnotherLetter() {
-  document.getElementById("letterForm").reset();
-  document.getElementById("letterForm").style.display = "block";
-  document.getElementById("letterConfirmation").style.display = "none";
-
-  document.getElementById("letterText").value = "";
-  updateLetterPreview();
-
-  window.scrollTo(0, 0);
 }
 
 
