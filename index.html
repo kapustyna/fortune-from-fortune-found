@@ -4,1621 +4,1454 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#F6F0E5">
 <title>Fortune From, Fortune Found</title>
 
 <style>
 :root {
-  --cream: #F6F0E5;
-  --tan: #D5B99B;
-  --dark-tan: #A98B70;
-  --brown: #514236;
-  --light-brown: #766453;
-  --paper: #FFF9EF;
-  --soft-cream: #EDE2D2;
+  --cream:#F6F0E5;
+  --tan:#D5B99B;
+  --dark-tan:#A98B70;
+  --brown:#514236;
+  --light-brown:#766453;
+  --paper:#FFF9EF;
+  --soft-cream:#EDE2D2;
+  --border:#D9CBB9;
 }
 
-* { box-sizing: border-box; }
+* { box-sizing:border-box; }
 
 body {
-  margin: 0;
-  background: var(--cream);
-  color: var(--brown);
-  font-family: Arial, sans-serif;
-  min-height: 100vh;
+  margin:0;
+  background:var(--cream);
+  color:var(--brown);
+  font-family:Georgia,"Times New Roman",serif;
 }
 
-h1, h2, h3 {
-  font-family: Georgia, serif;
-  font-weight: normal;
-  color: var(--brown);
+button,input,textarea { font:inherit; }
+button { cursor:pointer; }
+
+.page {
+  display:none;
+  min-height:100vh;
+  padding:30px 18px 55px;
+}
+.page.active { display:block; }
+
+.container {
+  max-width:850px;
+  width:100%;
+  margin:auto;
+}
+
+h1,h2,h3 {
+  font-weight:normal;
+  text-align:center;
 }
 
 h1 {
-  font-size: clamp(26px, 5vw, 38px);
-  text-align: center;
-  line-height: 1.3;
-  margin: 25px 0 55px;
+  font-size:clamp(30px,6vw,48px);
+  margin:35px 0 42px;
 }
 
-h2 {
-  font-size: 27px;
-  text-align: center;
-  margin-bottom: 20px;
-}
+h2 { font-size:clamp(25px,5vw,34px); }
+h3 { font-size:23px; }
 
-p { line-height: 1.7; }
+p { line-height:1.6; }
 
 button {
-  font-family: inherit;
-  cursor: pointer;
-  border: none;
-  border-radius: 20px;
-  transition: opacity .2s;
+  border:0;
+  border-radius:9px;
+  padding:13px 19px;
+  background:var(--tan);
+  color:var(--brown);
+  transition:background .2s,transform .2s;
 }
-
-button:hover { opacity: .85; }
+button:hover { background:#C9AA89; }
+button:active { transform:scale(.98); }
 
 button:focus-visible,
 input:focus-visible,
-textarea:focus-visible,
-select:focus-visible {
-  outline: 2px solid var(--brown);
-  outline-offset: 3px;
+textarea:focus-visible {
+  outline:3px solid var(--dark-tan);
+  outline-offset:3px;
 }
 
-.page {
-  display: none;
-  width: 100%;
-  max-width: 900px;
-  margin: auto;
-  padding: 35px 20px 60px;
+.primary-button {
+  background:var(--dark-tan);
+  color:white;
+}
+.primary-button:hover { background:#90745B; }
+
+.secondary-button { background:var(--soft-cream); }
+
+.button-row {
+  display:flex;
+  justify-content:center;
+  flex-wrap:wrap;
+  gap:12px;
+  margin-top:24px;
 }
 
-.page.active { display: block; }
+.muted {
+  color:var(--light-brown);
+  text-align:center;
+}
+
+.back-home {
+  display:block;
+  margin:0 auto 20px;
+  background:transparent;
+  color:var(--light-brown);
+  padding:8px;
+}
 
 /* HOMEPAGE */
 
-#home {
-  min-height: 100vh;
-  display: none;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  padding: 35px 20px;
+.home-title { margin-top:13vh; }
+
+.home-actions {
+  display:flex;
+  justify-content:center;
+  gap:18px;
+  max-width:650px;
+  margin:auto;
 }
 
-#home.active { display: flex; }
+.home-card {
+  flex:1;
+  min-width:0;
+  min-height:150px;
+  background:var(--tan);
+  border-radius:12px;
+  padding:22px 10px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  gap:10px;
+  text-align:center;
+  color:var(--brown);
+  cursor:pointer;
+}
+.home-card:hover { background:#C9AA89; }
+.home-icon { font-size:23px; line-height:1; }
+.home-card strong {
+  font-family:Arial,sans-serif;
+  letter-spacing:1px;
+  font-size:13px;
+}
+.home-card span:last-child { font-size:14px; }
 
-#home h1 {
-  max-width: 650px;
-  margin: 0 0 55px;
+.signature-home {
+  display:block;
+  margin:25px auto;
+  background:var(--dark-tan);
+  color:white;
+  font-family:Arial,sans-serif;
+  font-size:12px;
+  letter-spacing:1.5px;
 }
 
-.home-buttons {
-  display: flex;
-  justify-content: center;
-  gap: 18px;
-  width: 100%;
-  max-width: 590px;
+/* CREATOR PROGRESS */
+
+.creator-container { max-width:800px; }
+
+.progress-wrap {
+  width:100%;
+  overflow-x:auto;
+  padding:8px 2px 15px;
+  margin:0 auto 25px;
+  scrollbar-width:thin;
 }
 
-.home-choice {
-  flex: 1;
-  min-width: 0;
-  min-height: 190px;
-  background: var(--tan);
-  color: var(--brown);
-  border-radius: 22px;
-  padding: 20px 12px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  gap: 13px;
+.progress {
+  display:flex;
+  justify-content:space-between;
+  min-width:570px;
+  position:relative;
 }
 
-.home-choice strong {
-  font-size: 16px;
-  letter-spacing: 1px;
+.progress::before {
+  content:"";
+  position:absolute;
+  top:17px;
+  left:8%;
+  right:8%;
+  height:2px;
+  background:var(--border);
 }
 
-.home-choice span:last-child {
-  font-size: 14px;
-  text-align: center;
+.progress-step {
+  position:relative;
+  z-index:1;
+  width:16.66%;
+  display:flex;
+  align-items:center;
+  flex-direction:column;
+  gap:7px;
+  color:#9B8A78;
+  background:transparent;
+  padding:0 3px;
+  border-radius:0;
+}
+.progress-step:hover { background:transparent; }
+
+.step-circle {
+  height:35px;
+  width:35px;
+  border:2px solid var(--border);
+  border-radius:50%;
+  background:var(--cream);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-family:Arial,sans-serif;
+  font-size:13px;
+  font-weight:bold;
 }
 
-.home-icon svg {
-  width: 39px;
-  height: 39px;
-  fill: none;
-  stroke: #59432F;
-  stroke-width: 2.4;
-  stroke-linecap: round;
-  stroke-linejoin: round;
+.progress-step.current .step-circle {
+  background:var(--dark-tan);
+  color:white;
+  border-color:var(--dark-tan);
 }
 
-.signature-button-wrap {
-  margin-top: 30px;
-  text-align: center;
+.progress-step.completed .step-circle {
+  background:var(--brown);
+  color:white;
+  border-color:var(--brown);
 }
 
-.signature-button {
-  background: var(--dark-tan);
-  color: white;
-  padding: 17px 32px;
-  font-size: 14px;
-  letter-spacing: 1px;
+.step-label {
+  font-family:Arial,sans-serif;
+  font-size:11px;
+  text-align:center;
+  white-space:nowrap;
 }
 
-/* NAVIGATION */
-
-.top-nav {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 9px;
-  margin-bottom: 35px;
+.progress-step.current .step-label {
+  color:var(--brown);
+  font-weight:bold;
 }
 
-.top-nav button {
-  background: var(--tan);
-  color: var(--brown);
-  padding: 12px 17px;
-  font-size: 13px;
+.creator-panel {
+  background:rgba(255,249,239,.7);
+  border:1px solid var(--border);
+  border-radius:15px;
+  padding:clamp(18px,4vw,35px);
+  min-height:360px;
 }
 
-/* GENERAL */
+.creator-step { display:none; }
+.creator-step.active { display:block; }
 
-.content-card {
-  background: var(--paper);
-  border-radius: 22px;
-  padding: 25px;
-  margin: 22px auto;
-  max-width: 760px;
+.step-heading {
+  text-align:center;
+  font-size:clamp(25px,5vw,32px);
+  margin:5px 0 28px;
 }
 
-.intro {
-  text-align: center;
-  color: var(--light-brown);
-  margin-bottom: 28px;
+textarea,input[type="text"] {
+  width:100%;
+  border:1px solid var(--border);
+  border-radius:9px;
+  background:var(--paper);
+  color:var(--brown);
+  padding:15px;
 }
 
-.main-button {
-  display: block;
-  background: var(--tan);
-  color: var(--brown);
-  padding: 15px 25px;
-  margin: 22px auto;
-  font-size: 15px;
+textarea {
+  min-height:180px;
+  resize:vertical;
+  line-height:1.7;
 }
 
-.secondary-button {
-  display: block;
-  background: var(--soft-cream);
-  color: var(--brown);
-  padding: 13px 22px;
-  margin: 12px auto;
+.field-label {
+  display:block;
+  margin:18px 0 8px;
 }
 
-/* CREATOR SECTIONS */
-
-.creator-section {
-  margin: 38px 0;
+.character-count {
+  text-align:right;
+  font-size:12px;
+  color:var(--light-brown);
+  margin-top:6px;
 }
-
-.creator-heading {
-  font-family: Georgia, serif;
-  font-size: 23px;
-  font-weight: normal;
-  margin-bottom: 18px;
-}
-
-.option-category {
-  font-size: 12px;
-  letter-spacing: 1.2px;
-  color: var(--light-brown);
-  margin: 20px 0 12px;
-}
-
-/* OPTION GRID */
 
 .option-grid {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 13px;
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:13px;
 }
 
-.option-card {
-  background: #F8F3EB;
-  border: 2px solid transparent;
-  border-radius: 13px;
-  padding: 9px;
-  color: var(--brown);
-  text-align: center;
-  min-width: 0;
+.choice {
+  background:transparent;
+  border:2px solid transparent;
+  border-radius:10px;
+  padding:7px;
+  color:var(--brown);
+}
+.choice:hover { background:var(--soft-cream); }
+.choice.selected {
+  border-color:var(--dark-tan);
+  background:#F1E5D5;
 }
 
-.option-card.selected {
-  border-color: var(--dark-tan);
-  background: #F0E5D6;
+.choice-name {
+  display:block;
+  text-align:center;
+  font-family:Arial,sans-serif;
+  font-size:12px;
+  margin-top:7px;
 }
 
-.option-name {
-  display: block;
-  font-size: 12px;
-  margin-top: 9px;
-  line-height: 1.3;
+/* ENVELOPE AND PAPER MINI PREVIEWS */
+
+.envelope-mini {
+  position:relative;
+  height:76px;
+  width:100%;
+  border-radius:5px;
+  background:var(--choice-color);
+  overflow:hidden;
+  border:1px solid rgba(81,66,54,.12);
 }
 
-/* ENVELOPES */
-
-.envelope-preview {
-  width: 100%;
-  aspect-ratio: 1.45;
-  border-radius: 5px;
-  position: relative;
-  overflow: hidden;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border: 1px solid rgba(80,60,40,.18);
+.envelope-mini::before {
+  content:"";
+  position:absolute;
+  top:-1px;
+  left:0;
+  width:100%;
+  height:100%;
+  background:linear-gradient(145deg,transparent 49%,rgba(81,66,54,.15) 50%,transparent 51%),
+             linear-gradient(215deg,transparent 49%,rgba(81,66,54,.15) 50%,transparent 51%);
 }
 
-.envelope-preview::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background:
-    linear-gradient(145deg, transparent 49.5%, rgba(80,60,40,.2) 50%, transparent 50.8%),
-    linear-gradient(215deg, transparent 49.5%, rgba(80,60,40,.2) 50%, transparent 50.8%);
+.envelope-mini::after {
+  content:"";
+  position:absolute;
+  bottom:-40px;
+  left:50%;
+  transform:translateX(-50%) rotate(45deg);
+  width:75px;
+  height:75px;
+  border:1px solid rgba(81,66,54,.13);
+  background:rgba(255,255,255,.09);
 }
 
-.envelope-preview::after {
-  content: "";
-  position: absolute;
-  width: 25%;
-  aspect-ratio: 1;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%,-50%) rotate(45deg);
-  border: 1px solid rgba(80,60,40,.16);
+.paper-mini {
+  height:76px;
+  border-radius:4px;
+  border:1px solid rgba(81,66,54,.15);
+  background:var(--choice-color);
+  position:relative;
+  overflow:hidden;
+  padding:17px 10px;
 }
-
-.envelope-preview .mini-seal {
-  position: relative;
-  z-index: 2;
-  font-size: 19px;
+.paper-mini::before {
+  content:"";
+  display:block;
+  height:2px;
+  width:65%;
+  background:rgba(81,66,54,.22);
+  box-shadow:0 10px rgba(81,66,54,.15),0 20px rgba(81,66,54,.15);
 }
-
-/* SHARED SPECIAL DESIGNS */
 
 .design-forgotten {
   background:
-    radial-gradient(ellipse at 5% 15%, rgba(110,65,30,.4), transparent 23%),
-    radial-gradient(ellipse at 95% 85%, rgba(120,70,25,.35), transparent 25%),
-    linear-gradient(135deg,#D7BC8D,#F0DFB9,#C6A477);
+    radial-gradient(ellipse at 20% 20%,rgba(255,255,255,.35),transparent 35%),
+    linear-gradient(140deg,#B9A78C,#8F9B8A,#B8A0A0);
 }
-
 .design-rainbow {
-  background:
-    radial-gradient(ellipse at 10% 20%,#E9B9B5,transparent 40%),
-    radial-gradient(ellipse at 85% 25%,#D5C1E8,transparent 42%),
-    radial-gradient(ellipse at 50% 95%,#B9D8D3,transparent 45%),
-    linear-gradient(135deg,#F6E8D9,#F9F2E7);
+  background:linear-gradient(135deg,#E6B5A9,#E8D49C,#B5CEB5,#AFC7DC,#C8B4D8);
 }
-
 .design-clouds {
   background:
-    radial-gradient(ellipse at 20% 35%,white 0 13%,transparent 14%),
-    radial-gradient(ellipse at 70% 65%,white 0 17%,transparent 18%),
-    radial-gradient(ellipse at 90% 25%,#FFFFFF 0 10%,transparent 11%),
-    linear-gradient(135deg,#9CC5DF,#E4F0F2);
+    radial-gradient(ellipse at 25% 35%,#fff 0 15%,transparent 16%),
+    radial-gradient(ellipse at 70% 60%,#fff 0 18%,transparent 19%),
+    linear-gradient(#9FC1D6,#DCE8EB);
+}
+.design-forgotten::after,
+.design-rainbow::after,
+.design-clouds::after { content:""; }
+
+.design-forgotten.paper-mini,
+.design-rainbow.paper-mini,
+.design-clouds.paper-mini {
+  background-size:cover;
 }
 
-/* PAPER PREVIEWS */
-
-.paper-preview {
-  width: 100%;
-  aspect-ratio: 1.25;
-  border: 1px solid rgba(80,60,40,.2);
-  border-radius: 4px;
-  position: relative;
-  overflow: hidden;
-  box-shadow: 0 1px 3px rgba(60,40,20,.08);
-}
-
-.paper-dusty-rose { background: #BD858C; }
-.paper-blush { background: #E8B9BD; }
-.paper-terracotta { background: #B96E53; }
-.paper-lavender { background: #B8A5CF; }
-.paper-blue { background: #A9C9DC; }
-.paper-midnight { background: #263D59; }
-.paper-sage { background: #A5B49A; }
-.paper-cream { background: #E9DFC8; }
-.paper-grey { background: #AAA9A5; }
-.paper-black { background: #33302F; }
-
-.paper-preview.design-forgotten,
-.paper-preview.design-rainbow,
-.paper-preview.design-clouds {
-  border-color: rgba(80,60,40,.2);
+.special-label {
+  font-size:10px;
+  letter-spacing:.4px;
+  text-transform:uppercase;
+  display:block;
+  text-align:center;
+  margin-top:7px;
 }
 
 /* INK */
 
-.ink-grid {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 10px;
+.ink-swatch {
+  height:76px;
+  border-radius:7px;
+  border:1px solid rgba(81,66,54,.15);
 }
-
-.ink-option {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  padding: 12px;
-  background: #F8F3EB;
-  border: 2px solid transparent;
-  border-radius: 12px;
-  color: var(--brown);
-  text-align: left;
-}
-
-.ink-option.selected {
-  border-color: var(--dark-tan);
-  background: #F0E5D6;
-}
-
-.ink-dot {
-  width: 23px;
-  height: 23px;
-  border-radius: 50%;
-  flex-shrink: 0;
-  border: 1px solid rgba(0,0,0,.12);
-}
-
-.ink-name { font-size: 13px; }
 
 /* SEALS */
 
+.seal-tabs {
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:center;
+  gap:7px;
+  margin-bottom:20px;
+}
+
+.seal-tab {
+  font-family:Arial,sans-serif;
+  font-size:11px;
+  padding:9px 11px;
+  background:var(--soft-cream);
+}
+.seal-tab.active {
+  background:var(--dark-tan);
+  color:white;
+}
+
 .seal-grid {
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 10px;
+  display:grid;
+  grid-template-columns:repeat(5,minmax(0,1fr));
+  gap:9px;
 }
 
-.seal-option {
-  background: #F8F3EB;
-  border: 2px solid transparent;
-  border-radius: 12px;
-  padding: 12px 5px;
-  color: var(--brown);
-  font-size: 28px;
-  min-height: 65px;
+.seal-choice {
+  font-size:27px;
+  padding:12px 4px;
+  background:var(--soft-cream);
+  border:2px solid transparent;
 }
-
-.seal-option.selected {
-  border-color: var(--dark-tan);
-  background: #F0E5D6;
+.seal-choice.selected {
+  border-color:var(--dark-tan);
+  background:#F1E5D5;
 }
-
-/* WRITING */
-
-label {
-  display: block;
-  margin: 18px 0 8px;
-  font-weight: bold;
-  font-size: 14px;
+.no-seal {
+  grid-column:1/-1;
+  font-size:13px;
+  font-family:Arial,sans-serif;
 }
-
-textarea, input, select {
-  width: 100%;
-  padding: 14px;
-  border: none;
-  border-radius: 13px;
-  background: var(--soft-cream);
-  color: var(--brown);
-  font-family: inherit;
-  font-size: 15px;
-}
-
-textarea {
-  min-height: 180px;
-  resize: vertical;
-}
-
-input::placeholder,
-textarea::placeholder { color: #8B7A69; }
-
-.checkbox-line {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  margin: 20px 0;
-}
-
-.checkbox-line input { width: auto; }
 
 /* PREVIEW */
 
-.recipient-preview {
-  text-align: center;
-  background: #EDE2D2;
-  border-radius: 18px;
-  padding: 25px 15px;
-  margin-top: 20px;
-  overflow: hidden;
+.preview-envelope {
+  max-width:350px;
+  height:220px;
+  margin:20px auto;
+  border-radius:8px;
+  position:relative;
+  overflow:hidden;
+  background:var(--envelope-color);
+  border:1px solid rgba(81,66,54,.2);
+  box-shadow:0 8px 20px rgba(81,66,54,.08);
+  touch-action:pan-y;
+  cursor:pointer;
 }
 
-.recipient-envelope {
-  position: relative;
-  width: min(100%, 380px);
-  aspect-ratio: 1.45;
-  margin: 25px auto;
-  border-radius: 7px;
-  border: 1px solid rgba(70,50,30,.2);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
-  touch-action: pan-y;
-  user-select: none;
-}
-
-.recipient-envelope::before {
-  content: "";
-  position: absolute;
-  inset: 0;
+.preview-envelope::before {
+  content:"";
+  position:absolute;
+  inset:0;
   background:
-    linear-gradient(145deg,transparent 49.5%,rgba(60,40,20,.2) 50%,transparent 50.8%),
-    linear-gradient(215deg,transparent 49.5%,rgba(60,40,20,.2) 50%,transparent 50.8%);
+    linear-gradient(145deg,transparent 49.5%,rgba(81,66,54,.22) 50%,transparent 50.5%),
+    linear-gradient(215deg,transparent 49.5%,rgba(81,66,54,.22) 50%,transparent 50.5%);
 }
 
-.recipient-envelope::after {
-  content: "";
-  position: absolute;
-  width: 25%;
-  aspect-ratio: 1;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%,-50%) rotate(45deg);
-  border: 1px solid rgba(60,40,20,.18);
+.preview-envelope::after {
+  content:"";
+  position:absolute;
+  left:0;
+  right:0;
+  bottom:-125px;
+  margin:auto;
+  width:250px;
+  height:250px;
+  transform:rotate(45deg);
+  border:1px solid rgba(81,66,54,.15);
+  background:rgba(255,255,255,.08);
 }
 
-.recipient-envelope .mini-seal {
-  position: relative;
-  z-index: 2;
-  font-size: 36px;
+.envelope-seal {
+  position:absolute;
+  z-index:2;
+  top:50%;
+  left:50%;
+  transform:translate(-50%,-50%);
+  font-size:30px;
+  background:rgba(255,249,239,.8);
+  border-radius:50%;
+  width:48px;
+  height:48px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
 }
 
-.opening-instruction {
-  font-family: Georgia, serif;
-  font-size: 19px;
-  margin: 15px 0;
+.envelope-caption {
+  text-align:center;
+  font-size:13px;
+  color:var(--light-brown);
 }
 
-.open-button {
-  display: block;
-  width: min(100%, 320px);
-  margin: 20px auto;
-  padding: 17px;
-  border-radius: 25px;
-  background: var(--dark-tan);
-  color: white;
-  font-size: 15px;
-  letter-spacing: .5px;
+.recipient-letter {
+  display:none;
+  max-width:420px;
+  margin:22px auto;
+  padding:35px 25px;
+  min-height:300px;
+  background:var(--paper-color);
+  border:1px solid rgba(81,66,54,.15);
+  box-shadow:0 7px 20px rgba(81,66,54,.09);
+  position:relative;
+  white-space:pre-wrap;
+  overflow-wrap:anywhere;
+  animation:letterRise .9s ease both;
 }
 
-/* STARDUST */
-
-.stardust {
-  position: fixed;
-  inset: 0;
-  z-index: 50;
-  pointer-events: none;
-  overflow: hidden;
-  display: none;
-}
-
-.stardust.active { display: block; }
-
-.star {
-  position: absolute;
-  left: var(--x);
-  top: var(--y);
-  color: #C49A62;
-  font-size: var(--size);
-  opacity: 0;
-  animation: sparkle 1.8s ease-out forwards;
-  animation-delay: var(--delay);
-}
-
-@keyframes sparkle {
-  0% { opacity: 0; transform: scale(.2) rotate(0deg); }
-  30% { opacity: 1; }
-  100% { opacity: 0; transform: translate(var(--move-x),var(--move-y)) scale(1.5) rotate(90deg); }
-}
-
-/* LETTER REVEAL */
-
-.reveal-area {
-  display: none;
-  margin: 25px auto;
-  perspective: 1000px;
-}
-
-.reveal-area.visible { display: block; }
-
-.reveal-letter {
-  position: relative;
-  width: 100%;
-  max-width: 480px;
-  min-height: 300px;
-  margin: 0 auto;
-  padding: 35px 25px;
-  border: 1px solid rgba(80,60,40,.2);
-  border-radius: 4px;
-  box-shadow: 0 8px 20px rgba(60,40,20,.12);
-  text-align: left;
-  white-space: pre-wrap;
-  overflow-wrap: anywhere;
-  font-family: Georgia, serif;
-  font-size: 18px;
-  line-height: 1.8;
-  transform: translateY(130px);
-  opacity: 0;
-}
-
-.reveal-area.visible .reveal-letter {
-  animation: letterRise 1.2s cubic-bezier(.2,.75,.25,1) forwards;
-}
+.recipient-letter.open { display:block; }
 
 @keyframes letterRise {
-  to {
-    transform: translateY(0);
-    opacity: 1;
-  }
+  from { opacity:0;transform:translateY(120px) scale(.92); }
+  to { opacity:1;transform:translateY(0) scale(1); }
 }
 
-.reveal-seal {
-  position: absolute;
-  bottom: 15px;
-  right: 18px;
-  font-size: 25px;
+.letter-message {
+  font-size:18px;
+  line-height:1.9;
+  font-family:Georgia,serif;
 }
 
-.final-button {
-  display: none;
-  width: min(100%, 390px);
-  margin: 25px auto 5px;
-  padding: 17px 20px;
-  background: var(--dark-tan);
-  color: white;
-  font-size: 15px;
-  border-radius: 25px;
+.letter-signature {
+  margin-top:30px;
+  text-align:right;
+  font-style:italic;
 }
 
-.final-button.visible { display: block; }
-
-/* FORTUNE FOUND */
-
-.envelopes {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 15px;
-  margin: 35px auto;
+.stardust {
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  z-index:5;
+  overflow:hidden;
 }
 
-.envelope {
-  width: 155px;
-  height: 112px;
-  background: var(--tan);
-  color: var(--brown);
-  border-radius: 17px;
-  font-family: Georgia, serif;
-  font-size: 17px;
+.sparkle {
+  position:absolute;
+  color:#C49B59;
+  font-size:20px;
+  animation: sparkle 1.3s ease-out forwards;
+}
+@keyframes sparkle {
+  from { opacity:0;transform:translateY(25px) scale(.3); }
+  30% { opacity:1; }
+  to { opacity:0;transform:translateY(-90px) scale(1.5); }
 }
 
-.envelope:nth-child(2) { background: #C9B49D; }
-.envelope:nth-child(3) { background: #BFA58A; }
-
-.fortune-paper {
-  background: var(--paper);
-  border-radius: 22px;
-  padding: 35px 25px;
-  text-align: center;
-  margin: 25px auto;
-  max-width: 570px;
-  min-height: 150px;
+.preview-open .preview-envelope {
+  animation: envelopeFade .5s ease forwards;
+}
+@keyframes envelopeFade {
+  to { opacity:.25;transform:scale(.94); }
 }
 
-.fortune-paper p {
-  font-family: Georgia, serif;
-  font-size: 21px;
-  line-height: 1.7;
+.send-confirmation {
+  display:none;
+  text-align:center;
+  padding:25px;
+}
+.send-confirmation.show { display:block; }
+
+/* OTHER PAGES */
+
+.sample-envelope {
+  background:var(--tan);
+  padding:25px;
+  border-radius:9px;
+  text-align:center;
+  cursor:pointer;
+  min-height:125px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:28px;
+}
+.sample-grid {
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:15px;
 }
 
-.fortune-number {
-  font-size: 12px;
-  color: var(--light-brown);
+.fortune-card {
+  background:var(--paper);
+  border:1px solid var(--border);
+  border-radius:12px;
+  padding:20px;
+  margin:15px 0;
+  line-height:1.7;
 }
 
-/* COLLECTION */
-
-.saved-item {
-  background: var(--paper);
-  border-radius: 17px;
-  padding: 18px;
-  margin: 15px 0;
+.collection-card {
+  background:var(--paper);
+  padding:18px;
+  border:1px solid var(--border);
+  border-radius:10px;
+  margin:13px 0;
+  white-space:pre-wrap;
+  overflow-wrap:anywhere;
 }
 
-.saved-item p {
-  font-family: Georgia, serif;
-  font-size: 17px;
+.form-area {
+  max-width:500px;
+  margin:auto;
+}
+.form-area label {
+  display:block;
+  margin:17px 0 7px;
 }
 
-.empty-message {
-  text-align: center;
-  color: var(--light-brown);
-  padding: 25px 10px;
+.small-note {
+  text-align:center;
+  color:var(--light-brown);
+  font-size:12px;
+  line-height:1.6;
 }
 
-footer {
-  text-align: center;
-  padding: 20px;
-  color: var(--light-brown);
-  font-size: 12px;
-}
-
-@media (max-width: 500px) {
-  #home h1 { margin-bottom: 38px; }
-  .home-buttons { gap: 10px; }
-
-  .home-choice {
-    min-height: 165px;
-    padding: 12px 7px;
-    gap: 11px;
-  }
-
-  .home-choice strong { font-size: 13px; }
-  .home-choice span:last-child { font-size: 12px; }
-
-  .home-icon svg {
-    width: 33px;
-    height: 33px;
-  }
-
-  .top-nav button { padding: 10px 12px; }
-  .option-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  .seal-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
-  .content-card { padding: 17px; }
+@media(max-width:600px) {
+  .page { padding:20px 13px 40px; }
+  .home-title { margin-top:10vh; }
+  .home-actions { gap:10px; }
+  .home-card { min-height:135px; padding:15px 7px; }
+  .home-card strong { font-size:11px; }
+  .home-card span:last-child { font-size:12px; }
+  .option-grid { grid-template-columns:repeat(2,minmax(0,1fr)); }
+  .creator-panel { padding:17px 13px; }
+  .seal-grid { grid-template-columns:repeat(4,minmax(0,1fr)); }
+  .sample-grid { grid-template-columns:1fr; }
+  .preview-envelope { height:190px; }
+  .button-row button { flex:1 1 40%; }
 }
 </style>
 </head>
 
 <body>
 
-<!-- HOMEPAGE -->
-
+<!-- HOME -->
 <section id="home" class="page active">
-  <h1>Welcome to Fortune From, Fortune Found</h1>
+  <div class="container">
+    <h1 class="home-title">Welcome to<br>Fortune From, Fortune Found</h1>
 
-  <div class="home-buttons">
-    <button class="home-choice" onclick="showPage('leave')">
-      <span class="home-icon">
-        <svg viewBox="0 0 48 48">
-          <rect x="5" y="10" width="38" height="28" rx="3"/>
-          <path d="M6 13 L24 27 L42 13"/>
-        </svg>
-      </span>
-      <strong>FORTUNE FROM</strong>
-      <span>Write a letter for somebody</span>
-    </button>
+    <div class="home-actions">
+      <div class="home-card" onclick="startCreator()">
+        <span class="home-icon">✉</span>
+        <strong>FORTUNE FROM</strong>
+        <span>Write a letter for somebody</span>
+      </div>
 
-    <button class="home-choice" onclick="showPage('receive')">
-      <span class="home-icon">
-        <svg viewBox="0 0 48 48">
-          <path d="M24 4 L29 18 L44 19 L33 29 L36 44 L24 36 L12 44 L15 29 L4 19 L19 18 Z"/>
-        </svg>
-      </span>
-      <strong>FORTUNE FOUND</strong>
-      <span>Open your fortune</span>
-    </button>
-  </div>
+      <div class="home-card" onclick="showPage('receive')">
+        <span class="home-icon">✧</span>
+        <strong>FORTUNE FOUND</strong>
+        <span>Open your fortune</span>
+      </div>
+    </div>
 
-  <div class="signature-button-wrap">
-    <button class="signature-button" onclick="showPage('signup')">
+    <button class="signature-home" onclick="showPage('signup')">
       CREATE A SIGNATURE
     </button>
+
+    <div class="button-row">
+      <button class="secondary-button" onclick="showPage('collection')">
+        My Collection
+      </button>
+    </div>
   </div>
 </section>
 
-
-<!-- FORTUNE FROM -->
-
+<!-- LETTER CREATOR -->
 <section id="leave" class="page">
+  <div class="container creator-container">
 
-  <nav class="top-nav">
-    <button onclick="showPage('home')">Home</button>
-    <button onclick="showPage('receive')">Find a fortune</button>
-    <button onclick="showPage('collection')">My Collection</button>
-  </nav>
+    <button class="back-home" onclick="showPage('home')">← Home</button>
 
-  <h2>Fortune From</h2>
-
-  <div class="content-card">
-
-    <form id="letterForm">
-
-      <!-- 1. ENVELOPE -->
-
-      <div class="creator-section">
-        <h3 class="creator-heading">1. Envelope</h3>
-
-        <p class="option-category">COLOURS</p>
-        <div class="option-grid" id="envelopeColours"></div>
-
-        <p class="option-category">SPECIAL DESIGNS</p>
-        <div class="option-grid" id="envelopeSpecial"></div>
-      </div>
-
-      <!-- 2. PAPER -->
-
-      <div class="creator-section">
-        <h3 class="creator-heading">2. Paper</h3>
-
-        <p class="option-category">COLOURS</p>
-        <div class="option-grid" id="paperColours"></div>
-
-        <p class="option-category">SPECIAL DESIGNS</p>
-        <div class="option-grid" id="paperSpecial"></div>
-      </div>
-
-      <!-- 3. INK -->
-
-      <div class="creator-section">
-        <h3 class="creator-heading">3. Ink</h3>
-        <div class="ink-grid" id="inkOptions"></div>
-      </div>
-
-      <!-- 4. SEAL -->
-
-      <div class="creator-section">
-        <h3 class="creator-heading">4. Seal</h3>
-
-        <div class="tabs" id="sealTabs">
-          <button type="button" class="tab-button active" data-tab="hearts">Hearts & Love</button>
-          <button type="button" class="tab-button" data-tab="nature">Flowers & Nature</button>
-          <button type="button" class="tab-button" data-tab="sky">Stars & Sky</button>
-          <button type="button" class="tab-button" data-tab="faces">Faces & Feelings</button>
-          <button type="button" class="tab-button" data-tab="animals">Animals</button>
-          <button type="button" class="tab-button" data-tab="things">Little Things</button>
-          <button type="button" class="tab-button" data-tab="magic">Magic & Mystery</button>
-        </div>
-
-        <div class="seal-grid" id="sealOptions"></div>
-
-        <button type="button" class="secondary-button" id="noSealButton">
-          No Seal
+    <div class="progress-wrap">
+      <div class="progress" id="progress">
+        <button class="progress-step current" onclick="goToStep(0)">
+          <span class="step-circle">1</span>
+          <span class="step-label">Write Fortune</span>
+        </button>
+        <button class="progress-step" onclick="goToStep(1)">
+          <span class="step-circle">2</span>
+          <span class="step-label">Envelope</span>
+        </button>
+        <button class="progress-step" onclick="goToStep(2)">
+          <span class="step-circle">3</span>
+          <span class="step-label">Paper</span>
+        </button>
+        <button class="progress-step" onclick="goToStep(3)">
+          <span class="step-circle">4</span>
+          <span class="step-label">Ink</span>
+        </button>
+        <button class="progress-step" onclick="goToStep(4)">
+          <span class="step-circle">5</span>
+          <span class="step-label">Seal</span>
+        </button>
+        <button class="progress-step" onclick="goToStep(5)">
+          <span class="step-circle">6</span>
+          <span class="step-label">Preview &amp; Send</span>
         </button>
       </div>
+    </div>
 
-      <!-- 5. WRITE -->
+    <div class="creator-panel">
 
-      <div class="creator-section">
-        <h3 class="creator-heading">5. Write Your Fortune</h3>
+      <!-- STEP 1 -->
+      <div class="creator-step active" id="step0">
+        <h2 class="step-heading">Write Your Fortune</h2>
 
-        <textarea
-          id="letterText"
-          maxlength="500"
-          placeholder="A little something for someone to find..."
-          required
-        ></textarea>
+        <textarea id="fortuneText" maxlength="500"
+          placeholder="Write a little something for someone to find..."
+          oninput="updateCharacterCount()"></textarea>
 
-        <div class="checkbox-line">
-          <input type="checkbox" id="includeSignature" checked>
-          <label for="includeSignature" style="margin:0">
-            Include my signature
-          </label>
+        <div class="character-count">
+          <span id="characterCount">0</span>/500
+        </div>
+
+        <label class="field-label">
+          <input type="checkbox" id="includeSignature">
+          Include my signature
+        </label>
+
+        <div id="signaturePreview" style="display:none;margin-top:12px;">
+          <input type="text" id="signatureName"
+            placeholder="Your signature">
         </div>
       </div>
 
-      <!-- 6. PREVIEW -->
+      <!-- STEP 2 -->
+      <div class="creator-step" id="step1">
+        <h2 class="step-heading">Envelope</h2>
+        <div class="option-grid" id="envelopeOptions"></div>
+      </div>
 
-      <div class="creator-section">
-        <h3 class="creator-heading">6. Preview</h3>
+      <!-- STEP 3 -->
+      <div class="creator-step" id="step2">
+        <h2 class="step-heading">Paper</h2>
+        <div class="option-grid" id="paperOptions"></div>
+      </div>
 
-        <div class="recipient-preview" id="recipientPreview">
+      <!-- STEP 4 -->
+      <div class="creator-step" id="step3">
+        <h2 class="step-heading">Ink</h2>
+        <div class="option-grid" id="inkOptions"></div>
+      </div>
 
-          <p class="preview-label">WHAT THE FORTUNE RECIPIENT WILL SEE</p>
+      <!-- STEP 5 -->
+      <div class="creator-step" id="step4">
+        <h2 class="step-heading">Seal</h2>
+        <div class="seal-tabs" id="sealTabs"></div>
+        <div class="seal-grid" id="sealOptions"></div>
+      </div>
 
-          <div class="recipient-envelope" id="recipientEnvelope">
-            <span class="mini-seal" id="envelopeSeal">💌</span>
+      <!-- STEP 6 -->
+      <div class="creator-step" id="step5">
+        <h2 class="step-heading">Preview &amp; Send</h2>
+
+        <p class="muted">What the fortune recipient will see</p>
+
+        <div id="previewStage">
+          <div class="preview-envelope" id="recipientEnvelope"
+            onclick="openRecipientLetter()">
+            <div class="envelope-seal" id="previewSeal"></div>
+            <div class="stardust" id="stardust"></div>
           </div>
 
-          <div id="openingPrompt">
-            <p class="opening-instruction">A little letter is waiting for you.</p>
-            <button type="button" class="open-button" id="openFortuneButton">
+          <p class="envelope-caption" id="envelopeCaption">
+            Your letter is waiting to be opened.
+          </p>
+
+          <div class="button-row" id="openButtonRow">
+            <button class="primary-button" onclick="openRecipientLetter()">
               Open My Fortune
             </button>
           </div>
 
-          <div class="reveal-area" id="revealArea">
-            <div class="reveal-letter" id="revealLetter">
-              <span id="revealedText"></span>
-              <span class="reveal-seal" id="revealedSeal"></span>
-            </div>
+          <div class="recipient-letter" id="recipientLetter">
+            <div class="letter-message" id="previewMessage"></div>
+            <div class="letter-signature" id="previewSignature"></div>
           </div>
 
-          <button type="button" class="final-button" id="leaveFortuneButton">
-            Leave this fortune for someone to find
-          </button>
+          <div class="button-row" id="sendButtonRow" style="display:none;">
+            <button class="primary-button" onclick="sendFortune()">
+              Leave this fortune for someone to find
+            </button>
+          </div>
+        </div>
 
+        <div class="send-confirmation" id="sendConfirmation">
+          <h2>Your fortune is ready!</h2>
+          <p>Thank you for leaving a little something for someone to discover.</p>
+          <p class="small-note">
+            This prototype saves your fortune in this browser only.
+            It is not yet shared with other visitors.
+          </p>
+          <div class="button-row">
+            <button class="primary-button" onclick="startCreator()">
+              Create Another
+            </button>
+            <button class="secondary-button" onclick="showPage('home')">
+              Return Home
+            </button>
+          </div>
         </div>
       </div>
 
-    </form>
+    </div>
 
-    <div id="letterConfirmation" style="display:none;text-align:center">
-      <h3>Your fortune is ready!</h3>
-      <p id="letterNumber" class="fortune-number"></p>
-      <p>
-        Your letter has been saved in this browser.
-        It has not yet been shared with other visitors.
-      </p>
-      <button class="main-button" onclick="showPage('home')">Back Home</button>
-      <button class="secondary-button" onclick="createAnotherLetter()">Write Another Fortune</button>
+    <div class="button-row" id="creatorNavigation">
+      <button class="secondary-button" id="backButton"
+        onclick="previousStep()">Back</button>
+      <button class="primary-button" id="nextButton"
+        onclick="nextStep()">Next</button>
     </div>
 
   </div>
 </section>
 
-
-<!-- FORTUNE FOUND -->
-
+<!-- RECEIVE -->
 <section id="receive" class="page">
+  <div class="container">
+    <button class="back-home" onclick="showPage('home')">← Home</button>
+    <h2>Fortune Found</h2>
+    <p class="muted">Choose an envelope and see what you find.</p>
 
-  <nav class="top-nav">
-    <button onclick="showPage('home')">Home</button>
-    <button onclick="showPage('leave')">Leave a fortune</button>
-    <button onclick="showPage('collection')">My Collection</button>
-  </nav>
-
-  <h2>Fortune Found</h2>
-
-  <p class="intro">
-    Three little envelopes are waiting.
-    Choose one and see what you find.
-  </p>
-
-  <div class="envelopes">
-    <button class="envelope" onclick="openFortune(0)">Open me</button>
-    <button class="envelope" onclick="openFortune(1)">Open me</button>
-    <button class="envelope" onclick="openFortune(2)">Open me</button>
-  </div>
-
-  <div id="fortuneResult" style="display:none">
-    <div class="fortune-paper">
-      <p id="fortuneText"></p>
-      <span id="fortuneNumber" class="fortune-number"></span>
+    <div class="sample-grid">
+      <div class="sample-envelope" onclick="openSampleFortune()">✉</div>
+      <div class="sample-envelope" onclick="openSampleFortune()">✉</div>
+      <div class="sample-envelope" onclick="openSampleFortune()">✉</div>
     </div>
 
-    <button class="main-button" onclick="saveFortune()">Save to My Collection</button>
-    <button class="secondary-button" onclick="showPage('home')">Back Home</button>
+    <div id="foundFortune" class="fortune-card" style="display:none;"></div>
+
+    <div class="button-row">
+      <button class="secondary-button" onclick="openSampleFortune()">
+        Find Another Fortune
+      </button>
+    </div>
   </div>
 </section>
 
-
-<!-- SIGNATURE -->
-
+<!-- SIGNUP -->
 <section id="signup" class="page">
+  <div class="container form-area">
+    <button class="back-home" onclick="showPage('home')">← Home</button>
+    <h2>Create a Signature</h2>
+    <form id="signatureForm">
+      <label for="userName">Your name or chosen signature</label>
+      <input type="text" id="userName" maxlength="50" required
+        placeholder="How would you like to sign?">
 
-  <nav class="top-nav">
-    <button onclick="showPage('home')">Home</button>
-  </nav>
+      <label for="userCountry">Country (optional)</label>
+      <input type="text" id="userCountry" maxlength="60"
+        placeholder="Where are you writing from?">
 
-  <h2>Create a Signature</h2>
-
-  <p class="intro">
-    Choose the name that will accompany your little letters.
-  </p>
-
-  <div class="content-card">
-    <form id="signupForm">
-
-      <label for="signatureName">Your signature name</label>
-      <input
-        id="signatureName"
-        type="text"
-        maxlength="30"
-        placeholder="e.g. Mabel Moon"
-        required
-      >
-
-      <label for="country">Country (optional)</label>
-      <select id="country">
-        <option value="">Prefer not to say</option>
-        <option>Canada</option>
-        <option>United States</option>
-        <option>United Kingdom</option>
-        <option>Australia</option>
-        <option>New Zealand</option>
-        <option>Ireland</option>
-        <option>France</option>
-        <option>Germany</option>
-        <option>Italy</option>
-        <option>Spain</option>
-        <option>Japan</option>
-        <option>Other</option>
-      </select>
-
-      <button class="main-button" type="submit">Create My Signature</button>
+      <div class="button-row">
+        <button class="primary-button" type="submit">Save Signature</button>
+      </div>
     </form>
-
-    <div id="signupConfirmation" style="display:none;text-align:center">
-      <h3>Your signature is ready!</h3>
-      <p id="signatureDisplay"></p>
-      <button class="main-button" onclick="showPage('home')">Back Home</button>
-    </div>
+    <p id="signupMessage" class="muted"></p>
   </div>
 </section>
 
-
-<!-- MY COLLECTION -->
-
+<!-- COLLECTION -->
 <section id="collection" class="page">
-
-  <nav class="top-nav">
-    <button onclick="showPage('home')">Home</button>
-    <button onclick="showPage('receive')">Find a fortune</button>
-    <button onclick="showPage('leave')">Leave a fortune</button>
-  </nav>
-
-  <h2>My Collection</h2>
-
-  <p class="intro">Little fortunes you've found along the way.</p>
-
-  <div id="savedFortunes">
-    <p class="empty-message">
-      Your collection is waiting for its first little fortune.
-    </p>
+  <div class="container">
+    <button class="back-home" onclick="showPage('home')">← Home</button>
+    <h2>My Collection</h2>
+    <p class="muted">Fortunes you've created in this browser.</p>
+    <div id="collectionList"></div>
   </div>
 </section>
-
-<div class="stardust" id="stardust"></div>
-
-<footer>
-  Fortune From, Fortune Found
-  <br>
-  Little fortunes, left by someone, found by you.
-</footer>
-
 
 <script>
-
-// PAGE NAVIGATION
+/* BASIC NAVIGATION */
 
 function showPage(pageName) {
   document.querySelectorAll(".page").forEach(page => {
     page.classList.remove("active");
   });
-
   document.getElementById(pageName).classList.add("active");
 
   if (pageName === "collection") displayCollection();
-
-  window.scrollTo(0, 0);
 }
 
+function startCreator() {
+  currentStep = 0;
+  fortuneOpened = false;
+  document.getElementById("fortuneText").value = "";
+  document.getElementById("characterCount").textContent = "0";
+  document.getElementById("includeSignature").checked = false;
+  document.getElementById("signaturePreview").style.display = "none";
+  document.getElementById("signatureName").value =
+    localStorage.getItem("fortuneSignature") || "";
 
-// ENVELOPE AND PAPER OPTIONS
+  selectedEnvelope = "Dusty Rose";
+  selectedPaper = "Warm Cream";
+  selectedInk = "Chocolate Brown";
+  selectedSeal = "💌";
+  activeSealCategory = "Hearts & Love";
 
-const stationeryColours = [
-  {name:"Dusty Rose", colour:"#BD858C"},
-  {name:"Blush", colour:"#E8B9BD"},
-  {name:"Terracotta", colour:"#B96E53"},
-  {name:"Lavender", colour:"#B8A5CF"},
-  {name:"Powder Blue", colour:"#A9C9DC"},
-  {name:"Midnight Blue", colour:"#263D59"},
-  {name:"Sage", colour:"#A5B49A"},
-  {name:"Warm Cream", colour:"#E9DFC8"},
-  {name:"Soft Grey", colour:"#AAA9A5"},
-  {name:"Dusk Black", colour:"#33302F"}
+  document.getElementById("sendConfirmation").classList.remove("show");
+  document.getElementById("previewStage").style.display = "block";
+  document.getElementById("creatorNavigation").style.display = "flex";
+
+  renderAllOptions();
+  showCreatorStep(0);
+  showPage("leave");
+}
+
+/* STEP NAVIGATION */
+
+let currentStep = 0;
+const totalSteps = 6;
+
+function showCreatorStep(index) {
+  currentStep = index;
+
+  document.querySelectorAll(".creator-step").forEach((step,i) => {
+    step.classList.toggle("active",i === index);
+  });
+
+  document.querySelectorAll(".progress-step").forEach((step,i) => {
+    step.classList.toggle("current",i === index);
+    step.classList.toggle("completed",i < index);
+  });
+
+  document.getElementById("backButton").style.visibility =
+    index === 0 ? "hidden" : "visible";
+
+  document.getElementById("nextButton").style.display =
+    index === 5 ? "none" : "inline-block";
+
+  document.getElementById("nextButton").textContent =
+    index === 4 ? "Preview My Letter" : "Next";
+
+  if (index === 5) updateRecipientPreview();
+}
+
+function goToStep(index) {
+  if (index < currentStep && index >= 0) {
+    showCreatorStep(index);
+  }
+}
+
+function nextStep() {
+  if (currentStep === 0) {
+    const message = document.getElementById("fortuneText").value.trim();
+    if (!message) {
+      alert("Write your fortune before continuing.");
+      return;
+    }
+  }
+
+  if (currentStep < totalSteps - 1) {
+    showCreatorStep(currentStep + 1);
+  }
+}
+
+function previousStep() {
+  if (currentStep > 0) showCreatorStep(currentStep - 1);
+}
+
+/* FORTUNE TEXT */
+
+function updateCharacterCount() {
+  const text = document.getElementById("fortuneText").value;
+  document.getElementById("characterCount").textContent = text.length;
+}
+
+document.getElementById("includeSignature").addEventListener("change",e => {
+  document.getElementById("signaturePreview").style.display =
+    e.target.checked ? "block" : "none";
+});
+
+/* DESIGN OPTIONS */
+
+const colours = [
+  {name:"Dusty Rose",color:"#C98791"},
+  {name:"Blush",color:"#E8BFC0"},
+  {name:"Terracotta",color:"#C77E62"},
+  {name:"Lavender",color:"#B9A6CE"},
+  {name:"Powder Blue",color:"#B8D0DF"},
+  {name:"Midnight Blue",color:"#4D5C76"},
+  {name:"Sage",color:"#A9B9A0"},
+  {name:"Warm Cream",color:"#E9DFC9"},
+  {name:"Butter Yellow",color:"#F1D98A"},
+  {name:"Soft Grey",color:"#B9B8B1"},
+  {name:"Dusk Black",color:"#292929"}
 ];
 
 const specialDesigns = [
-  {name:"Forgotten", style:"design-forgotten"},
-  {name:"Rainbow Watercolour", style:"design-rainbow"},
-  {name:"Clouds", style:"design-clouds"}
+  {name:"Forgotten",className:"design-forgotten"},
+  {name:"Rainbow Watercolour",className:"design-rainbow"},
+  {name:"Clouds",className:"design-clouds"}
 ];
 
-let selectedEnvelope = "Blush";
-let selectedEnvelopeStyle = "colour";
-let selectedEnvelopeColour = "#E8B9BD";
+const inkColours = [
+  {name:"Black",color:"#171717"},
+  {name:"Blue",color:"#345A85"},
+  {name:"Burgundy",color:"#762C42"},
+  {name:"Forest Green",color:"#315B45"},
+  {name:"Chocolate Brown",color:"#68452F"},
+  {name:"Charcoal Grey",color:"#55565A"},
+  {name:"Plum",color:"#68416D"},
+  {name:"Copper",color:"#A9683E"}
+];
 
+let selectedEnvelope = "Dusty Rose";
 let selectedPaper = "Warm Cream";
-let selectedPaperStyle = "colour";
-let selectedPaperColour = "#E9DFC8";
+let selectedInk = "Chocolate Brown";
+let selectedSeal = "💌";
 
-function createOption(name, previewClass, colour, type, selected, onClick) {
-  const button = document.createElement("button");
-  button.type = "button";
-  button.className = "option-card";
+function renderDesignOptions(containerId,type) {
+  const container = document.getElementById(containerId);
+  container.innerHTML = "";
 
-  if (selected) button.classList.add("selected");
-
-  const preview = document.createElement("div");
-  preview.className = previewClass;
-
-  if (colour) preview.style.background = colour;
-  if (type === "special") preview.classList.add(previewClass.includes("paper") ? "" : "");
-  if (type === "special") preview.classList.add(...previewClass.split(" ").filter(Boolean));
-
-  const label = document.createElement("span");
-  label.className = "option-name";
-  label.textContent = name;
-
-  button.appendChild(preview);
-  button.appendChild(label);
-  button.addEventListener("click", onClick);
-
-  return button;
-}
-
-
-// ENVELOPE RENDERING
-
-function renderEnvelopeOptions() {
-  const colours = document.getElementById("envelopeColours");
-  const special = document.getElementById("envelopeSpecial");
-
-  colours.innerHTML = "";
-  special.innerHTML = "";
-
-  stationeryColours.forEach(item => {
+  colours.forEach(item => {
     const button = document.createElement("button");
-    button.type = "button";
-    button.className = "option-card";
+    button.className = "choice";
+    const visual = document.createElement("div");
 
-    if (selectedEnvelope === item.name) button.classList.add("selected");
-
-    const preview = document.createElement("div");
-    preview.className = "envelope-preview";
-    preview.style.background = item.colour;
-
-    const seal = document.createElement("span");
-    seal.className = "mini-seal";
-    seal.textContent = selectedSeal || "♡";
-    preview.appendChild(seal);
+    visual.style.setProperty("--choice-color",item.color);
+    visual.className = type === "envelope"
+      ? "envelope-mini"
+      : "paper-mini";
 
     const name = document.createElement("span");
-    name.className = "option-name";
+    name.className = "choice-name";
     name.textContent = item.name;
 
-    button.append(preview, name);
+    button.appendChild(visual);
+    button.appendChild(name);
 
-    button.addEventListener("click", () => {
-      selectedEnvelope = item.name;
-      selectedEnvelopeStyle = "colour";
-      selectedEnvelopeColour = item.colour;
-      renderEnvelopeOptions();
-      updateRecipientPreview();
+    button.addEventListener("click",() => {
+      if (type === "envelope") {
+        selectedEnvelope = item.name;
+        renderDesignOptions("envelopeOptions","envelope");
+      } else {
+        selectedPaper = item.name;
+        renderDesignOptions("paperOptions","paper");
+      }
     });
 
-    colours.appendChild(button);
+    const selected = type === "envelope"
+      ? selectedEnvelope === item.name
+      : selectedPaper === item.name;
+
+    if (selected) button.classList.add("selected");
+    container.appendChild(button);
   });
 
   specialDesigns.forEach(item => {
     const button = document.createElement("button");
-    button.type = "button";
-    button.className = "option-card";
+    button.className = "choice";
 
-    if (selectedEnvelope === item.name) button.classList.add("selected");
-
-    const preview = document.createElement("div");
-    preview.className = "envelope-preview " + item.style;
-
-    const seal = document.createElement("span");
-    seal.className = "mini-seal";
-    seal.textContent = selectedSeal || "♡";
-    preview.appendChild(seal);
+    const visual = document.createElement("div");
+    visual.className = type === "envelope"
+      ? "envelope-mini " + item.className
+      : "paper-mini " + item.className;
 
     const name = document.createElement("span");
-    name.className = "option-name";
+    name.className = "choice-name";
     name.textContent = item.name;
 
-    button.append(preview, name);
+    button.appendChild(visual);
+    button.appendChild(name);
 
-    button.addEventListener("click", () => {
-      selectedEnvelope = item.name;
-      selectedEnvelopeStyle = item.style;
-      selectedEnvelopeColour = "";
-      renderEnvelopeOptions();
-      updateRecipientPreview();
+    button.addEventListener("click",() => {
+      if (type === "envelope") {
+        selectedEnvelope = item.name;
+        renderDesignOptions("envelopeOptions","envelope");
+      } else {
+        selectedPaper = item.name;
+        renderDesignOptions("paperOptions","paper");
+      }
     });
 
-    special.appendChild(button);
+    const selected = type === "envelope"
+      ? selectedEnvelope === item.name
+      : selectedPaper === item.name;
+
+    if (selected) button.classList.add("selected");
+    container.appendChild(button);
   });
 }
-
-
-// PAPER RENDERING
-
-function renderPaperOptions() {
-  const colours = document.getElementById("paperColours");
-  const special = document.getElementById("paperSpecial");
-
-  colours.innerHTML = "";
-  special.innerHTML = "";
-
-  stationeryColours.forEach(item => {
-    const button = document.createElement("button");
-    button.type = "button";
-    button.className = "option-card";
-
-    if (selectedPaper === item.name) button.classList.add("selected");
-
-    const preview = document.createElement("div");
-    preview.className = "paper-preview";
-    preview.style.background = item.colour;
-
-    const name = document.createElement("span");
-    name.className = "option-name";
-    name.textContent = item.name;
-
-    button.append(preview, name);
-
-    button.addEventListener("click", () => {
-      selectedPaper = item.name;
-      selectedPaperStyle = "colour";
-      selectedPaperColour = item.colour;
-      renderPaperOptions();
-      updateRecipientPreview();
-    });
-
-    colours.appendChild(button);
-  });
-
-  specialDesigns.forEach(item => {
-    const button = document.createElement("button");
-    button.type = "button";
-    button.className = "option-card";
-
-    if (selectedPaper === item.name) button.classList.add("selected");
-
-    const preview = document.createElement("div");
-    preview.className = "paper-preview " + item.style;
-
-    const name = document.createElement("span");
-    name.className = "option-name";
-    name.textContent = item.name;
-
-    button.append(preview, name);
-
-    button.addEventListener("click", () => {
-      selectedPaper = item.name;
-      selectedPaperStyle = item.style;
-      selectedPaperColour = "";
-      renderPaperOptions();
-      updateRecipientPreview();
-    });
-
-    special.appendChild(button);
-  });
-}
-
-
-// INK OPTIONS
-
-const inks = [
-  ["Black","#242424"],
-  ["Blue","#315D9A"],
-  ["Burgundy","#762B42"],
-  ["Forest Green","#24513C"],
-  ["Chocolate Brown","#67432F"],
-  ["Charcoal Grey","#55565A"],
-  ["Plum","#69446F"],
-  ["Copper","#AD7047"]
-];
-
-let selectedInk = "#242424";
-let selectedInkName = "Black";
 
 function renderInkOptions() {
   const container = document.getElementById("inkOptions");
   container.innerHTML = "";
 
-  inks.forEach(item => {
+  inkColours.forEach(item => {
     const button = document.createElement("button");
-    button.type = "button";
-    button.className = "ink-option";
+    button.className = "choice";
 
-    if (selectedInk === item[1]) button.classList.add("selected");
-
-    const dot = document.createElement("span");
-    dot.className = "ink-dot";
-    dot.style.background = item[1];
+    const visual = document.createElement("div");
+    visual.className = "ink-swatch";
+    visual.style.background = item.color;
 
     const name = document.createElement("span");
-    name.className = "ink-name";
-    name.textContent = item[0];
+    name.className = "choice-name";
+    name.textContent = item.name;
 
-    button.append(dot, name);
+    button.appendChild(visual);
+    button.appendChild(name);
 
-    button.addEventListener("click", () => {
-      selectedInk = item[1];
-      selectedInkName = item[0];
+    if (selectedInk === item.name) button.classList.add("selected");
+
+    button.addEventListener("click",() => {
+      selectedInk = item.name;
       renderInkOptions();
-      updateRecipientPreview();
     });
 
     container.appendChild(button);
   });
 }
 
+function renderAllOptions() {
+  renderDesignOptions("envelopeOptions","envelope");
+  renderDesignOptions("paperOptions","paper");
+  renderInkOptions();
+  renderSeals();
+}
 
-// SEAL OPTIONS
+/* SEALS */
 
-const seals = {
-  hearts:["❤️","💗","💌","💕","💘","💝"],
-  nature:["🌷","🌸","🌻","🍀","🌿","🦋"],
-  sky:["⭐","🌙","☀️","✨","🌈","☁️"],
-  faces:["😊","🥹","😌","😜","😍","🤗"],
-  animals:["🐈","🐈‍⬛","🐇","🦊","🐝","🐢"],
-  things:["🍓","🍄","🕯️","🔑","🧸","🎀"],
-  magic:["🔮","🪄","🧿","🗝️","🪐","🪽"]
+const sealCategories = {
+  "Hearts & Love":["💌","❤️","💕","💗","💖","💘","💝","🤍"],
+  "Flowers & Nature":["🌸","🌷","🌻","🌼","🍀","🌿","🌹","🌺"],
+  "Stars & Sky":["⭐","🌟","✨","🌙","☀️","🌈","☁️","💫"],
+  "Faces & Feelings":["😊","🥰","😉","😌","😇","🤗","💭","🙂"],
+  "Animals":["🦋","🐝","🐈","🐦","🐇","🦊","🐢","🐞"],
+  "Little Things":["🎀","🧸","🍓","🍄","🕯️","📮","🧡","🪻"],
+  "Magic & Mystery":["🔮","🪄","🗝️","🧿","🪐","🪽","🪷","🧚"]
 };
 
-let selectedSeal = "💌";
-let activeSealTab = "hearts";
+let activeSealCategory = "Hearts & Love";
 
-function renderSeals(tab) {
-  activeSealTab = tab;
-  const container = document.getElementById("sealOptions");
-  container.innerHTML = "";
+function renderSeals() {
+  const tabs = document.getElementById("sealTabs");
+  const options = document.getElementById("sealOptions");
 
-  seals[tab].forEach(emoji => {
+  tabs.innerHTML = "";
+  options.innerHTML = "";
+
+  Object.keys(sealCategories).forEach(category => {
     const button = document.createElement("button");
-    button.type = "button";
-    button.className = "seal-option";
+    button.className = "seal-tab";
+    button.textContent = category;
+
+    if (activeSealCategory === category) button.classList.add("active");
+
+    button.addEventListener("click",() => {
+      activeSealCategory = category;
+      renderSeals();
+    });
+
+    tabs.appendChild(button);
+  });
+
+  const noSeal = document.createElement("button");
+  noSeal.className = "seal-choice no-seal";
+  noSeal.textContent = "No Seal";
+
+  if (selectedSeal === "") noSeal.classList.add("selected");
+
+  noSeal.addEventListener("click",() => {
+    selectedSeal = "";
+    renderSeals();
+  });
+
+  options.appendChild(noSeal);
+
+  sealCategories[activeSealCategory].forEach(emoji => {
+    const button = document.createElement("button");
+    button.className = "seal-choice";
     button.textContent = emoji;
 
     if (selectedSeal === emoji) button.classList.add("selected");
 
-    button.addEventListener("click", () => {
+    button.addEventListener("click",() => {
       selectedSeal = emoji;
-      renderSeals(activeSealTab);
-      renderEnvelopeOptions();
-      updateRecipientPreview();
+      renderSeals();
     });
 
-    container.appendChild(button);
+    options.appendChild(button);
   });
-
-  document.querySelectorAll("#sealTabs .tab-button").forEach(button => {
-    button.classList.toggle("active", button.dataset.tab === tab);
-  });
-
-  document.getElementById("noSealButton").classList.toggle("selected", !selectedSeal);
 }
 
-document.querySelectorAll("#sealTabs .tab-button").forEach(button => {
-  button.addEventListener("click", () => renderSeals(button.dataset.tab));
-});
+/* VISUAL PREVIEW */
 
-document.getElementById("noSealButton").addEventListener("click", () => {
-  selectedSeal = "";
-  renderSeals(activeSealTab);
-  renderEnvelopeOptions();
-  updateRecipientPreview();
-});
-
-
-// RECIPIENT PREVIEW
-
-function getEnvelopeClass() {
-  if (selectedEnvelopeStyle === "colour") return "";
-  return selectedEnvelopeStyle;
+function getDesignColor(name) {
+  const colour = colours.find(item => item.name === name);
+  if (colour) return colour.color;
+  return "#D5B99B";
 }
 
-function getPaperClass() {
-  if (selectedPaperStyle === "colour") return "";
-  return selectedPaperStyle;
+function getDesignClass(name) {
+  const design = specialDesigns.find(item => item.name === name);
+  return design ? design.className : "";
 }
 
 function updateRecipientPreview() {
   const envelope = document.getElementById("recipientEnvelope");
-  const seal = document.getElementById("envelopeSeal");
+  const letter = document.getElementById("recipientLetter");
+  const stage = document.getElementById("previewStage");
 
-  envelope.className = "recipient-envelope";
+  envelope.className = "preview-envelope";
+  envelope.style.background = getDesignColor(selectedEnvelope);
 
-  if (selectedEnvelopeStyle === "colour") {
-    envelope.style.background = selectedEnvelopeColour;
+  const envelopeClass = getDesignClass(selectedEnvelope);
+  if (envelopeClass) envelope.classList.add(envelopeClass);
+
+  const paperColor = getDesignColor(selectedPaper);
+  const paperClass = getDesignClass(selectedPaper);
+
+  letter.style.background = paperColor;
+
+  if (paperClass) {
+    letter.style.backgroundImage =
+      getDesignBackground(selectedPaper);
   } else {
-    envelope.style.background = "";
-    envelope.classList.add(selectedEnvelopeStyle);
+    letter.style.backgroundImage = "none";
   }
 
-  seal.textContent = selectedSeal || "";
+  const ink = inkColours.find(item => item.name === selectedInk);
+  const inkColor = ink ? ink.color : "#68452F";
 
-  const writing = document.getElementById("letterText").value;
-  const revealedText = document.getElementById("revealedText");
+  document.getElementById("previewMessage").style.color = inkColor;
+  document.getElementById("previewMessage").textContent =
+    document.getElementById("fortuneText").value.trim();
 
-  revealedText.textContent = writing || "Your fortune will appear here.";
+  const includeSignature =
+    document.getElementById("includeSignature").checked;
 
-  const letter = document.getElementById("revealLetter");
-  letter.style.background = "";
+  const signature = includeSignature
+    ? document.getElementById("signatureName").value.trim()
+    : "";
 
-  if (selectedPaperStyle === "colour") {
-    letter.style.background = selectedPaperColour;
-  } else {
-    letter.style.background = "";
-    letter.classList.add(selectedPaperStyle);
-  }
+  const signatureElement = document.getElementById("previewSignature");
+  signatureElement.textContent = signature;
+  signatureElement.style.color = inkColor;
 
-  letter.style.color = selectedInk;
+  document.getElementById("previewSeal").textContent = selectedSeal;
 
-  if (selectedPaper === "Midnight Blue" || selectedPaper === "Dusk Black") {
-    letter.style.color = "#FFFFFF";
-  }
+  letter.classList.remove("open");
+  stage.classList.remove("preview-open");
+  document.getElementById("openButtonRow").style.display = "flex";
+  document.getElementById("sendButtonRow").style.display = "none";
+  document.getElementById("envelopeCaption").textContent =
+    "Your letter is waiting to be opened.";
 
-  document.getElementById("revealedSeal").textContent = selectedSeal;
+  fortuneOpened = false;
 }
 
-document.getElementById("letterText").addEventListener("input", updateRecipientPreview);
+function getDesignBackground(name) {
+  if (name === "Rainbow Watercolour") {
+    return "linear-gradient(135deg,#E6B5A9,#E8D49C,#B5CEB5,#AFC7DC,#C8B4D8)";
+  }
+  if (name === "Clouds") {
+    return "radial-gradient(ellipse at 25% 35%,#fff 0 15%,transparent 16%),radial-gradient(ellipse at 70% 60%,#fff 0 18%,transparent 19%),linear-gradient(#9FC1D6,#DCE8EB)";
+  }
+  if (name === "Forgotten") {
+    return "linear-gradient(140deg,#B9A78C,#8F9B8A,#B8A0A0)";
+  }
+  return "none";
+}
 
-
-// PREVIEW OPENING ANIMATION
+/* OPENING EXPERIENCE */
 
 let fortuneOpened = false;
 
 function openRecipientLetter() {
   if (fortuneOpened) return;
 
-  const message = document.getElementById("letterText").value.trim();
-
-  if (!message) {
-    alert("Write your fortune before opening the preview.");
-    document.getElementById("letterText").focus();
-    return;
-  }
-
   fortuneOpened = true;
+
+  document.getElementById("previewStage").classList.add("preview-open");
+  document.getElementById("envelopeCaption").textContent =
+    "Your fortune has been opened.";
+
+  document.getElementById("openButtonRow").style.display = "none";
 
   const dust = document.getElementById("stardust");
   dust.innerHTML = "";
 
-  const symbols = ["✦","✧","⋆","✴","·","✧","✦","⋆"];
-
-  for (let i = 0; i < 32; i++) {
-    const star = document.createElement("span");
-    star.className = "star";
-    star.textContent = symbols[i % symbols.length];
-
-    star.style.setProperty("--x", Math.random() * 100 + "%");
-    star.style.setProperty("--y", Math.random() * 80 + 10 + "%");
-    star.style.setProperty("--size", (12 + Math.random() * 16) + "px");
-    star.style.setProperty("--delay", (Math.random() * .7) + "s");
-    star.style.setProperty("--move-x", (Math.random() * 180 - 90) + "px");
-    star.style.setProperty("--move-y", (Math.random() * -180 - 30) + "px");
-
-    dust.appendChild(star);
+  for (let i = 0; i < 22; i++) {
+    const sparkle = document.createElement("span");
+    sparkle.className = "sparkle";
+    sparkle.textContent = ["✧","✦","·","✧"][i % 4];
+    sparkle.style.left = Math.random() * 100 + "%";
+    sparkle.style.top = (35 + Math.random() * 50) + "%";
+    sparkle.style.animationDelay = (Math.random() * .5) + "s";
+    dust.appendChild(sparkle);
   }
 
-  dust.classList.add("active");
-
-  document.getElementById("openingPrompt").style.display = "none";
-
   setTimeout(() => {
-    document.getElementById("revealArea").classList.add("visible");
-    document.getElementById("finalButton").classList.add("visible");
-    dust.classList.remove("active");
-  }, 650);
+    document.getElementById("recipientLetter").classList.add("open");
+    document.getElementById("sendButtonRow").style.display = "flex";
+  },350);
 }
 
-document.getElementById("openFortuneButton").addEventListener("click", openRecipientLetter);
-
-
-// ALLOW SWIPE UP TO OPEN
+/* SWIPE UP ON ENVELOPE */
 
 let touchStartY = 0;
 
-document.getElementById("recipientEnvelope").addEventListener("touchstart", event => {
-  touchStartY = event.changedTouches[0].screenY;
-}, {passive:true});
+document.getElementById("recipientEnvelope").addEventListener("touchstart",e => {
+  touchStartY = e.changedTouches[0].screenY;
+},{passive:true});
 
-document.getElementById("recipientEnvelope").addEventListener("touchend", event => {
-  const touchEndY = event.changedTouches[0].screenY;
+document.getElementById("recipientEnvelope").addEventListener("touchend",e => {
+  const touchEndY = e.changedTouches[0].screenY;
+  if (touchStartY - touchEndY > 35) openRecipientLetter();
+},{passive:true});
 
-  if (touchStartY - touchEndY > 45) {
-    openRecipientLetter();
-  }
-}, {passive:true});
+/* SAVE FORTUNE */
 
+function sendFortune() {
+  const message = document.getElementById("fortuneText").value.trim();
 
-// FINAL SUBMISSION
-
-document.getElementById("leaveFortuneButton").addEventListener("click", saveCreatedFortune);
-
-function saveCreatedFortune() {
-  const message = document.getElementById("letterText").value.trim();
-  if (!message) return;
-
-  const number = "Letter No. " + String(Math.floor(Math.random() * 90000) + 10000);
-  const signature = localStorage.getItem("signatureName") || "";
-  const includeSignature = document.getElementById("includeSignature").checked;
-
-  const letter = {
-    text: message,
-    number: number,
-    signature: includeSignature ? signature : "",
-    envelope: selectedEnvelope,
-    envelopeStyle: selectedEnvelopeStyle,
-    paper: selectedPaper,
-    paperStyle: selectedPaperStyle,
-    ink: selectedInkName,
-    seal: selectedSeal,
-    date: new Date().toISOString()
-  };
-
-  let sent = JSON.parse(localStorage.getItem("sentLetters") || "[]");
-  sent.push(letter);
-  localStorage.setItem("sentLetters", JSON.stringify(sent));
-
-  document.getElementById("letterNumber").textContent = number;
-  document.getElementById("letterForm").style.display = "none";
-  document.getElementById("letterConfirmation").style.display = "block";
-  window.scrollTo(0, 0);
-}
-
-
-// RESET CREATOR
-
-function createAnotherLetter() {
-  document.getElementById("letterForm").reset();
-
-  document.getElementById("letterForm").style.display = "block";
-  document.getElementById("letterConfirmation").style.display = "none";
-
-  selectedEnvelope = "Blush";
-  selectedEnvelopeStyle = "colour";
-  selectedEnvelopeColour = "#E8B9BD";
-
-  selectedPaper = "Warm Cream";
-  selectedPaperStyle = "colour";
-  selectedPaperColour = "#E9DFC8";
-
-  selectedInk = "#242424";
-  selectedInkName = "Black";
-  selectedSeal = "💌";
-
-  fortuneOpened = false;
-
-  document.getElementById("openingPrompt").style.display = "block";
-  document.getElementById("revealArea").classList.remove("visible");
-  document.getElementById("finalButton").classList.remove("visible");
-
-  renderEnvelopeOptions();
-  renderPaperOptions();
-  renderInkOptions();
-  renderSeals("hearts");
-  updateRecipientPreview();
-
-  window.scrollTo(0, 0);
-}
-
-
-// INITIALISE CREATOR
-
-renderEnvelopeOptions();
-renderPaperOptions();
-renderInkOptions();
-renderSeals("hearts");
-updateRecipientPreview();
-
-
-// SAMPLE FORTUNES
-
-const fortunes = [
-  "Somewhere, someone is having a day that will become a lovely memory.",
-  "You are allowed to begin again, as many times as you need.",
-  "A small unexpected thing will make you smile soon.",
-  "Take the longer way home. You might find something lovely.",
-  "Someone you have never met is wishing you well.",
-  "Not everything beautiful needs to have a purpose.",
-  "A little patience. A little courage. A little more time.",
-  "Today, notice something you would usually walk past.",
-  "You are not behind. You are on your own way.",
-  "Perhaps the thing you are looking for is looking for you too.",
-  "A stranger once thought of you, without knowing your name.",
-  "Keep a little room in your day for something unexpected."
-];
-
-let currentFortune = null;
-let currentFortuneNumber = null;
-
-function openFortune(envelopeNumber) {
-  const randomIndex = Math.floor(Math.random() * fortunes.length);
-  currentFortune = fortunes[randomIndex];
-
-  currentFortuneNumber =
-    "Letter No. " + String(Math.floor(Math.random() * 90000) + 10000);
-
-  document.getElementById("fortuneText").textContent = currentFortune;
-  document.getElementById("fortuneNumber").textContent = currentFortuneNumber;
-  document.getElementById("fortuneResult").style.display = "block";
-}
-
-function saveFortune() {
-  if (!currentFortune) return;
-
-  let saved = JSON.parse(localStorage.getItem("savedFortunes") || "[]");
-
-  saved.push({
-    text: currentFortune,
-    number: currentFortuneNumber
-  });
-
-  localStorage.setItem("savedFortunes", JSON.stringify(saved));
-
-  alert("Your fortune has been saved to My Collection!");
-
-  currentFortune = null;
-  showPage("collection");
-}
-
-
-// DISPLAY COLLECTION
-
-function displayCollection() {
-  const saved = JSON.parse(localStorage.getItem("savedFortunes") || "[]");
-  const container = document.getElementById("savedFortunes");
-
-  container.innerHTML = "";
-
-  if (saved.length === 0) {
-    container.innerHTML =
-      '<p class="empty-message">Your collection is waiting for its first little fortune.</p>';
+  if (!message) {
+    alert("Please write your fortune first.");
     return;
   }
 
-  saved.forEach(fortune => {
-    const item = document.createElement("div");
-    item.className = "saved-item";
+  const includeSignature =
+    document.getElementById("includeSignature").checked;
 
-    const text = document.createElement("p");
-    text.textContent = fortune.text;
+  const signature = includeSignature
+    ? document.getElementById("signatureName").value.trim()
+    : "";
 
-    const number = document.createElement("small");
-    number.textContent = fortune.number;
+  const fortune = {
+    message,
+    signature,
+    envelope:selectedEnvelope,
+    paper:selectedPaper,
+    ink:selectedInk,
+    seal:selectedSeal,
+    date:new Date().toLocaleDateString()
+  };
 
-    item.append(text, number);
-    container.appendChild(item);
-  });
+  const fortunes = JSON.parse(
+    localStorage.getItem("myFortunes") || "[]"
+  );
+
+  fortunes.unshift(fortune);
+  localStorage.setItem("myFortunes",JSON.stringify(fortunes));
+
+  document.getElementById("previewStage").style.display = "none";
+  document.getElementById("sendConfirmation").classList.add("show");
+  document.getElementById("creatorNavigation").style.display = "none";
 }
 
+/* SAMPLE FORTUNES */
 
-// CREATE A SIGNATURE
+const sampleFortunes = [
+  "Something you thought was lost may find its way back to you.",
+  "Take the longer way home. There may be something lovely along the way.",
+  "Someone remembers a small kindness you once showed them.",
+  "You are allowed to begin again, even on an ordinary Tuesday.",
+  "A door you haven't noticed yet is waiting to be opened.",
+  "Keep a little room in your day for an unexpected delight.",
+  "One day, this ordinary moment will be a memory you treasure.",
+  "You don't have to have everything figured out today.",
+  "A little adventure is closer than you think.",
+  "The next good thing might arrive quietly."
+];
 
-document.getElementById("signupForm").addEventListener("submit", function(event) {
-  event.preventDefault();
+function openSampleFortune() {
+  const fortune = sampleFortunes[
+    Math.floor(Math.random() * sampleFortunes.length)
+  ];
 
-  const name = document.getElementById("signatureName").value.trim();
-  const country = document.getElementById("country").value;
+  const display = document.getElementById("foundFortune");
+  display.textContent = fortune;
+  display.style.display = "block";
+}
+
+/* SIGNATURE */
+
+document.getElementById("signatureForm").addEventListener("submit",e => {
+  e.preventDefault();
+
+  const name = document.getElementById("userName").value.trim();
+  const country = document.getElementById("userCountry").value.trim();
 
   if (!name) return;
 
-  localStorage.setItem("signatureName", name);
-  localStorage.setItem("signatureCountry", country);
+  localStorage.setItem("fortuneSignature",name);
+  localStorage.setItem("fortuneCountry",country);
 
-  document.getElementById("signatureDisplay").textContent =
-    name + (country ? " · " + country : "");
+  document.getElementById("signupMessage").textContent =
+    "Your signature has been saved in this browser.";
 
-  document.getElementById("signupForm").style.display = "none";
-  document.getElementById("signupConfirmation").style.display = "block";
+  document.getElementById("signatureName").value = name;
 });
 
+/* COLLECTION */
+
+function displayCollection() {
+  const container = document.getElementById("collectionList");
+  const fortunes = JSON.parse(
+    localStorage.getItem("myFortunes") || "[]"
+  );
+
+  container.innerHTML = "";
+
+  if (fortunes.length === 0) {
+    container.textContent = "Your collection is waiting for its first fortune.";
+    return;
+  }
+
+  fortunes.forEach(fortune => {
+    const card = document.createElement("div");
+    card.className = "collection-card";
+
+    const message = document.createElement("p");
+    message.textContent = fortune.message;
+
+    const details = document.createElement("small");
+    details.textContent =
+      "Envelope: " + fortune.envelope +
+      " | Paper: " + fortune.paper +
+      " | Ink: " + fortune.ink +
+      " | " + fortune.date;
+
+    card.appendChild(message);
+
+    if (fortune.signature) {
+      const signature = document.createElement("p");
+      signature.textContent = "— " + fortune.signature;
+      card.appendChild(signature);
+    }
+
+    card.appendChild(details);
+    container.appendChild(card);
+  });
+}
+
+/* INITIAL SETUP */
+
+renderAllOptions();
 </script>
 
 </body>
