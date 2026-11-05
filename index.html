@@ -7,16 +7,13 @@
 
 <style>
 :root {
-  --night: #211e43;
-  --purple: #39315f;
-  --violet: #514475;
-  --gold: #dfc17b;
-  --gold-light: #f2dfac;
-  --cream: #fff4dc;
-  --soft: #d7c9e5;
-  --pink: #b979a5;
-  --green: #789b91;
-  --blue: #7794bd;
+  --cream: #F6F0E5;
+  --tan: #D5B99B;
+  --dark-tan: #A98B70;
+  --brown: #514236;
+  --light-brown: #766453;
+  --paper: #FFF9EF;
+  --soft-cream: #EDE2D2;
 }
 
 * {
@@ -25,542 +22,819 @@
 
 body {
   margin: 0;
-  min-height: 100vh;
-  color: var(--gold-light);
+  background: var(--cream);
+  color: var(--brown);
   font-family: Arial, sans-serif;
-  line-height: 1.7;
-  background:
-    radial-gradient(ellipse at 15% 15%, #66528b55, transparent 40%),
-    radial-gradient(ellipse at 85% 35%, #394d8055, transparent 42%),
-    radial-gradient(ellipse at 50% 100%, #72517c44, transparent 45%),
-    linear-gradient(145deg, #211e43, #302951 50%, #242444);
-  background-attachment: fixed;
+  min-height: 100vh;
 }
 
-body::before {
-  content: "✦       ·          ✧          ·       ✦";
-  position: fixed;
-  top: 9%;
-  left: 0;
-  width: 100%;
-  text-align: center;
-  color: #e7cc8b44;
-  font-size: 20px;
-  letter-spacing: 24px;
-  pointer-events: none;
-  z-index: -1;
-}
-
-header {
-  text-align: center;
-  padding: 34px 18px 18px;
-}
-
-.brand {
+h1, h2, h3 {
   font-family: Georgia, serif;
-  font-size: clamp(27px, 5vw, 39px);
-  color: var(--gold);
-  letter-spacing: 1px;
-  text-shadow: 0 0 22px #e4c47733;
+  font-weight: normal;
+  color: var(--brown);
 }
 
-nav {
-  display: flex;
-  justify-content: center;
-  gap: 12px;
-  flex-wrap: wrap;
-  padding: 16px;
+h1 {
+  font-size: clamp(26px, 5vw, 38px);
+  text-align: center;
+  line-height: 1.3;
+  margin: 25px 0 55px;
 }
 
-nav button {
-  background: #ffffff0b;
-  color: var(--gold-light);
-  border: none;
-  border-radius: 30px;
-  padding: 10px 20px;
+h2 {
+  font-size: 27px;
+  text-align: center;
+  margin-bottom: 15px;
+}
+
+p {
+  line-height: 1.7;
+}
+
+button {
+  font-family: inherit;
   cursor: pointer;
-  transition: .2s;
-  font-size: 13px;
+  border: none;
+  border-radius: 20px;
+  transition: opacity 0.2s;
 }
 
-nav button:hover {
-  background: #d9bd7850;
-  color: white;
-  transform: translateY(-2px);
+button:hover {
+  opacity: 0.85;
 }
 
-main {
-  width: min(760px, 90%);
-  margin: 35px auto 80px;
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+  outline: 2px solid var(--brown);
+  outline-offset: 3px;
 }
 
 .page {
   display: none;
+  width: 100%;
+  max-width: 850px;
+  margin: auto;
+  padding: 35px 20px 60px;
 }
 
 .page.active {
   display: block;
-  animation: appear .45s ease;
 }
 
-@keyframes appear {
-  from { opacity: 0; transform: translateY(10px); }
-  to { opacity: 1; transform: translateY(0); }
+/* HOMEPAGE */
+
+#home {
+  min-height: 100vh;
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 35px 20px;
 }
 
-.welcome {
-  text-align: center;
-  padding: 45px 0 25px;
+#home.active {
+  display: flex;
 }
 
-.welcome h1 {
-  font-family: Georgia, serif;
-  font-size: clamp(35px, 6vw, 53px);
-  font-weight: normal;
-  line-height: 1.25;
-  color: var(--gold);
-  text-shadow: 0 0 25px #e5c47733;
-  margin: 0 auto 24px;
+#home h1 {
+  max-width: 650px;
+  margin: 0 0 55px;
 }
 
-.subtitle {
-  max-width: 570px;
-  margin: 0 auto;
-  color: var(--soft);
-  font-family: Georgia, serif;
-  font-size: 18px;
-  line-height: 1.9;
+.home-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 18px;
+  width: 100%;
+  max-width: 590px;
 }
 
-.button-grid {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 22px;
-  max-width: 570px;
-  margin: 48px auto 20px;
-}
-
-.choice-button {
-  aspect-ratio: 1 / 1;
-  border: none;
-  border-radius: 32px;
-  background: linear-gradient(145deg, #f0d99d, #c8a45f);
-  color: #302747;
-  padding: 22px;
-  cursor: pointer;
+.home-choice {
+  flex: 1;
+  min-width: 0;
+  min-height: 190px;
+  background: var(--tan);
+  color: var(--brown);
+  border-radius: 22px;
+  padding: 20px 12px;
   display: flex;
   flex-direction: column;
-  align-items: center;
   justify-content: center;
-  gap: 14px;
-  box-shadow: 0 12px 35px #08071c55;
-  transition: transform .25s, box-shadow .25s;
+  align-items: center;
+  gap: 13px;
 }
 
-.choice-button:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 16px 38px #dfc17b33;
+.home-choice strong {
+  font-size: 16px;
+  letter-spacing: 1px;
 }
 
-.choice-button .symbol {
-  font-size: 43px;
-  color: #6c4e7b;
-}
-
-.choice-button strong {
-  font-size: 15px;
-  letter-spacing: 1.5px;
-  font-weight: bold;
-}
-
-.choice-button span:last-child {
-  color: #514263;
+.home-choice span:last-child {
   font-size: 14px;
+  text-align: center;
 }
 
-.small-note {
-  color: #c7b6d8;
+.home-icon svg {
+  width: 39px;
+  height: 39px;
+  fill: none;
+  stroke: #59432F;
+  stroke-width: 2.4;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.signature-button-wrap {
+  margin-top: 30px;
+  text-align: center;
+}
+
+.signature-button {
+  background: var(--dark-tan);
+  color: white;
+  padding: 17px 32px;
+  font-size: 14px;
+  letter-spacing: 1px;
+}
+
+/* INNER PAGE NAVIGATION */
+
+.top-nav {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 9px;
+  margin-bottom: 35px;
+}
+
+.top-nav button {
+  background: var(--tan);
+  color: var(--brown);
+  padding: 12px 17px;
   font-size: 13px;
-  text-align: center;
-  margin-top: 25px;
 }
 
-h2 {
-  font-family: Georgia, serif;
-  font-weight: normal;
-  font-size: 31px;
-  color: var(--gold);
+/* GENERAL CONTENT */
+
+.content-card {
+  background: var(--paper);
+  border-radius: 22px;
+  padding: 25px;
+  margin: 22px auto;
+  max-width: 620px;
 }
 
-.center {
+.intro {
   text-align: center;
+  color: var(--light-brown);
+  margin-bottom: 28px;
 }
+
+.main-button {
+  display: block;
+  background: var(--tan);
+  color: var(--brown);
+  padding: 15px 25px;
+  margin: 22px auto;
+  font-size: 15px;
+}
+
+.secondary-button {
+  display: block;
+  background: var(--soft-cream);
+  color: var(--brown);
+  padding: 13px 22px;
+  margin: 12px auto;
+}
+
+/* ENVELOPES */
 
 .envelopes {
   display: flex;
   justify-content: center;
-  gap: 20px;
   flex-wrap: wrap;
-  margin: 38px 0;
+  gap: 15px;
+  margin: 35px auto;
 }
 
 .envelope {
-  width: 150px;
-  height: 115px;
-  border: none;
-  border-radius: 24px;
-  display: grid;
-  place-items: center;
-  font-size: 42px;
-  cursor: pointer;
-  box-shadow: 0 9px 25px #09081955;
-  transition: transform .25s, box-shadow .25s;
-  color: #fff3d6;
-}
-
-.envelope:hover {
-  transform: translateY(-8px) rotate(-2deg);
-  box-shadow: 0 14px 30px #dfc17b33;
-}
-
-.envelope:nth-child(1) {
-  background: linear-gradient(145deg, #b477a1, #784d83);
+  width: 155px;
+  height: 112px;
+  background: var(--tan);
+  color: var(--brown);
+  border-radius: 17px;
+  font-family: Georgia, serif;
+  font-size: 17px;
 }
 
 .envelope:nth-child(2) {
-  background: linear-gradient(145deg, #829dba, #4e648e);
+  background: #C9B49D;
 }
 
 .envelope:nth-child(3) {
-  background: linear-gradient(145deg, #b49a68, #786044);
+  background: #BFA58A;
 }
 
-.letter {
-  background:
-    radial-gradient(circle at top right, #f1dfb533, transparent 45%),
-    linear-gradient(145deg, #40345f, #30294e);
-  border: none;
-  border-radius: 28px;
-  padding: 32px;
-  max-width: 480px;
-  margin: 28px auto;
-  box-shadow: 0 12px 35px #09081966;
-  color: var(--gold-light);
-}
-
-.letter p {
-  font-family: Georgia, serif;
-  font-size: 22px;
-  line-height: 1.7;
-}
-
-.letter small {
-  color: var(--soft);
-}
-
-.primary, .secondary {
-  border: none;
-  border-radius: 30px;
-  padding: 12px 25px;
-  cursor: pointer;
-  margin: 6px;
-  transition: .2s;
-  font-size: 14px;
-}
-
-.primary {
-  background: linear-gradient(135deg, #f0d99d, #c6a15c);
-  color: #302747;
-  box-shadow: 0 5px 18px #dfc17b22;
-}
-
-.primary:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 8px 22px #dfc17b44;
-}
-
-.secondary {
-  background: #ffffff12;
-  color: var(--gold-light);
-}
-
-.secondary:hover {
-  background: #d9bd7840;
-}
+/* FORMS */
 
 label {
   display: block;
   margin: 18px 0 8px;
-  color: var(--gold-light);
+  font-weight: bold;
+  font-size: 14px;
+}
+
+input, textarea, select {
+  width: 100%;
+  padding: 14px;
+  border: none;
+  border-radius: 13px;
+  background: var(--soft-cream);
+  color: var(--brown);
+  font-family: inherit;
+  font-size: 15px;
 }
 
 textarea {
-  width: 100%;
-  min-height: 160px;
-  padding: 18px;
-  border: none;
-  border-radius: 24px;
-  background: #ffffff12;
-  color: white;
-  font: inherit;
+  min-height: 155px;
   resize: vertical;
-  outline: 2px solid transparent;
-  transition: outline .2s, background .2s;
 }
 
-textarea:focus {
-  outline-color: #dfc17b99;
-  background: #ffffff19;
-}
-
+input::placeholder,
 textarea::placeholder {
-  color: #c7b6d8aa;
+  color: #8B7A69;
 }
 
-input[type="checkbox"] {
-  accent-color: var(--gold);
+.checkbox-line {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 20px 0;
 }
+
+.checkbox-line input {
+  width: auto;
+}
+
+/* FORTUNE DISPLAY */
+
+.fortune-paper {
+  background: var(--paper);
+  border-radius: 22px;
+  padding: 35px 25px;
+  text-align: center;
+  margin: 25px auto;
+  max-width: 570px;
+  min-height: 150px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.fortune-paper p {
+  font-family: Georgia, serif;
+  font-size: 21px;
+  line-height: 1.7;
+}
+
+.fortune-number {
+  font-size: 12px;
+  color: var(--light-brown);
+}
+
+/* COLLECTION */
 
 .saved-item {
-  background: #ffffff10;
-  border: none;
-  padding: 20px;
-  margin: 14px 0;
-  border-radius: 23px;
-  color: var(--gold-light);
+  background: var(--paper);
+  border-radius: 17px;
+  padding: 18px;
+  margin: 15px 0;
 }
 
-.saved-item small {
-  color: var(--gold);
+.saved-item p {
+  font-family: Georgia, serif;
+  font-size: 17px;
+}
+
+.empty-message {
+  text-align: center;
+  color: var(--light-brown);
+  padding: 25px 10px;
 }
 
 footer {
   text-align: center;
-  padding: 30px 15px;
-  color: #c7b6d8;
-  font-family: Georgia, serif;
-  font-size: 14px;
+  padding: 20px;
+  color: var(--light-brown);
+  font-size: 12px;
 }
 
-@media (max-width: 480px) {
-  .button-grid {
-    gap: 12px;
+@media (max-width: 500px) {
+  #home h1 {
+    margin-bottom: 38px;
   }
 
-  .choice-button {
-    padding: 12px;
-    border-radius: 23px;
+  .home-buttons {
+    gap: 10px;
   }
 
-  .choice-button strong {
+  .home-choice {
+    min-height: 165px;
+    padding: 12px 7px;
+    gap: 11px;
+  }
+
+  .home-choice strong {
+    font-size: 13px;
+  }
+
+  .home-choice span:last-child {
     font-size: 12px;
   }
 
-  .choice-button span:last-child {
-    font-size: 12px;
+  .home-icon svg {
+    width: 33px;
+    height: 33px;
+  }
+
+  .top-nav button {
+    padding: 10px 12px;
   }
 
   .envelope {
     width: 125px;
-    height: 100px;
+    height: 95px;
   }
-
-  nav {
-    gap: 7px;
-  }
-
-  nav button {
-    padding: 9px 13px;
-    font-size: 12px;
-  }
-}
-
-[hidden] {
-  display: none !important;
 }
 </style>
 </head>
 
 <body>
 
-<header>
-  <div class="brand">Fortune From, Fortune Found</div>
-</header>
-
-<nav>
-  <button onclick="showPage('home')">Home</button>
-  <button onclick="showPage('receive')">Find a fortune</button>
-  <button onclick="showPage('leave')">Leave a fortune</button>
-  <button onclick="showPage('collection')">My Collection</button>
-</nav>
-
-<main>
+<!-- HOMEPAGE -->
 
 <section id="home" class="page active">
-  <div class="welcome">
-    <h1>Welcome to Fortune From, Fortune Found</h1>
 
-    <p class="subtitle">
-      A place to receive daily fortunes, wishes and thoughts
-      from someone you may never meet — and leave a little
-      something for someone to find.
-    </p>
+  <h1>Welcome to Fortune From, Fortune Found</h1>
 
-    <div class="button-grid">
-      <button class="choice-button" onclick="showPage('leave')">
-        <span class="symbol">✉</span>
-        <strong>FORTUNE FROM</strong>
-        <span>Write somebody a fortune</span>
-      </button>
+  <div class="home-buttons">
 
-      <button class="choice-button" onclick="showPage('receive')">
-        <span class="symbol">✧</span>
-        <strong>FORTUNE FOUND</strong>
-        <span>Open your daily fortune</span>
-      </button>
-    </div>
+    <button class="home-choice" onclick="showPage('leave')">
+      <span class="home-icon">
+        <svg viewBox="0 0 48 48">
+          <rect x="5" y="10" width="38" height="28" rx="3"/>
+          <path d="M6 13 L24 27 L42 13"/>
+        </svg>
+      </span>
 
-    <p class="small-note">
-      ✦ A little something from someone, somewhere. ✦
-    </p>
+      <strong>FORTUNE FROM</strong>
+      <span>Write a letter for somebody</span>
+    </button>
+
+    <button class="home-choice" onclick="showPage('receive')">
+      <span class="home-icon">
+        <svg viewBox="0 0 48 48">
+          <path d="M24 4 L29 18 L44 19 L33 29 L36 44 L24 36 L12 44 L15 29 L4 19 L19 18 Z"/>
+        </svg>
+      </span>
+
+      <strong>FORTUNE FOUND</strong>
+      <span>Open your fortune</span>
+    </button>
+
   </div>
+
+  <div class="signature-button-wrap">
+    <button class="signature-button" onclick="showPage('signup')">
+      CREATE A SIGNATURE
+    </button>
+  </div>
+
 </section>
 
-<section id="receive" class="page center">
-  <p>✦ For you, today ✦</p>
-  <h2>Choose an envelope.</h2>
-  <p>There are three little surprises waiting.</p>
 
-  <div class="envelopes">
-    <button class="envelope" onclick="openFortune()">✉</button>
-    <button class="envelope" onclick="openFortune()">✉</button>
-    <button class="envelope" onclick="openFortune()">✉</button>
-  </div>
-
-  <div id="reveal" hidden>
-    <div class="letter">
-      <div>✦ A little fortune for you ✦</div>
-      <p id="fortuneText"></p>
-      <small>Left by someone, somewhere.</small>
-    </div>
-    <button class="secondary" onclick="saveFortune()">Save to My Collection</button>
-    <button class="secondary" onclick="showPage('home')">Back home</button>
-  </div>
-</section>
+<!-- LEAVE A FORTUNE -->
 
 <section id="leave" class="page">
-  <div class="center">
-    <p>✦ Leave a little something ✦</p>
-    <h2>A note for someone you haven't met.</h2>
-    <p>It could be a wish, a thought, a reminder, or something wonderfully strange.</p>
+
+  <nav class="top-nav">
+    <button onclick="showPage('home')">Home</button>
+    <button onclick="showPage('receive')">Find a fortune</button>
+    <button onclick="showPage('collection')">My Collection</button>
+  </nav>
+
+  <h2>Leave a Little Fortune</h2>
+
+  <p class="intro">
+    Write something for somebody you may never meet.
+    A wish, a thought, a reminder or a little mystery.
+  </p>
+
+  <div class="content-card">
+
+    <form id="letterForm">
+
+      <label for="letterText">Your letter</label>
+
+      <textarea id="letterText"
+        maxlength="500"
+        placeholder="A little something for someone to find..."
+        required></textarea>
+
+      <label for="envelopeColour">Choose an envelope colour</label>
+
+      <select id="envelopeColour">
+        <option>Warm tan</option>
+        <option>Dusty rose</option>
+        <option>Sage green</option>
+        <option>Soft blue</option>
+        <option>Lavender</option>
+      </select>
+
+      <label for="sticker">Choose a little sticker</label>
+
+      <select id="sticker">
+        <option>☆ Star</option>
+        <option>♡ Heart</option>
+        <option>✿ Flower</option>
+        <option>☾ Moon</option>
+        <option>☀ Sun</option>
+        <option>☁ Cloud</option>
+        <option>🦆 Duck</option>
+        <option>👢 Boot</option>
+      </select>
+
+      <div class="checkbox-line">
+        <input type="checkbox" id="includeSignature" checked>
+        <label for="includeSignature" style="margin:0">
+          Include my signature
+        </label>
+      </div>
+
+      <button class="main-button" type="submit">
+        Leave for Someone to Find
+      </button>
+
+    </form>
+
+    <div id="letterConfirmation" style="display:none; text-align:center">
+      <h3>Your letter has been created!</h3>
+      <p id="letterNumber" class="fortune-number"></p>
+      <p>This is a local prototype. Your letter has been saved in this browser, but has not been sent to other visitors.</p>
+      <button class="main-button" onclick="showPage('home')">
+        Back Home
+      </button>
+    </div>
+
   </div>
 
-  <form onsubmit="leaveFortune(event)">
-    <label for="note">Your little note</label>
-    <textarea id="note" maxlength="300" placeholder="Dear stranger..." required></textarea>
-    <label><input type="checkbox" id="anonymous" checked> Leave without a signature</label>
-    <div class="center" style="margin-top:22px">
-      <button class="primary" type="submit">Leave this fortune</button>
-    </div>
-  </form>
-
-  <div id="thanks" class="center" hidden>
-    <div class="letter">
-      <h2>Left for someone to find.</h2>
-      <p>Somewhere, someone might come across your little note.</p>
-      <div>✦ Letter No. <span id="letterNumber"></span> ✦</div>
-    </div>
-    <button class="secondary" onclick="showPage('home')">Return home</button>
-  </div>
 </section>
+
+
+<!-- RECEIVE A FORTUNE -->
+
+<section id="receive" class="page">
+
+  <nav class="top-nav">
+    <button onclick="showPage('home')">Home</button>
+    <button onclick="showPage('leave')">Leave a fortune</button>
+    <button onclick="showPage('collection')">My Collection</button>
+  </nav>
+
+  <h2>Fortune Found</h2>
+
+  <p class="intro">
+    Three little envelopes are waiting.
+    Choose one and see what you find.
+  </p>
+
+  <div class="envelopes">
+
+    <button class="envelope" onclick="openFortune(0)">
+      Open me
+    </button>
+
+    <button class="envelope" onclick="openFortune(1)">
+      Open me
+    </button>
+
+    <button class="envelope" onclick="openFortune(2)">
+      Open me
+    </button>
+
+  </div>
+
+  <div id="fortuneResult" style="display:none">
+
+    <div class="fortune-paper">
+      <p id="fortuneText"></p>
+      <span id="fortuneNumber" class="fortune-number"></span>
+    </div>
+
+    <button class="main-button" onclick="saveFortune()">
+      Save to My Collection
+    </button>
+
+    <button class="secondary-button" onclick="showPage('home')">
+      Back Home
+    </button>
+
+  </div>
+
+</section>
+
+
+<!-- CREATE A SIGNATURE -->
+
+<section id="signup" class="page">
+
+  <nav class="top-nav">
+    <button onclick="showPage('home')">Home</button>
+  </nav>
+
+  <h2>Create a Signature</h2>
+
+  <p class="intro">
+    Choose the name that will accompany your little letters.
+  </p>
+
+  <div class="content-card">
+
+    <form id="signupForm">
+
+      <label for="signatureName">Your signature name</label>
+
+      <input
+        id="signatureName"
+        type="text"
+        maxlength="30"
+        placeholder="e.g. Mabel Moon"
+        required
+      >
+
+      <label for="country">Country (optional)</label>
+
+      <select id="country">
+        <option value="">Prefer not to say</option>
+        <option>Canada</option>
+        <option>United States</option>
+        <option>United Kingdom</option>
+        <option>Australia</option>
+        <option>New Zealand</option>
+        <option>Ireland</option>
+        <option>France</option>
+        <option>Germany</option>
+        <option>Italy</option>
+        <option>Spain</option>
+        <option>Japan</option>
+        <option>Other</option>
+      </select>
+
+      <button class="main-button" type="submit">
+        Create My Signature
+      </button>
+
+    </form>
+
+    <div id="signupConfirmation" style="display:none; text-align:center">
+      <h3>Your signature is ready!</h3>
+      <p id="signatureDisplay"></p>
+      <button class="main-button" onclick="showPage('home')">
+        Back Home
+      </button>
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- MY COLLECTION -->
 
 <section id="collection" class="page">
-  <div class="center">
-    <p>✦ Kept close ✦</p>
-    <h2>My Collection</h2>
-    <p>Little things you've found along the way.</p>
+
+  <nav class="top-nav">
+    <button onclick="showPage('home')">Home</button>
+    <button onclick="showPage('receive')">Find a fortune</button>
+    <button onclick="showPage('leave')">Leave a fortune</button>
+  </nav>
+
+  <h2>My Collection</h2>
+
+  <p class="intro">
+    Little fortunes you've found along the way.
+  </p>
+
+  <div id="savedFortunes">
+    <p class="empty-message">
+      Your collection is waiting for its first little fortune.
+    </p>
   </div>
-  <div id="savedLetters">
-    <p class="small-note">Your collection is waiting for its first fortune.</p>
-  </div>
+
 </section>
 
-</main>
 
 <footer>
-  ✧ A little world of things left and found. ✧
+  Fortune From, Fortune Found
+  <br>
+  Little fortunes, left by someone, found by you.
 </footer>
 
+
 <script>
+
+// PAGE NAVIGATION
+
+function showPage(pageName) {
+  document.querySelectorAll('.page').forEach(page => {
+    page.classList.remove('active');
+  });
+
+  document.getElementById(pageName).classList.add('active');
+
+  if (pageName === 'collection') {
+    displayCollection();
+  }
+
+  window.scrollTo(0, 0);
+}
+
+
+// SAMPLE FORTUNES
+
 const fortunes = [
-  "A small and unexpected thing will make you smile soon.",
-  "You are allowed to take the longer, more interesting way.",
-  "Somewhere, a stranger is having a day a little like yours.",
-  "Keep an eye out for an unusually shaped cloud.",
-  "Something you thought was lost may turn up in an unexpected place.",
-  "Today is a perfectly good day to begin something small.",
-  "A little kindness has a longer journey than you think.",
-  "You do not have to have everything figured out just yet.",
-  "An ordinary day may leave you with an extraordinary memory."
+  "Somewhere, someone is having a day that will become a lovely memory.",
+  "You are allowed to begin again, as many times as you need.",
+  "A small unexpected thing will make you smile soon.",
+  "Take the longer way home. You might find something lovely.",
+  "Someone you have never met is wishing you well.",
+  "Not everything beautiful needs to have a purpose.",
+  "A little patience. A little courage. A little more time.",
+  "Today, notice something you would usually walk past.",
+  "You are not behind. You are on your own way.",
+  "Perhaps the thing you are looking for is looking for you too.",
+  "A stranger once thought of you, without knowing your name.",
+  "Keep a little room in your day for something unexpected."
 ];
 
-let currentFortune = "";
-let saved = [];
+let currentFortune = null;
+let currentFortuneNumber = null;
 
-function showPage(page) {
-  document.querySelectorAll(".page").forEach(section => {
-    section.classList.remove("active");
-  });
 
-  document.getElementById(page).classList.add("active");
-  window.scrollTo({ top: 0, behavior: "smooth" });
+// OPEN A FORTUNE
+
+function openFortune(envelopeNumber) {
+
+  const randomIndex = Math.floor(Math.random() * fortunes.length);
+
+  currentFortune = fortunes[randomIndex];
+
+  currentFortuneNumber =
+    "Letter No. " + String(Math.floor(Math.random() * 90000) + 10000);
+
+  document.getElementById('fortuneText').textContent = currentFortune;
+  document.getElementById('fortuneNumber').textContent =
+    currentFortuneNumber;
+
+  document.getElementById('fortuneResult').style.display = 'block';
 }
 
-function openFortune() {
-  currentFortune = fortunes[Math.floor(Math.random() * fortunes.length)];
-  document.getElementById("fortuneText").textContent = currentFortune;
-  document.getElementById("reveal").hidden = false;
-}
+
+// SAVE A FORTUNE
 
 function saveFortune() {
+
   if (!currentFortune) return;
 
-  saved.push(currentFortune);
-  renderCollection();
-  showPage("collection");
+  let saved = JSON.parse(
+    localStorage.getItem('savedFortunes') || '[]'
+  );
+
+  saved.push({
+    text: currentFortune,
+    number: currentFortuneNumber
+  });
+
+  localStorage.setItem('savedFortunes', JSON.stringify(saved));
+
+  alert('Your fortune has been saved to My Collection!');
+
+  currentFortune = null;
+
+  showPage('collection');
 }
 
-function renderCollection() {
-  const area = document.getElementById("savedLetters");
-  area.innerHTML = "";
 
-  saved.forEach((fortune, index) => {
-    const item = document.createElement("div");
-    item.className = "saved-item";
+// DISPLAY COLLECTION
 
-    const number = document.createElement("small");
-    number.textContent = "Fortune No. " + (index + 1);
+function displayCollection() {
 
-    const text = document.createElement("p");
-    text.textContent = fortune;
+  const saved = JSON.parse(
+    localStorage.getItem('savedFortunes') || '[]'
+  );
 
-    item.append(number, text);
-    area.appendChild(item);
+  const container = document.getElementById('savedFortunes');
+
+  container.innerHTML = '';
+
+  if (saved.length === 0) {
+    container.innerHTML =
+      '<p class="empty-message">Your collection is waiting for its first little fortune.</p>';
+    return;
+  }
+
+  saved.forEach(fortune => {
+
+    const item = document.createElement('div');
+    item.className = 'saved-item';
+
+    const text = document.createElement('p');
+    text.textContent = fortune.text;
+
+    const number = document.createElement('small');
+    number.textContent = fortune.number;
+
+    item.appendChild(text);
+    item.appendChild(number);
+
+    container.appendChild(item);
+
   });
 }
 
-function leaveFortune(event) {
+
+// LEAVE A LETTER
+
+document.getElementById('letterForm').addEventListener('submit', function(event) {
+
   event.preventDefault();
 
-  const note = document.getElementById("note").value.trim();
-  if (!note) return;
+  const letterText =
+    document.getElementById('letterText').value.trim();
 
-  const number = Math.floor(10000 + Math.random() * 90000);
+  if (!letterText) return;
 
-  document.getElementById("letterNumber").textContent = number;
-  document.getElementById("thanks").hidden = false;
-  document.querySelector("#leave form").hidden = true;
-}
+  const letterNumber =
+    "Letter No. " + String(Math.floor(Math.random() * 90000) + 10000);
+
+  const signature = localStorage.getItem('signatureName') || '';
+
+  const includeSignature =
+    document.getElementById('includeSignature').checked;
+
+  const letter = {
+    text: letterText,
+    number: letterNumber,
+    signature: includeSignature ? signature : '',
+    envelope: document.getElementById('envelopeColour').value,
+    sticker: document.getElementById('sticker').value
+  };
+
+  let sent = JSON.parse(
+    localStorage.getItem('sentLetters') || '[]'
+  );
+
+  sent.push(letter);
+
+  localStorage.setItem('sentLetters', JSON.stringify(sent));
+
+  document.getElementById('letterNumber').textContent = letterNumber;
+
+  document.getElementById('letterForm').style.display = 'none';
+
+  document.getElementById('letterConfirmation').style.display = 'block';
+
+});
+
+
+// CREATE A SIGNATURE
+
+document.getElementById('signupForm').addEventListener('submit', function(event) {
+
+  event.preventDefault();
+
+  const name =
+    document.getElementById('signatureName').value.trim();
+
+  const country =
+    document.getElementById('country').value;
+
+  if (!name) return;
+
+  localStorage.setItem('signatureName', name);
+  localStorage.setItem('signatureCountry', country);
+
+  document.getElementById('signatureDisplay').textContent =
+    name + (country ? ' · ' + country : '');
+
+  document.getElementById('signupForm').style.display = 'none';
+
+  document.getElementById('signupConfirmation').style.display = 'block';
+
+});
+
 </script>
 
 </body>
