@@ -3,134 +3,183 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Welcome to Fortune From, Fortune Found</title>
+<title>Fortune From, Fortune Found</title>
+
 <style>
 :root {
-  --cream: #f8f5ed;
-  --paper: #fffdf8;
-  --ink: #51483f;
-  --muted: #918477;
-  --line: #e5ded1;
+  --night: #211e43;
+  --purple: #39315f;
+  --violet: #514475;
+  --gold: #dfc17b;
+  --gold-light: #f2dfac;
+  --cream: #fff4dc;
+  --soft: #d7c9e5;
+  --pink: #b979a5;
+  --green: #789b91;
+  --blue: #7794bd;
 }
-* { box-sizing: border-box; }
+
+* {
+  box-sizing: border-box;
+}
 
 body {
   margin: 0;
-  background: var(--cream);
-  color: var(--ink);
+  min-height: 100vh;
+  color: var(--gold-light);
   font-family: Arial, sans-serif;
-  line-height: 1.6;
+  line-height: 1.7;
+  background:
+    radial-gradient(ellipse at 15% 15%, #66528b55, transparent 40%),
+    radial-gradient(ellipse at 85% 35%, #394d8055, transparent 42%),
+    radial-gradient(ellipse at 50% 100%, #72517c44, transparent 45%),
+    linear-gradient(145deg, #211e43, #302951 50%, #242444);
+  background-attachment: fixed;
+}
+
+body::before {
+  content: "✦       ·          ✧          ·       ✦";
+  position: fixed;
+  top: 9%;
+  left: 0;
+  width: 100%;
+  text-align: center;
+  color: #e7cc8b44;
+  font-size: 20px;
+  letter-spacing: 24px;
+  pointer-events: none;
+  z-index: -1;
 }
 
 header {
   text-align: center;
-  padding: 28px 18px;
-  border-bottom: 1px solid var(--line);
+  padding: 34px 18px 18px;
 }
 
 .brand {
   font-family: Georgia, serif;
-  font-size: clamp(25px, 5vw, 36px);
-  font-weight: normal;
-  letter-spacing: -1px;
+  font-size: clamp(27px, 5vw, 39px);
+  color: var(--gold);
+  letter-spacing: 1px;
+  text-shadow: 0 0 22px #e4c47733;
 }
 
 nav {
   display: flex;
   justify-content: center;
-  gap: 10px;
+  gap: 12px;
   flex-wrap: wrap;
-  padding: 16px 10px;
+  padding: 16px;
 }
 
 nav button {
-  border: 1px solid var(--line);
-  background: transparent;
-  color: var(--ink);
-  border-radius: 25px;
-  padding: 7px 15px;
+  background: #ffffff0b;
+  color: var(--gold-light);
+  border: none;
+  border-radius: 30px;
+  padding: 10px 20px;
   cursor: pointer;
+  transition: .2s;
+  font-size: 13px;
 }
 
 nav button:hover {
-  background: var(--paper);
+  background: #d9bd7850;
+  color: white;
+  transform: translateY(-2px);
 }
 
 main {
   width: min(760px, 90%);
-  margin: 45px auto 80px;
+  margin: 35px auto 80px;
 }
 
-.page { display: none; }
-.page.active { display: block; }
+.page {
+  display: none;
+}
+
+.page.active {
+  display: block;
+  animation: appear .45s ease;
+}
+
+@keyframes appear {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
 
 .welcome {
   text-align: center;
-  padding: 35px 0 25px;
+  padding: 45px 0 25px;
 }
 
 .welcome h1 {
   font-family: Georgia, serif;
-  font-size: clamp(34px, 6vw, 49px);
+  font-size: clamp(35px, 6vw, 53px);
   font-weight: normal;
-  line-height: 1.2;
-  margin: 0 auto 22px;
+  line-height: 1.25;
+  color: var(--gold);
+  text-shadow: 0 0 25px #e5c47733;
+  margin: 0 auto 24px;
 }
 
 .subtitle {
   max-width: 570px;
   margin: 0 auto;
-  color: var(--muted);
+  color: var(--soft);
   font-family: Georgia, serif;
   font-size: 18px;
-  line-height: 1.8;
+  line-height: 1.9;
 }
 
 .button-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 20px;
-  max-width: 580px;
+  gap: 22px;
+  max-width: 570px;
   margin: 48px auto 20px;
 }
 
 .choice-button {
   aspect-ratio: 1 / 1;
-  border: 1px solid #d9d0c2;
-  background: var(--paper);
-  color: var(--ink);
-  padding: 20px;
+  border: none;
+  border-radius: 32px;
+  background: linear-gradient(145deg, #f0d99d, #c8a45f);
+  color: #302747;
+  padding: 22px;
   cursor: pointer;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 13px;
-  transition: transform .2s, box-shadow .2s;
+  gap: 14px;
+  box-shadow: 0 12px 35px #08071c55;
+  transition: transform .25s, box-shadow .25s;
 }
 
 .choice-button:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 8px 20px #51483f12;
+  transform: translateY(-6px);
+  box-shadow: 0 16px 38px #dfc17b33;
 }
 
 .choice-button .symbol {
-  font-size: 36px;
+  font-size: 43px;
+  color: #6c4e7b;
 }
 
 .choice-button strong {
   font-size: 15px;
   letter-spacing: 1.5px;
-  font-weight: normal;
+  font-weight: bold;
 }
 
 .choice-button span:last-child {
-  color: var(--muted);
+  color: #514263;
   font-size: 14px;
 }
 
 .small-note {
-  color: var(--muted);
+  color: #c7b6d8;
   font-size: 13px;
   text-align: center;
   margin-top: 25px;
@@ -139,107 +188,195 @@ main {
 h2 {
   font-family: Georgia, serif;
   font-weight: normal;
-  font-size: 29px;
+  font-size: 31px;
+  color: var(--gold);
 }
 
-.center { text-align: center; }
+.center {
+  text-align: center;
+}
 
 .envelopes {
   display: flex;
   justify-content: center;
-  gap: 18px;
+  gap: 20px;
   flex-wrap: wrap;
-  margin: 35px 0;
+  margin: 38px 0;
 }
 
 .envelope {
-  width: 145px;
-  height: 110px;
-  border: 1px solid #b8aa98;
-  border-radius: 5px;
+  width: 150px;
+  height: 115px;
+  border: none;
+  border-radius: 24px;
   display: grid;
   place-items: center;
-  font-size: 32px;
+  font-size: 42px;
   cursor: pointer;
-  box-shadow: 0 4px 12px #51483f12;
-  transition: transform .2s;
+  box-shadow: 0 9px 25px #09081955;
+  transition: transform .25s, box-shadow .25s;
+  color: #fff3d6;
 }
 
-.envelope:hover { transform: translateY(-5px); }
-.envelope:nth-child(1) { background: #d9c5b1; }
-.envelope:nth-child(2) { background: #c4cdbb; }
-.envelope:nth-child(3) { background: #c4cfd7; }
+.envelope:hover {
+  transform: translateY(-8px) rotate(-2deg);
+  box-shadow: 0 14px 30px #dfc17b33;
+}
+
+.envelope:nth-child(1) {
+  background: linear-gradient(145deg, #b477a1, #784d83);
+}
+
+.envelope:nth-child(2) {
+  background: linear-gradient(145deg, #829dba, #4e648e);
+}
+
+.envelope:nth-child(3) {
+  background: linear-gradient(145deg, #b49a68, #786044);
+}
 
 .letter {
-  background: var(--paper);
-  border: 1px solid var(--line);
-  padding: 30px;
+  background:
+    radial-gradient(circle at top right, #f1dfb533, transparent 45%),
+    linear-gradient(145deg, #40345f, #30294e);
+  border: none;
+  border-radius: 28px;
+  padding: 32px;
   max-width: 480px;
-  margin: 25px auto;
-  box-shadow: 0 5px 18px #51483f0b;
+  margin: 28px auto;
+  box-shadow: 0 12px 35px #09081966;
+  color: var(--gold-light);
 }
 
 .letter p {
   font-family: Georgia, serif;
   font-size: 22px;
-  line-height: 1.6;
+  line-height: 1.7;
+}
+
+.letter small {
+  color: var(--soft);
 }
 
 .primary, .secondary {
-  border-radius: 25px;
-  padding: 11px 22px;
+  border: none;
+  border-radius: 30px;
+  padding: 12px 25px;
   cursor: pointer;
-  margin: 5px;
+  margin: 6px;
+  transition: .2s;
+  font-size: 14px;
 }
 
 .primary {
-  background: var(--ink);
-  color: white;
-  border: 1px solid var(--ink);
+  background: linear-gradient(135deg, #f0d99d, #c6a15c);
+  color: #302747;
+  box-shadow: 0 5px 18px #dfc17b22;
+}
+
+.primary:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 22px #dfc17b44;
 }
 
 .secondary {
-  background: transparent;
-  color: var(--ink);
-  border: 1px solid var(--line);
+  background: #ffffff12;
+  color: var(--gold-light);
 }
 
-label { display: block; margin: 18px 0 7px; }
+.secondary:hover {
+  background: #d9bd7840;
+}
+
+label {
+  display: block;
+  margin: 18px 0 8px;
+  color: var(--gold-light);
+}
 
 textarea {
   width: 100%;
-  min-height: 150px;
-  padding: 14px;
-  border: 1px solid var(--line);
-  border-radius: 5px;
-  background: var(--paper);
-  color: var(--ink);
+  min-height: 160px;
+  padding: 18px;
+  border: none;
+  border-radius: 24px;
+  background: #ffffff12;
+  color: white;
   font: inherit;
   resize: vertical;
+  outline: 2px solid transparent;
+  transition: outline .2s, background .2s;
+}
+
+textarea:focus {
+  outline-color: #dfc17b99;
+  background: #ffffff19;
+}
+
+textarea::placeholder {
+  color: #c7b6d8aa;
+}
+
+input[type="checkbox"] {
+  accent-color: var(--gold);
 }
 
 .saved-item {
-  background: var(--paper);
-  border: 1px solid var(--line);
-  padding: 17px;
-  margin: 12px 0;
-  border-radius: 4px;
+  background: #ffffff10;
+  border: none;
+  padding: 20px;
+  margin: 14px 0;
+  border-radius: 23px;
+  color: var(--gold-light);
+}
+
+.saved-item small {
+  color: var(--gold);
 }
 
 footer {
   text-align: center;
-  border-top: 1px solid var(--line);
-  padding: 25px 15px;
-  color: var(--muted);
+  padding: 30px 15px;
+  color: #c7b6d8;
   font-family: Georgia, serif;
   font-size: 14px;
 }
 
 @media (max-width: 480px) {
-  .button-grid { gap: 12px; }
-  .choice-button { padding: 12px; }
-  .choice-button strong { font-size: 12px; }
-  .choice-button span:last-child { font-size: 12px; }
+  .button-grid {
+    gap: 12px;
+  }
+
+  .choice-button {
+    padding: 12px;
+    border-radius: 23px;
+  }
+
+  .choice-button strong {
+    font-size: 12px;
+  }
+
+  .choice-button span:last-child {
+    font-size: 12px;
+  }
+
+  .envelope {
+    width: 125px;
+    height: 100px;
+  }
+
+  nav {
+    gap: 7px;
+  }
+
+  nav button {
+    padding: 9px 13px;
+    font-size: 12px;
+  }
+}
+
+[hidden] {
+  display: none !important;
 }
 </style>
 </head>
@@ -284,7 +421,7 @@ footer {
     </div>
 
     <p class="small-note">
-      A little something from someone, somewhere.
+      ✦ A little something from someone, somewhere. ✦
     </p>
   </div>
 </section>
@@ -351,7 +488,7 @@ footer {
 </main>
 
 <footer>
-  A little world of things left and found.
+  ✧ A little world of things left and found. ✧
 </footer>
 
 <script>
@@ -374,6 +511,7 @@ function showPage(page) {
   document.querySelectorAll(".page").forEach(section => {
     section.classList.remove("active");
   });
+
   document.getElementById(page).classList.add("active");
   window.scrollTo({ top: 0, behavior: "smooth" });
 }
@@ -386,6 +524,7 @@ function openFortune() {
 
 function saveFortune() {
   if (!currentFortune) return;
+
   saved.push(currentFortune);
   renderCollection();
   showPage("collection");
@@ -412,10 +551,12 @@ function renderCollection() {
 
 function leaveFortune(event) {
   event.preventDefault();
+
   const note = document.getElementById("note").value.trim();
   if (!note) return;
 
   const number = Math.floor(10000 + Math.random() * 90000);
+
   document.getElementById("letterNumber").textContent = number;
   document.getElementById("thanks").hidden = false;
   document.querySelector("#leave form").hidden = true;
