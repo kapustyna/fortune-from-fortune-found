@@ -9,42 +9,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&display=swap" rel="stylesheet">
-
-.progress-meter {
-  display: flex;
-  justify-content: center;
-  gap: 10px;
-  margin: 25px auto;
-  max-width: 420px;
-}
-
-.progress-meter {
-  display: flex;
-  justify-content: center;
-  gap: 10px;
-  margin: 25px auto;
-  max-width: 420px;
-}
-
-.progress-box {
-  flex: 1;
-  aspect-ratio: 1 / 1;
-  max-width: 55px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: #eee2c9;
-  border: 2px solid #493426;
-  border-radius: 6px;
-  color: #493426;
-  font-weight: bold;
-  font-size: 1.1rem;
-}
-
-.progress-box.active {
-  background-color: #A08068;
-}
-
+  
   <style>
     :root {
       --cream: #f7f0df;
@@ -308,6 +273,15 @@
     <p class="intro">
       Welcome to the Fortune Factory. Here, you will write a fortune for somebody to find. Remember, you are now part of their day's narrative! Write something you would like to receive.
     </p>
+
+<div class="progress-meter" id="progressMeter">
+  <div class="progress-box active">1</div>
+  <div class="progress-box">2</div>
+  <div class="progress-box">3</div>
+  <div class="progress-box">4</div>
+  <div class="progress-box">5</div>
+  <div class="progress-box">6</div>
+</div>
 
     <label for="fortune">Write a fortune</label>
 
