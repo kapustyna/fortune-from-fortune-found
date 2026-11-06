@@ -7,733 +7,175 @@
 <title>Fortune From, Fortune Found</title>
 <style>
 :root {
-  --background:#f4ebdd;
-  --brown:#604832;
-  --muted:#806a55;
-  --button:#e4d0b8;
-  --accent:#b99a78;
-  --white:#fffdf8;
+  --cream: #f7f0df;
+  --paper: #fffaf0;
+  --brown: #493426;
+  --terracotta: #b96f55;
+  --sage: #87947a;
+  --rose: #d9a5a1;
+  --yellow: #e9cf83;
 }
-* { box-sizing:border-box; }
+* {
+  box-sizing: border-box;
+}
 body {
-  margin:0;
-  background:var(--background);
-  color:var(--brown);
-  font-family:Georgia,"Times New Roman",serif;
+  margin: 0;
+  min-height: 100vh;
+  background: var(--cream);
+  color: var(--brown);
+  font-family: Georgia, "Times New Roman", serif;
 }
-button,input,textarea { font:inherit; }
-button { color:inherit; cursor:pointer; }
-button:focus-visible,textarea:focus-visible {
-  outline:2px solid var(--accent);
-  outline-offset:4px;
+main {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 48px 20px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
 }
-.page {
-  width:min(100% - 32px,1000px);
-  margin:auto;
-  padding:34px 0 55px;
+.decor {
+  position: absolute;
+  font-size: 27px;
+  opacity: .65;
+  pointer-events: none;
 }
-header { text-align:center; margin-bottom:34px; }
-.brand {
-  font-size:clamp(29px,6vw,48px);
-  line-height:1.15;
-  font-weight:normal;
-  letter-spacing:.02em;
+.decor.one { top: 12%; left: 12%; transform: rotate(-15deg); }
+.decor.two { top: 20%; right: 13%; transform: rotate(15deg); }
+.decor.three { bottom: 18%; left: 15%; transform: rotate(12deg); }
+.decor.four { bottom: 12%; right: 12%; transform: rotate(-12deg); }
+.title {
+  max-width: 850px;
+  margin: 0;
+  font-size: clamp(2.8rem, 8vw, 5.7rem);
+  line-height: 1.02;
+  letter-spacing: -2px;
+  font-weight: 700;
+  text-shadow: 2px 2px 0 #e4d3b6;
 }
-.brand span { display:block; }
+.title span {
+  display: block;
+  color: var(--terracotta);
+  font-style: italic;
+}
 .tagline {
-  color:var(--muted);
-  font-size:15px;
-  font-style:italic;
-  margin-top:14px;
+  margin: 25px 0 48px;
+  font-size: clamp(1rem, 2.5vw, 1.3rem);
+  line-height: 1.6;
+  letter-spacing: .3px;
 }
-.home { text-align:center; padding:35px 0 20px; }
-.home h2 { font-size:23px; font-weight:normal; margin-bottom:30px; }
-.home-options {
-  display:grid;
-  grid-template-columns:repeat(2,minmax(0,1fr));
-  gap:18px;
-  max-width:650px;
-  margin:0 auto;
+.buttons {
+  display: flex;
+  justify-content: center;
+  gap: 22px;
+  width: 100%;
+  max-width: 680px;
 }
-.home-card {
-  background:var(--button);
-  border:1px solid #d7bea3;
-  border-radius:15px;
-  min-height:190px;
-  padding:25px 14px;
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  justify-content:center;
-  gap:13px;
-  transition:transform .2s,background .2s;
+.main-button {
+  flex: 1;
+  min-height: 145px;
+  padding: 24px 18px;
+  border: 3px solid var(--brown);
+  border-radius: 22px 26px 21px 25px;
+  background: var(--paper);
+  color: var(--brown);
+  font: inherit;
+  font-size: clamp(1.3rem, 3vw, 1.8rem);
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 5px 6px 0 var(--brown);
+  transition: transform .18s ease, box-shadow .18s ease;
 }
-.home-card:hover { transform:translateY(-3px); background:#eadac7; }
-.home-card strong { font-size:18px; letter-spacing:.07em; font-weight:normal; }
-.home-card small { font-size:14px; color:var(--muted); }
-.home-icon { font-size:38px; }
-.secondary-button,.primary-button,.back-button {
-  border:0;
-  border-radius:9px;
-  padding:13px 22px;
-  transition:background .2s,transform .2s;
+.main-button .icon {
+  display: block;
+  font-size: 2.5rem;
+  margin-bottom: 12px;
 }
-.primary-button { background:var(--accent); color:white; }
-.primary-button:hover { background:#a98968; }
-.secondary-button { background:var(--button); }
-.back-button { background:transparent; border:1px solid #cbb69e; }
-.secondary-button:hover,.back-button:hover { background:#eadac7; }
-.signature-button { margin-top:25px; }
-footer { text-align:center; margin-top:45px; color:var(--muted); font-size:13px; }
-footer button { background:none; border:0; text-decoration:underline; color:inherit; }
-.hidden { display:none !important; }
-
-/* Creator */
-.creator { max-width:850px; margin:0 auto; }
-.progress {
-  display:grid;
-  grid-template-columns:repeat(6,minmax(0,1fr));
-  gap:7px;
-  margin:0 auto 30px;
+.main-button:hover {
+  transform: translateY(-4px);
+  box-shadow: 5px 10px 0 var(--brown);
 }
-.progress-item { text-align:center; min-width:0; }
-.progress-circle {
-  width:34px;
-  height:34px;
-  border-radius:50%;
-  margin:0 auto 7px;
-  display:grid;
-  place-items:center;
-  border:1px solid #cbb69e;
-  color:var(--muted);
-  font-family:Arial,sans-serif;
-  font-size:13px;
+.main-button:active {
+  transform: translateY(2px);
+  box-shadow: 2px 3px 0 var(--brown);
 }
-.progress-item.active .progress-circle {
-  background:var(--brown);
-  color:white;
-  border-color:var(--brown);
+.main-button:focus-visible {
+  outline: 4px solid var(--terracotta);
+  outline-offset: 6px;
 }
-.progress-item.complete .progress-circle {
-  background:#d9c5ad;
-  border-color:#d9c5ad;
-  color:var(--brown);
-}
-.progress-label { font-size:11px; color:var(--muted); line-height:1.2; }
-.progress-item.active .progress-label { color:var(--brown); font-weight:bold; }
-.step-panel {
-  background:rgba(255,253,248,.52);
-  border:1px solid #e3d5c3;
-  border-radius:16px;
-  padding:clamp(19px,4vw,35px);
-  min-height:350px;
-}
-.step-heading { text-align:center; margin-bottom:26px; }
-.step-heading h2 { font-size:26px; font-weight:normal; margin:0 0 9px; }
-.step-heading p { font-size:14px; color:var(--muted); margin:0; line-height:1.5; }
-.step-content { max-width:690px; margin:auto; }
-.field-label { display:block; margin-bottom:10px; font-size:15px; }
-textarea {
-  width:100%;
-  min-height:190px;
-  resize:vertical;
-  border:1px solid #d9c8b3;
-  border-radius:10px;
-  background:#fffdf8;
-  padding:16px;
-  color:var(--brown);
-  line-height:1.7;
-  font-size:16px;
-}
-textarea::placeholder { color:#b3a18c; }
-.counter { text-align:right; font-size:12px; color:var(--muted); margin-top:7px; }
-.choice-grid {
-  display:grid;
-  grid-template-columns:repeat(3,minmax(0,1fr));
-  gap:17px;
-}
-.choice {
-  border:2px solid transparent;
-  background:rgba(255,253,248,.75);
-  border-radius:12px;
-  padding:12px 8px;
-  min-width:0;
-  transition:border .2s,transform .2s;
-}
-.choice:hover { transform:translateY(-2px); }
-.choice.selected { border-color:var(--brown); background:#fffdf8; }
-.choice-name { display:block; font-size:13px; margin-top:9px; }
-.envelope-art {
-  position:relative;
-  width:100%;
-  max-width:125px;
-  aspect-ratio:1.5;
-  margin:auto;
-  border-radius:5px;
-  overflow:hidden;
-  box-shadow:0 3px 7px #60483222,inset 0 0 12px #ffffff44;
-  background-color:var(--env);
-  background-image:repeating-linear-gradient(105deg,#ffffff0c 0px,#ffffff0c 1px,transparent 1px,transparent 5px);
-}
-.envelope-art:before {
-  content:"";
-  position:absolute;
-  inset:0;
-  background:linear-gradient(145deg,transparent 49.5%,#00000012 50%,transparent 51%);
-  clip-path:polygon(0 100%,50% 42%,100% 100%);
-}
-.envelope-art:after {
-  content:"";
-  position:absolute;
-  inset:0;
-  background:linear-gradient(35deg,transparent 49%,#0000000d 50%,transparent 51%);
-  clip-path:polygon(0 0,50% 48%,0 100%);
-}
-.envelope-flap {
-  position:absolute;
-  inset:0 0 auto;
-  height:58%;
-  background:var(--env);
-  clip-path:polygon(0 0,100% 0,50% 100%);
-  filter:brightness(.94);
-  z-index:2;
-  border-bottom:1px solid #60483218;
-}
-.envelope-center {
-  position:absolute;
-  z-index:3;
-  top:48%;
-  left:50%;
-  transform:translate(-50%,-50%);
-  font-size:15px;
-  opacity:.45;
-}
-.paper-swatch {
-  width:100%;
-  max-width:125px;
-  aspect-ratio:1.5;
-  margin:auto;
-  border-radius:4px;
-  background-color:var(--paper);
-  background-image:
-    repeating-linear-gradient(0deg,transparent 0px,transparent 14px,#85858555 14px,#85858555 15px),
-    repeating-linear-gradient(95deg,#ffffff24 0px,#ffffff24 1px,transparent 1px,transparent 4px);
-  box-shadow:0 3px 8px #60483220,inset 0 0 10px #ffffff55;
-  position:relative;
-}
-.paper-swatch:before {
-  content:"";
-  position:absolute;
-  left:14%;
-  top:0;
-  bottom:0;
-  border-left:1px solid #b77e7866;
-}
-.ink-grid { grid-template-columns:repeat(4,minmax(0,1fr)); }
-.ink-choice {
-  background:transparent;
-  border:2px solid transparent;
-  border-radius:12px;
-  padding:12px 5px;
-}
-.ink-choice.selected { border-color:var(--brown); background:#fffdf8; }
-.ink-blot {
-  width:65px;
-  height:55px;
-  margin:0 auto;
-  background:var(--ink);
-  border-radius:43% 57% 63% 37% / 43% 36% 64% 57%;
-  transform:rotate(-12deg);
-  position:relative;
-  filter:drop-shadow(1px 2px 2px #60483230);
-  opacity:.9;
-}
-.ink-blot:before {
-  content:"";
-  position:absolute;
-  width:14px;
-  height:13px;
-  border-radius:50%;
-  background:var(--ink);
-  top:-5px;
-  left:8px;
-  box-shadow:35px 8px 0 -3px var(--ink),-4px 37px 0 -4px var(--ink),49px 39px 0 -5px var(--ink);
-}
-.ink-blot:after {
-  content:"";
-  position:absolute;
-  width:8px;
-  height:8px;
-  background:var(--ink);
-  border-radius:50%;
-  right:-5px;
-  top:22px;
-}
-.ink-choice:nth-child(2n) .ink-blot { transform:rotate(18deg) scale(.92); border-radius:56% 44% 39% 61% / 57% 60% 40% 43%; }
-.ink-choice:nth-child(3n) .ink-blot { transform:rotate(-28deg) scale(1.04); border-radius:35% 65% 54% 46% / 47% 39% 61% 53%; }
-.ink-choice .choice-name { margin-top:12px; }
-.sticker-categories { display:flex; flex-wrap:wrap; justify-content:center; gap:7px; margin-bottom:20px; }
-.category-button {
-  border:1px solid #d7c5af;
-  background:transparent;
-  border-radius:20px;
-  padding:8px 12px;
-  font-size:12px;
-}
-.category-button.active { background:var(--brown); color:white; border-color:var(--brown); }
-.emoji-grid { display:grid; grid-template-columns:repeat(7,1fr); gap:8px; }
-.emoji-choice {
-  border:1px solid transparent;
-  background:#fffdf8;
-  border-radius:10px;
-  aspect-ratio:1;
-  font-size:27px;
-}
-.emoji-choice.selected { border:2px solid var(--brown); background:#f0e3d2; }
-.navigation {
-  display:flex;
-  justify-content:space-between;
-  gap:12px;
-  margin-top:23px;
-}
-.navigation button { min-width:105px; }
 .notice {
-  background:#eee2d1;
-  border-radius:10px;
-  padding:14px 16px;
-  color:var(--muted);
-  font-size:13px;
-  line-height:1.55;
-  margin-top:20px;
+  min-height: 28px;
+  margin-top: 35px;
+  font-size: .95rem;
+  color: var(--brown);
 }
-
-/* Preview */
-.preview-grid {
-  display:grid;
-  grid-template-columns:repeat(2,minmax(0,1fr));
-  gap:20px;
+@media (max-width: 560px) {
+  main {
+    padding: 55px 20px;
+  }
+  .title {
+    letter-spacing: -1px;
+  }
+  .tagline {
+    margin: 22px 0 35px;
+  }
+  .buttons {
+    flex-direction: column;
+    max-width: 340px;
+    gap: 20px;
+  }
+  .main-button {
+    min-height: 120px;
+  }
+  .decor.one { left: 5%; top: 7%; }
+  .decor.two { right: 5%; top: 13%; }
+  .decor.three { left: 6%; bottom: 7%; }
+  .decor.four { right: 6%; bottom: 6%; }
 }
-.preview-card {
-  background:#f7f0e5;
-  border:1px solid #e1d2bf;
-  border-radius:12px;
-  padding:16px;
-  text-align:center;
-}
-.preview-card h3 { font-size:16px; font-weight:normal; margin:0 0 15px; }
-.preview-envelope {
-  width:100%;
-  max-width:290px;
-  aspect-ratio:1.5;
-  margin:10px auto;
-  position:relative;
-  background:var(--env);
-  border-radius:7px;
-  overflow:hidden;
-  box-shadow:0 5px 12px #60483225;
-  background-image:repeating-linear-gradient(105deg,#ffffff0c 0px,#ffffff0c 1px,transparent 1px,transparent 5px);
-}
-.preview-envelope .fold-left,.preview-envelope .fold-right,.preview-envelope .fold-bottom {
-  position:absolute;
-  inset:0;
-  background:#0000000d;
-}
-.preview-envelope .fold-left { clip-path:polygon(0 0,50% 50%,0 100%); }
-.preview-envelope .fold-right { clip-path:polygon(100% 0,50% 50%,100% 100%); }
-.preview-envelope .fold-bottom { clip-path:polygon(0 100%,50% 43%,100% 100%); background:#00000012; }
-.preview-envelope .fold-top {
-  position:absolute;
-  inset:0;
-  background:var(--env);
-  clip-path:polygon(0 0,100% 0,50% 60%);
-  filter:brightness(.95);
-}
-.preview-sticker {
-  position:absolute;
-  z-index:4;
-  top:51%;
-  left:50%;
-  transform:translate(-50%,-50%);
-  font-size:clamp(25px,5vw,42px);
-  filter:drop-shadow(0 2px 2px #60483233);
-}
-.letter-preview {
-  width:100%;
-  max-width:290px;
-  min-height:205px;
-  margin:10px auto;
-  padding:15px 15px 15px 36px;
-  border-radius:3px;
-  background-color:var(--paper);
-  background-image:
-    repeating-linear-gradient(0deg,transparent 0px,transparent 22px,#85858555 22px,#85858555 23px),
-    repeating-linear-gradient(95deg,#ffffff20 0px,#ffffff20 1px,transparent 1px,transparent 5px);
-  box-shadow:0 4px 12px #60483220;
-  position:relative;
-  text-align:left;
-  white-space:pre-wrap;
-  overflow-wrap:anywhere;
-  font-size:14px;
-  line-height:23px;
-  color:var(--ink);
-  min-height:230px;
-}
-.letter-preview:before {
-  content:"";
-  position:absolute;
-  left:25px;
-  top:0;
-  bottom:0;
-  border-left:1px solid #b77e7866;
-}
-.preview-caption { color:var(--muted); font-size:12px; margin-top:12px; }
-.confirmation { text-align:center; padding:18px 5px; }
-.confirmation h2 { font-size:25px; font-weight:normal; }
-.confirmation p { color:var(--muted); line-height:1.65; font-size:14px; }
-@media(max-width:580px) {
-  .page { width:min(100% - 22px,1000px); padding-top:25px; }
-  .home-options { gap:10px; }
-  .home-card { min-height:160px; padding:18px 8px; }
-  .home-card strong { font-size:15px; }
-  .home-card small { font-size:12px; }
-  .progress { gap:2px; margin-bottom:20px; }
-  .progress-circle { width:29px; height:29px; font-size:12px; }
-  .progress-label { font-size:9px; }
-  .choice-grid { gap:9px; }
-  .choice { padding:9px 5px; }
-  .choice-name { font-size:11px; }
-  .ink-grid { grid-template-columns:repeat(4,minmax(0,1fr)); gap:5px; }
-  .ink-blot { width:48px; height:43px; }
-  .emoji-grid { grid-template-columns:repeat(6,1fr); }
-  .preview-grid { gap:9px; }
-  .preview-card { padding:10px 7px; }
-  .letter-preview { padding-left:30px; font-size:12px; line-height:23px; }
-  .letter-preview:before { left:21px; }
-}
-@media(max-width:370px) {
-  .progress-label { font-size:8px; }
-  .progress-circle { width:26px; height:26px; }
-  .choice-grid { grid-template-columns:repeat(3,minmax(0,1fr)); }
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    scroll-behavior: auto !important;
+    transition: none !important;
+  }
 }
 </style>
 </head>
 <body>
-<div class="page">
-<header>
-  <div class="brand">
-    <span>Fortune From,</span>
-    <span>Fortune Found</span>
-  </div>
-  <div class="tagline">Little fortunes, left by someone, found by you.</div>
-</header>
-
 <main>
-<section class="home" id="home">
-  <h2>A little something is waiting.</h2>
-  <div class="home-options">
-    <button class="home-card" onclick="startCreator()">
-      <span class="home-icon">✉</span>
-      <strong>FORTUNE FROM</strong>
-      <small>Write a letter for somebody</small>
-    </button>
-    <button class="home-card" onclick="comingSoon()">
-      <span class="home-icon">✧</span>
-      <strong>FORTUNE FOUND</strong>
-      <small>Open your fortune</small>
-    </button>
-  </div>
-  <button class="secondary-button signature-button" onclick="comingSoon()">Create a Signature</button>
-</section>
+  <span class="decor one" aria-hidden="true">✦</span>
+  <span class="decor two" aria-hidden="true">✉</span>
+  <span class="decor three" aria-hidden="true">✿</span>
+  <span class="decor four" aria-hidden="true">✧</span>
 
-<section class="creator hidden" id="creator">
-  <div class="progress" id="progress"></div>
-  <div class="step-panel">
-    <div class="step-heading">
-      <h2 id="stepTitle"></h2>
-      <p id="stepDescription"></p>
-    </div>
-    <div class="step-content" id="stepContent"></div>
-  </div>
-  <div class="navigation">
-    <button class="back-button" id="backButton" onclick="previousStep()">← Back</button>
-    <button class="primary-button" id="nextButton" onclick="nextStep()">Next →</button>
-  </div>
-</section>
+  <h1 class="title">
+    Fortune From,
+    <span>Fortune Found</span>
+  </h1>
 
-<section class="creator hidden" id="success">
-  <div class="step-panel confirmation">
-    <div style="font-size:42px">✉</div>
-    <h2>Your little fortune is ready.</h2>
-    <p>Your letter has been prepared in this preview. In the full version, fortunes will be submitted for moderator review before being added to the shared Fortune Pool.</p>
-    <p>This prototype does not yet send or save fortunes to a shared pool.</p>
-    <button class="primary-button" onclick="returnHome()">Back to home</button>
-    <button class="back-button" onclick="editAgain()">Edit my fortune</button>
+  <p class="tagline">
+    Little fortunes, left by someone, found by you.
+  </p>
+
+  <div class="buttons">
+    <button class="main-button" onclick="showNotice('Fortune From is coming soon!')">
+      <span class="icon" aria-hidden="true">✉</span>
+      Fortune From
+    </button>
+
+    <button class="main-button" onclick="showNotice('Fortune Found is coming soon!')">
+      <span class="icon" aria-hidden="true">✦</span>
+      Fortune Found
+    </button>
   </div>
-</section>
+
+  <p class="notice" id="notice" aria-live="polite"></p>
 </main>
 
-<footer>
-  <div>Made for little moments of unexpected happiness.</div>
-  <p><button onclick="comingSoon()">About</button></p>
-</footer>
-</div>
-
 <script>
-const envelopeColours = [
-  {name:"White",color:"#FFFDF8"},
-  {name:"Rose",color:"#D9A0A0"},
-  {name:"Blush",color:"#EBC5C6"},
-  {name:"Terracotta",color:"#BF765D"},
-  {name:"Butter",color:"#EBD58A"},
-  {name:"Sage",color:"#A5B49A"},
-  {name:"Powder Blue",color:"#B9D2E3"},
-  {name:"Lilac",color:"#C8B6DA"},
-  {name:"Charcoal",color:"#55545A"}
-];
-
-const paperColours = [
-  {name:"Soft White",color:"#FFFDF8"},
-  {name:"Pale Rose",color:"#F4DEDC"},
-  {name:"Pale Blush",color:"#F7E8E7"},
-  {name:"Warm Peach",color:"#F1DFD5"},
-  {name:"Buttercream",color:"#F7F0D9"},
-  {name:"Pale Sage",color:"#E5EBDD"},
-  {name:"Powder Blue",color:"#E4EEF4"},
-  {name:"Pale Lilac",color:"#EEE8F3"},
-  {name:"Soft Grey",color:"#E8E7E4"}
-];
-
-const inkColours = [
-  {name:"Black",color:"#292929"},
-  {name:"Blue",color:"#315E91"},
-  {name:"Burgundy",color:"#762E43"},
-  {name:"Emerald",color:"#267456"},
-  {name:"Copper",color:"#AD673D"},
-  {name:"Plum",color:"#70436F"},
-  {name:"Chocolate Brown",color:"#60412F"},
-  {name:"Charcoal Grey",color:"#626266"}
-];
-
-const stickerGroups = {
-  "Hearts & Love":["❤️","🩷","🧡","💛","💚","💙","💜","🤍","💌","💝","💕","💗","💖","💞"],
-  "Flowers & Nature":["🌸","🌷","🌻","🌼","🌹","🪻","🌿","🍀","🍃","🌱","🌺","🌾","🪷","🌵"],
-  "Stars & Sky":["⭐","🌟","✨","🌙","☀️","🌈","☁️","🌠","💫","🪐","🌛","🌞","⚡","❄️"],
-  "Faces & Feelings":["😊","🥰","😌","😉","🤗","😇","🥳","😺","💭","🙂","😻","🤍"],
-  "Animals":["🦋","🐝","🐞","🐈","🐇","🦊","🐢","🐦","🦉","🐌","🐸","🐻","🐬","🐘"],
-  "Little Things":["🍓","🍒","🍄","🍯","🧸","🕯️","🎀","🧁","🍵","📚","🧿","🪡","🪶","🗝️"],
-  "Magic & Mystery":["🔮","🪄","🧚","🧙","🗝️","🕊️","🪽","🧚‍♀️","🪬","🦄","☄️","🪞"]
-};
-
-const steps = [
-  ["Write Fortune","What would you like someone to find?"],
-  ["Envelope","Choose the colour of your envelope."],
-  ["Paper","Choose the colour of your letter paper."],
-  ["Ink","Choose the colour of your writing."],
-  ["Sticker","Choose a little finishing touch."],
-  ["Preview & Send","Take a look at your little fortune."]
-];
-
-let currentStep=0;
-let selectedEnvelope=0;
-let selectedPaper=0;
-let selectedInk=0;
-let selectedSticker="✨";
-let selectedCategory="Hearts & Love";
-let fortuneText="";
-
-function startCreator(){
-  document.getElementById("home").classList.add("hidden");
-  document.getElementById("success").classList.add("hidden");
-  document.getElementById("creator").classList.remove("hidden");
-  currentStep=0;
-  renderStep();
-  window.scrollTo({top:0,behavior:"smooth"});
-}
-function returnHome(){
-  document.getElementById("creator").classList.add("hidden");
-  document.getElementById("success").classList.add("hidden");
-  document.getElementById("home").classList.remove("hidden");
-  window.scrollTo({top:0,behavior:"smooth"});
-}
-function editAgain(){
-  document.getElementById("success").classList.add("hidden");
-  document.getElementById("creator").classList.remove("hidden");
-  currentStep=5;
-  renderStep();
-}
-function comingSoon(){
-  alert("This little corner is still being prepared. It will be here soon!");
-}
-function renderProgress(){
-  document.getElementById("progress").innerHTML=steps.map((step,index)=>`
-    <div class="progress-item ${index===currentStep?"active":index<currentStep?"complete":""}">
-      <div class="progress-circle">${index<currentStep?"✓":index+1}</div>
-      <div class="progress-label">${step[0]}</div>
-    </div>
-  `).join("");
-}
-function renderStep(){
-  renderProgress();
-  document.getElementById("stepTitle").textContent=steps[currentStep][0];
-  document.getElementById("stepDescription").textContent=steps[currentStep][1];
-  const content=document.getElementById("stepContent");
-  const back=document.getElementById("backButton");
-  const next=document.getElementById("nextButton");
-  back.style.visibility=currentStep===0?"hidden":"visible";
-  next.textContent=currentStep===5?"Finish":"Next →";
-
-  if(currentStep===0) renderWriting(content);
-  if(currentStep===1) renderEnvelopes(content);
-  if(currentStep===2) renderPaper(content);
-  if(currentStep===3) renderInk(content);
-  if(currentStep===4) renderStickers(content);
-  if(currentStep===5) renderPreview(content);
-}
-function renderWriting(content){
-  content.innerHTML=`
-    <label class="field-label" for="fortuneText">Your fortune</label>
-    <textarea id="fortuneText" maxlength="700" placeholder="Write a little wish, a thought, a reminder, a prediction, or something unexpected...">${escapeHtml(fortuneText)}</textarea>
-    <div class="counter"><span id="charCount">${fortuneText.length}</span> / 700</div>
-  `;
-  const textarea=document.getElementById("fortuneText");
-  textarea.addEventListener("input",()=>{
-    fortuneText=textarea.value;
-    document.getElementById("charCount").textContent=textarea.value.length;
-  });
-}
-function renderEnvelopes(content){
-  content.innerHTML=`
-    <div class="choice-grid">
-      ${envelopeColours.map((item,index)=>`
-        <button class="choice ${selectedEnvelope===index?"selected":""}" onclick="chooseEnvelope(${index})">
-          <div class="envelope-art" style="--env:${item.color}">
-            <div class="envelope-flap"></div>
-            <div class="envelope-center">✧</div>
-          </div>
-          <span class="choice-name">${item.name}</span>
-        </button>
-      `).join("")}
-    </div>
-  `;
-}
-function chooseEnvelope(index){
-  selectedEnvelope=index;
-  renderStep();
-}
-function renderPaper(content){
-  content.innerHTML=`
-    <div class="choice-grid">
-      ${paperColours.map((item,index)=>`
-        <button class="choice ${selectedPaper===index?"selected":""}" onclick="choosePaper(${index})">
-          <div class="paper-swatch" style="--paper:${item.color}"></div>
-          <span class="choice-name">${item.name}</span>
-        </button>
-      `).join("")}
-    </div>
-    <div class="notice">Every paper colour has a soft natural texture and delicate grey writing lines. Your paper colour is independent of your envelope choice, so you can mix and match.</div>
-  `;
-}
-function choosePaper(index){
-  selectedPaper=index;
-  renderStep();
-}
-function renderInk(content){
-  content.innerHTML=`
-    <div class="choice-grid ink-grid">
-      ${inkColours.map((item,index)=>`
-        <button class="ink-choice ${selectedInk===index?"selected":""}" onclick="chooseInk(${index})">
-          <div class="ink-blot" style="--ink:${item.color}"></div>
-          <span class="choice-name">${item.name}</span>
-        </button>
-      `).join("")}
-    </div>
-  `;
-}
-function chooseInk(index){
-  selectedInk=index;
-  renderStep();
-}
-function renderStickers(content){
-  const emojis=stickerGroups[selectedCategory];
-  content.innerHTML=`
-    <div class="sticker-categories">
-      ${Object.keys(stickerGroups).map(category=>`
-        <button class="category-button ${category===selectedCategory?"active":""}" onclick="chooseCategory('${category}')">${category}</button>
-      `).join("")}
-    </div>
-    <div class="emoji-grid">
-      ${emojis.map(emoji=>`
-        <button class="emoji-choice ${selectedSticker===emoji?"selected":""}" onclick="chooseSticker('${emoji}')">${emoji}</button>
-      `).join("")}
-    </div>
-    <div class="notice">Your chosen sticker will sit in the centre of the envelope flap.</div>
-  `;
-}
-function chooseCategory(category){
-  selectedCategory=category;
-  renderStep();
-}
-function chooseSticker(emoji){
-  selectedSticker=emoji;
-  renderStep();
-}
-function renderPreview(content){
-  const envelope=envelopeColours[selectedEnvelope];
-  const paper=paperColours[selectedPaper];
-  const ink=inkColours[selectedInk];
-  content.innerHTML=`
-    <div class="preview-grid">
-      <div class="preview-card">
-        <h3>Outside</h3>
-        <div class="preview-envelope" style="--env:${envelope.color}">
-          <div class="fold-left"></div>
-          <div class="fold-right"></div>
-          <div class="fold-bottom"></div>
-          <div class="fold-top"></div>
-          <div class="preview-sticker">${selectedSticker}</div>
-        </div>
-        <div class="preview-caption">${envelope.name} envelope</div>
-      </div>
-      <div class="preview-card">
-        <h3>Inside</h3>
-        <div class="letter-preview" style="--paper:${paper.color};--ink:${ink.color}">${fortuneText.trim()?escapeHtml(fortuneText):"Your little fortune will appear here."}</div>
-        <div class="preview-caption">${paper.name} paper · ${ink.name} ink</div>
-      </div>
-    </div>
-    <div class="notice">All fortunes will be reviewed by a moderator before being added to the shared Fortune Pool. This helps keep Fortune From, Fortune Found a welcoming place for everyone.</div>
-  `;
-}
-function escapeHtml(value){
-  return String(value).replace(/[&<>"']/g,char=>({
-    "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"
-  }[char]));
-}
-function nextStep(){
-  if(currentStep===0){
-    const field=document.getElementById("fortuneText");
-    fortuneText=field.value.trim();
-    if(!fortuneText){
-      alert("Write your little fortune before continuing.");
-      field.focus();
-      return;
-    }
-  }
-  if(currentStep<5){
-    currentStep++;
-    renderStep();
-    window.scrollTo({top:0,behavior:"smooth"});
-  }else{
-    document.getElementById("creator").classList.add("hidden");
-    document.getElementById("success").classList.remove("hidden");
-    window.scrollTo({top:0,behavior:"smooth"});
-  }
-}
-function previousStep(){
-  if(currentStep>0){
-    currentStep--;
-    renderStep();
-    window.scrollTo({top:0,behavior:"smooth"});
-  }
+function showNotice(message) {
+  document.getElementById("notice").textContent = message;
 }
 </script>
 </body>
