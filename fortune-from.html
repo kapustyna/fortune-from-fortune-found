@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,13 +10,14 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&display=swap" rel="stylesheet">
-  
+
   <style>
     :root {
       --cream: #f7f0df;
       --paper: #fffaf0;
       --brown: #493426;
       --tan: #eee2c9;
+      --progress-fill: #A08068;
     }
 
     * {
@@ -62,6 +64,37 @@
       margin: 0 0 14px;
     }
 
+    /* SIX-BOX PROGRESS METER */
+
+    .progress-meter {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      gap: 10px;
+      width: 100%;
+      max-width: 370px;
+      margin: 10px auto 22px;
+    }
+
+    .progress-box {
+      flex: 1;
+      aspect-ratio: 1 / 1;
+      max-width: 45px;
+      background-color: var(--tan);
+      border: 2px solid var(--brown);
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--brown);
+      font-size: 18px;
+      font-weight: bold;
+    }
+
+    .progress-box.active {
+      background-color: var(--progress-fill);
+    }
+
     label {
       display: block;
       font-weight: 700;
@@ -70,6 +103,8 @@
 
     textarea {
       width: 100%;
+      height: 115px;
+      min-height: 90px;
       padding: 10px;
       border: 2px solid var(--brown);
       border-radius: 12px;
@@ -77,16 +112,17 @@
       color: var(--brown);
       font: inherit;
       font-size: 1rem;
-    }
-
-    textarea {
-      height: 115px;
-      min-height: 90px;
-      resize: vertical;
       line-height: 1.4;
+      resize: vertical;
     }
 
-    /* Shared button styling */
+    textarea::placeholder {
+      color: #87947a;
+      opacity: 1;
+    }
+
+    /* BUTTON STYLING */
+
     .prompt-button,
     .continue-button {
       padding: 11px 14px;
@@ -99,41 +135,30 @@
       font-size: 1rem;
       font-weight: 700;
       cursor: pointer;
-
       -webkit-tap-highlight-color: transparent;
       touch-action: manipulation;
       user-select: none;
-
-      transition:
-        transform 120ms ease,
-        box-shadow 120ms ease,
-        background-color 120ms ease;
+      transition: transform 120ms ease,
+                  box-shadow 120ms ease;
     }
 
-    /* Hover */
     .prompt-button:hover,
     .continue-button:hover {
-      background: var(--tan);
       transform: translate(-2px, -2px);
       box-shadow: 6px 7px 0 var(--brown);
     }
 
-    /* Press down */
     .prompt-button:active,
     .continue-button:active {
-      background: var(--tan);
-      color: var(--brown);
       transform: translate(4px, 5px);
       box-shadow: 0 0 0 var(--brown);
     }
 
-    /* Remove blue focus box after tapping */
     .prompt-button:focus:not(:focus-visible),
     .continue-button:focus:not(:focus-visible) {
       outline: none;
     }
 
-    /* Keep accessible keyboard focus */
     .prompt-button:focus-visible,
     .continue-button:focus-visible {
       outline: 3px solid var(--brown);
@@ -142,16 +167,7 @@
 
     .prompt-button {
       align-self: flex-start;
-      margin: 9px 0 5px;
-    }
-
-    .prompt-hint {
-      font-size: 0.9rem;
-      line-height: 1.3;
-      margin: 3px 0 8px;
-      padding: 7px 10px;
-      background: var(--tan);
-      border-radius: 8px;
+      margin: 9px 0 12px;
     }
 
     .signature-area {
@@ -212,6 +228,16 @@
         margin-bottom: 11px;
       }
 
+      .progress-meter {
+        gap: 7px;
+        max-width: 330px;
+      }
+
+      .progress-box {
+        max-width: 42px;
+        font-size: 17px;
+      }
+
       textarea {
         height: 105px;
         min-height: 85px;
@@ -227,30 +253,6 @@
 
       .continue-button {
         padding: 12px;
-      }
-    }
-
-    @media (max-height: 650px) {
-      .page {
-        padding-top: 6px;
-        padding-bottom: 8px;
-      }
-
-      .back-link {
-        margin-bottom: 5px;
-      }
-
-      h1 {
-        font-size: 1.8rem;
-      }
-
-      .intro {
-        margin-bottom: 8px;
-      }
-
-      textarea {
-        height: 85px;
-        min-height: 75px;
       }
     }
 
@@ -274,14 +276,18 @@
       Welcome to the Fortune Factory! Here, you will write a fortune for somebody to find. Remember, you are now part of their day's narrative. Write something you would like to receive.
     </p>
 
-<div class="progress-meter" id="progressMeter">
-  <div class="progress-box active">1</div>
-  <div class="progress-box">2</div>
-  <div class="progress-box">3</div>
-  <div class="progress-box">4</div>
-  <div class="progress-box">5</div>
-  <div class="progress-box">6</div>
-</div>
+    <!-- PROGRESS METER -->
+    <div class="progress-meter" id="progressMeter"
+         aria-label="Fortune creation progress">
+
+      <div class="progress-box active">1</div>
+      <div class="progress-box">2</div>
+      <div class="progress-box">3</div>
+      <div class="progress-box">4</div>
+      <div class="progress-box">5</div>
+      <div class="progress-box">6</div>
+
+    </div>
 
     <label for="fortune">Write a fortune</label>
 
@@ -291,16 +297,17 @@
       placeholder="Dear Stranger..."
     ></textarea>
 
-   <button type="button" class="prompt-button" onclick="generatePrompt()">
-  ✦ Give me a writing prompt
-</button>
+    <button
+      type="button"
+      class="prompt-button"
+      onclick="generatePrompt()"
+    >
+      ✦ Give me a writing prompt
+    </button>
 
     <section class="signature-area">
       <div class="signature-toggle">
-        <input
-          type="checkbox"
-          id="showSignature"
-        >
+        <input type="checkbox" id="showSignature">
         <label for="showSignature">Show my signature</label>
       </div>
     </section>
@@ -318,10 +325,11 @@
   </main>
 
   <script>
-    function generatePrompt() {
+    // WRITING PROMPTS
+
     const prompts = [
       "What is something someone might need to hear today?",
-      "Poof! You're now a wizard. Wish something good into their day",
+      "Poof! You're now a wizard. Wish something good into their day.",
       "What makes an ordinary day special? Remind the recipient that it's in the little things.",
       "Imagine a fortune someone might find years from now.",
       "What advice would you give your younger self? Alternatively, what advice would you give your future self?",
@@ -337,23 +345,33 @@
       "Sing a song lyric you love!",
       "A question to think about..."
     ];
-      
-      const textBox = document.getElementById("fortuneText");
-      const randomPrompt = prompts[Math.floor(Math.random() * prompts.length)];
 
-  textBox.placeholder = randomPrompt;
-}
+    function generatePrompt() {
+      const textBox = document.getElementById("fortune");
 
-    function showPrompt() {
-      const prompt = prompts[
-        Math.floor(Math.random() * prompts.length)
-      ];
+      const randomPrompt =
+        prompts[Math.floor(Math.random() * prompts.length)];
 
-      const hint = document.getElementById("promptHint");
-
-      hint.textContent = prompt;
-      hint.hidden = false;
+      // Display the suggestion inside the empty writing box.
+      // The suggestion does not become part of the fortune.
+      textBox.placeholder = randomPrompt;
+      textBox.focus();
     }
+
+    // PROGRESS METER
+
+    function updateProgress(step) {
+      const boxes = document.querySelectorAll(".progress-box");
+
+      boxes.forEach((box, index) => {
+        box.classList.toggle("active", index < step);
+      });
+    }
+
+    // This page is step 1.
+    updateProgress(1);
+
+    // CONTINUE BUTTON
 
     function continueWriting() {
       const fortune =
@@ -367,6 +385,15 @@
           "Your fortune is waiting to be written.";
         return;
       }
+
+      // Keep the fortune for the next page.
+      sessionStorage.setItem("fortuneText", fortune);
+
+      // Keep the signature choice for the next page.
+      sessionStorage.setItem(
+        "showSignature",
+        document.getElementById("showSignature").checked
+      );
 
       message.textContent =
         "Lovely! Your fortune is ready for the next design step.";
