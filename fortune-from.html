@@ -1,0 +1,309 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Fortune From | Fortune From, Fortune Found</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Courier+Prime:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --cream: #f7f0df;
+      --paper: #fffaf0;
+      --brown: #493426;
+      --terracotta: #b96f55;
+      --sage: #87947a;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background: var(--cream);
+      color: var(--brown);
+      font-family: "Courier Prime", "Courier New", monospace;
+    }
+
+    .page {
+      width: min(700px, 100%);
+      margin: 0 auto;
+      padding: 35px 22px 60px;
+    }
+
+    .back-link {
+      display: inline-block;
+      color: var(--brown);
+      text-decoration: none;
+      font-weight: 700;
+      margin-bottom: 35px;
+    }
+
+    .back-link:hover {
+      color: var(--terracotta);
+    }
+
+    h1 {
+      color: var(--terracotta);
+      text-align: center;
+      font-size: clamp(2.2rem, 6vw, 3.5rem);
+      margin: 0 0 12px;
+    }
+
+    .intro {
+      text-align: center;
+      line-height: 1.6;
+      margin: 0 0 35px;
+    }
+
+    label {
+      display: block;
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+
+    select,
+    textarea,
+    input[type="text"] {
+      width: 100%;
+      padding: 15px;
+      border: 2px solid var(--brown);
+      border-radius: 12px;
+      background: var(--paper);
+      color: var(--brown);
+      font: inherit;
+      font-size: 1rem;
+    }
+
+    select {
+      margin-bottom: 25px;
+    }
+
+    textarea {
+      min-height: 230px;
+      resize: vertical;
+      line-height: 1.7;
+    }
+
+    .prompt-button,
+    .continue-button {
+      display: inline-block;
+      padding: 14px 20px;
+      border: 2px solid var(--brown);
+      border-radius: 14px;
+      background: var(--paper);
+      color: var(--brown);
+      box-shadow: 4px 5px 0 var(--brown);
+      font: inherit;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    .prompt-button {
+      margin: 14px 0 28px;
+    }
+
+    .prompt-button:hover,
+    .continue-button:hover {
+      background: #eee2c9;
+    }
+
+    .signature-area {
+      margin: 20px 0 30px;
+      padding: 20px;
+      border: 2px solid var(--brown);
+      border-radius: 14px;
+      background: var(--paper);
+    }
+
+    .signature-toggle {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 15px;
+    }
+
+    .signature-toggle input {
+      width: 19px;
+      height: 19px;
+      accent-color: var(--terracotta);
+    }
+
+    .signature-toggle label {
+      margin: 0;
+    }
+
+    .continue-button {
+      display: block;
+      width: 100%;
+      padding: 17px;
+      background: var(--terracotta);
+      color: white;
+      font-size: 1.1rem;
+    }
+
+    .message {
+      min-height: 28px;
+      margin-top: 20px;
+      text-align: center;
+    }
+
+    button:focus-visible,
+    select:focus-visible,
+    textarea:focus-visible,
+    input:focus-visible {
+      outline: 3px solid var(--sage);
+      outline-offset: 4px;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      * {
+        scroll-behavior: auto;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <main class="page">
+
+    <a class="back-link" href="index.html">← Back to Home</a>
+
+    <h1>Fortune From</h1>
+
+    <p class="intro">
+      A little thought, a little wish, a little something
+      to send out into the world.
+    </p>
+
+    <label for="category">Choose a category</label>
+
+    <select id="category">
+      <option value="">Choose your kind of fortune</option>
+      <option>A little reminder</option>
+      <option>A wish for someone</option>
+      <option>Something funny</option>
+      <option>A thought to ponder</option>
+      <option>A mysterious message</option>
+      <option>A little encouragement</option>
+      <option>A question to think about</option>
+      <option>A tiny piece of wisdom</option>
+      <option>A love note to the world</option>
+      <option>Something completely unexpected</option>
+      <option>A strange prediction</option>
+      <option>A memory or story</option>
+    </select>
+
+    <label for="fortune">Write your fortune</label>
+
+    <textarea
+      id="fortune"
+      maxlength="2000"
+      placeholder="Write whatever is on your mind..."
+    ></textarea>
+
+    <button
+      class="prompt-button"
+      type="button"
+      onclick="showPrompt()"
+    >
+      ✦ Give me a writing prompt
+    </button>
+
+    <section class="signature-area">
+      <div class="signature-toggle">
+        <input
+          type="checkbox"
+          id="showSignature"
+          onchange="toggleSignature()"
+        >
+        <label for="showSignature">Show my signature</label>
+      </div>
+
+      <div id="signatureInput" hidden>
+        <label for="penName">Your pen name</label>
+        <input
+          type="text"
+          id="penName"
+          maxlength="40"
+          placeholder="Your chosen name"
+        >
+      </div>
+    </section>
+
+    <button
+      class="continue-button"
+      type="button"
+      onclick="continueWriting()"
+    >
+      Continue to Design Your Fortune →
+    </button>
+
+    <p class="message" id="message" aria-live="polite"></p>
+
+  </main>
+
+  <script>
+    const prompts = [
+      "What is something someone might need to hear today?",
+      "Write a wish for a stranger you will never meet.",
+      "What little thing makes an ordinary day special?",
+      "Imagine a fortune someone might find years from now.",
+      "What advice would you give your younger self?",
+      "Write a prediction that might make someone smile.",
+      "What is something beautiful that people often overlook?"
+    ];
+
+    function showPrompt() {
+      const prompt = prompts[
+        Math.floor(Math.random() * prompts.length)
+      ];
+
+      document.getElementById("fortune").placeholder = prompt;
+    }
+
+    function toggleSignature() {
+      const checked =
+        document.getElementById("showSignature").checked;
+
+      document.getElementById("signatureInput").hidden = !checked;
+    }
+
+    function continueWriting() {
+      const category = document.getElementById("category").value;
+      const fortune = document.getElementById("fortune").value.trim();
+      const showSignature =
+        document.getElementById("showSignature").checked;
+      const penName =
+        document.getElementById("penName").value.trim();
+
+      const message = document.getElementById("message");
+
+      if (!category) {
+        message.textContent = "Please choose a fortune category.";
+        return;
+      }
+
+      if (!fortune) {
+        message.textContent = "Your fortune is waiting to be written.";
+        return;
+      }
+
+      if (showSignature && !penName) {
+        message.textContent = "Please enter your pen name, or turn off your signature.";
+        return;
+      }
+
+      message.textContent =
+        "Lovely! Your fortune is ready for the next design step.";
+    }
+  </script>
+</body>
+</html>
