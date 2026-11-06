@@ -271,7 +271,7 @@
     <h1>Fortune From</h1>
 
     <p class="intro">
-      Welcome to the Fortune Factory. Here, you will write a fortune for somebody to find. Remember, you are now part of their day's narrative! Write something you would like to receive.
+      Welcome to the Fortune Factory! Here, you will write a fortune for somebody to find. Remember, you are now part of their day's narrative. Write something you would like to receive.
     </p>
 
 <div class="progress-meter" id="progressMeter">
@@ -291,15 +291,9 @@
       placeholder="Dear Stranger..."
     ></textarea>
 
-    <button
-      class="prompt-button"
-      type="button"
-      onclick="showPrompt()"
-    >
-      ✦ Give me a writing prompt
-    </button>
-
-    <p class="prompt-hint" id="promptHint" hidden aria-live="polite"></p>
+   <button type="button" class="prompt-button" onclick="generatePrompt()">
+  ✦ Give me a writing prompt
+</button>
 
     <section class="signature-area">
       <div class="signature-toggle">
@@ -324,9 +318,10 @@
   </main>
 
   <script>
+    function generatePrompt() {
     const prompts = [
       "What is something someone might need to hear today?",
-      "Write a wish for a stranger you will never meet.",
+      "Poof! You're now a wizard. Wish something good into their day",
       "What makes an ordinary day special? Remind the recipient that it's in the little things.",
       "Imagine a fortune someone might find years from now.",
       "What advice would you give your younger self? Alternatively, what advice would you give your future self?",
@@ -342,6 +337,12 @@
       "Sing a song lyric you love!",
       "A question to think about..."
     ];
+      
+      const textBox = document.getElementById("fortuneText");
+      const randomPrompt = prompts[Math.floor(Math.random() * prompts.length)];
+
+  textBox.placeholder = randomPrompt;
+}
 
     function showPrompt() {
       const prompt = prompts[
