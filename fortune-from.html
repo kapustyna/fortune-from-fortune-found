@@ -122,24 +122,31 @@
 
     /* BUTTON STYLING */
 
-    .prompt-button,
-    .continue-button {
-      padding: 11px 14px;
-      border: 2px solid var(--brown);
-      border-radius: 14px;
-      background: var(--progress-fill);
-      color: var(--brown);
-      box-shadow: 4px 5px 0 var(--brown);
-      font-family: inherit;
-      font-size: 1rem;
-      font-weight: 700;
-      cursor: pointer;
-      -webkit-tap-highlight-color: transparent;
-      touch-action: manipulation;
-      user-select: none;
-      transition: transform 120ms ease,
-                  box-shadow 120ms ease;
-    }
+  .prompt-button,
+.continue-button {
+  padding: 11px 14px;
+  border: 2px solid var(--brown);
+  border-radius: 14px;
+  color: var(--brown);
+  box-shadow: 4px 5px 0 var(--brown);
+  font-family: inherit;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+  user-select: none;
+  transition: transform 120ms ease,
+              box-shadow 120ms ease;
+}
+
+.prompt-button {
+  background: var(--tan);
+}
+
+.continue-button {
+  background: var(--progress-fill);
+}
 
     .prompt-button:hover,
     .continue-button:hover {
