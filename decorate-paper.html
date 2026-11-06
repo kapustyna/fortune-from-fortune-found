@@ -1,0 +1,445 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --cream: #f7f0df;
+      --paper: #fffaf0;
+      --brown: #493426;
+      --tan: #eee2c9;
+      --progress-fill: #A08068;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background: var(--cream);
+      color: var(--brown);
+      font-family: "Courier Prime", "Courier New", monospace;
+    }
+
+    .page {
+      width: min(700px, 100%);
+      min-height: 100svh;
+      margin: 0 auto;
+      padding: 12px 20px 16px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .back-link {
+      display: inline-block;
+      width: fit-content;
+      color: var(--brown);
+      text-decoration: none;
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+
+    h1 {
+      color: var(--brown);
+      text-align: center;
+      font-size: clamp(2rem, 6vw, 3.5rem);
+      margin: 0 0 5px;
+    }
+
+    .intro {
+      text-align: center;
+      line-height: 1.35;
+      font-size: 0.95rem;
+      margin: 0 0 14px;
+    }
+
+    /* SIX-BOX PROGRESS METER */
+
+    .progress-meter {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      gap: 10px;
+      width: 100%;
+      max-width: 370px;
+      margin: 10px auto 22px;
+    }
+
+    .progress-box {
+      flex: 1;
+      aspect-ratio: 1 / 1;
+      max-width: 45px;
+      background-color: var(--tan);
+      border: 2px solid var(--brown);
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--brown);
+      font-size: 18px;
+      font-weight: bold;
+    }
+
+    .progress-box.active {
+      background-color: var(--progress-fill);
+    }
+
+    /* PAPER CHOICES */
+
+    .section-label {
+      display: block;
+      font-weight: 700;
+      margin-bottom: 12px;
+    }
+
+    .paper-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+      width: 100%;
+      max-width: 480px;
+      margin: 0 auto 22px;
+    }
+
+    .paper-option {
+      position: relative;
+      aspect-ratio: 1 / 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 8px;
+      border: 2px solid rgba(73, 52, 38, 0.45);
+      border-radius: 5px;
+      color: var(--brown);
+      font-family: inherit;
+      font-size: clamp(0.85rem, 2.5vw, 1rem);
+      font-weight: 700;
+      cursor: pointer;
+      box-shadow: 2px 3px 4px rgba(73, 52, 38, 0.12);
+      background-image:
+        repeating-linear-gradient(
+          0deg,
+          rgba(73, 52, 38, 0.035) 0px,
+          rgba(73, 52, 38, 0.035) 1px,
+          transparent 1px,
+          transparent 4px
+        ),
+        repeating-linear-gradient(
+          90deg,
+          rgba(255, 255, 255, 0.13) 0px,
+          rgba(255, 255, 255, 0.13) 1px,
+          transparent 1px,
+          transparent 5px
+        );
+      -webkit-tap-highlight-color: transparent;
+      touch-action: manipulation;
+      transition: transform 120ms ease,
+                  box-shadow 120ms ease,
+                  border 120ms ease;
+    }
+
+    .paper-option:hover {
+      transform: translateY(-2px);
+      box-shadow: 3px 5px 6px rgba(73, 52, 38, 0.16);
+    }
+
+    .paper-option.selected {
+      border: 4px solid var(--brown);
+      box-shadow: 0 0 0 3px var(--progress-fill),
+                  3px 5px 6px rgba(73, 52, 38, 0.16);
+    }
+
+    .paper-option.selected::after {
+      content: "✓";
+      position: absolute;
+      top: 5px;
+      right: 8px;
+      font-size: 1.2rem;
+      font-weight: 700;
+    }
+
+    .paper-option:focus-visible {
+      outline: 3px solid var(--brown);
+      outline-offset: 5px;
+    }
+
+    /* INDIVIDUAL PAPER COLOURS */
+
+    .ivory {
+      background-color: #fffaf0;
+    }
+
+    .butter {
+      background-color: #f0df9e;
+    }
+
+    .terracotta {
+      background-color: #b96f55;
+    }
+
+    .blush {
+      background-color: #d9a5a1;
+    }
+
+    .lavender {
+      background-color: #d8cde3;
+    }
+
+    .powder {
+      background-color: #c9dce8;
+    }
+
+    .sage {
+      background-color: #c4cdbb;
+    }
+
+    .smoke {
+      background-color: #deded9;
+    }
+
+    .charcoal {
+      background-color: #a39d97;
+    }
+
+    /* CONTINUE BUTTON */
+
+    .continue-button {
+      display: block;
+      width: 100%;
+      padding: 13px;
+      border: 2px solid var(--brown);
+      border-radius: 14px;
+      background: var(--progress-fill);
+      color: var(--brown);
+      box-shadow: 4px 5px 0 var(--brown);
+      font-family: inherit;
+      font-size: 1rem;
+      font-weight: 700;
+      cursor: pointer;
+      -webkit-tap-highlight-color: transparent;
+      touch-action: manipulation;
+      user-select: none;
+      transition: transform 120ms ease,
+                  box-shadow 120ms ease;
+    }
+
+    .continue-button:hover {
+      transform: translate(-2px, -2px);
+      box-shadow: 6px 7px 0 var(--brown);
+    }
+
+    .continue-button:active {
+      transform: translate(4px, 5px);
+      box-shadow: 0 0 0 var(--brown);
+    }
+
+    .continue-button:focus-visible {
+      outline: 3px solid var(--brown);
+      outline-offset: 4px;
+    }
+
+    .message {
+      min-height: 18px;
+      margin: 8px 0 0;
+      text-align: center;
+      font-size: 0.9rem;
+    }
+
+    @media (max-width: 540px) {
+      .page {
+        padding: 9px 15px 12px;
+      }
+
+      h1 {
+        font-size: 2rem;
+      }
+
+      .intro {
+        font-size: 0.85rem;
+        margin-bottom: 11px;
+      }
+
+      .progress-meter {
+        gap: 7px;
+        max-width: 330px;
+      }
+
+      .progress-box {
+        max-width: 42px;
+        font-size: 17px;
+      }
+
+      .paper-grid {
+        gap: 10px;
+      }
+
+      .paper-option {
+        padding: 5px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .paper-option,
+      .continue-button {
+        transition: none;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <main class="page">
+
+    <a class="back-link" href="fortune-from.html">← Back</a>
+
+    <h1>Fortune From</h1>
+
+    <p class="intro">
+      Welcome to the Fortune Factory! Here, you will write a fortune for somebody to find. Remember, you are now part of their day's narrative. Write something you would like to receive.
+    </p>
+
+    <!-- PROGRESS METER -->
+    <div class="progress-meter" id="progressMeter"
+         aria-label="Fortune creation progress">
+
+      <div class="progress-box active">1</div>
+      <div class="progress-box active">2</div>
+      <div class="progress-box">3</div>
+      <div class="progress-box">4</div>
+      <div class="progress-box">5</div>
+      <div class="progress-box">6</div>
+
+    </div>
+
+    <label class="section-label">Choose a paper</label>
+
+    <!-- PAPER SAMPLE GRID -->
+    <div class="paper-grid" aria-label="Choose your paper colour">
+
+      <button type="button"
+              class="paper-option ivory"
+              aria-pressed="false"
+              onclick="selectPaper('Ivory', this)">
+        Ivory
+      </button>
+
+      <button type="button"
+              class="paper-option butter"
+              aria-pressed="false"
+              onclick="selectPaper('Butter', this)">
+        Butter
+      </button>
+
+      <button type="button"
+              class="paper-option terracotta"
+              aria-pressed="false"
+              onclick="selectPaper('Terracotta', this)">
+        Terracotta
+      </button>
+
+      <button type="button"
+              class="paper-option blush"
+              aria-pressed="false"
+              onclick="selectPaper('Blush', this)">
+        Blush
+      </button>
+
+      <button type="button"
+              class="paper-option lavender"
+              aria-pressed="false"
+              onclick="selectPaper('Lavender', this)">
+        Lavender
+      </button>
+
+      <button type="button"
+              class="paper-option powder"
+              aria-pressed="false"
+              onclick="selectPaper('Powder', this)">
+        Powder
+      </button>
+
+      <button type="button"
+              class="paper-option sage"
+              aria-pressed="false"
+              onclick="selectPaper('Sage', this)">
+        Sage
+      </button>
+
+      <button type="button"
+              class="paper-option smoke"
+              aria-pressed="false"
+              onclick="selectPaper('Smoke', this)">
+        Smoke
+      </button>
+
+      <button type="button"
+              class="paper-option charcoal"
+              aria-pressed="false"
+              onclick="selectPaper('Charcoal', this)">
+        Charcoal
+      </button>
+
+    </div>
+
+    <button
+      class="continue-button"
+      type="button"
+      onclick="continuePaper()"
+    >
+      Continue →
+    </button>
+
+    <p class="message" id="message" aria-live="polite"></p>
+
+  </main>
+
+  <script>
+    // PAPER SELECTION
+
+    let selectedPaper = "";
+
+    function selectPaper(paperName, selectedButton) {
+      const paperOptions =
+        document.querySelectorAll(".paper-option");
+
+      paperOptions.forEach((option) => {
+        option.classList.remove("selected");
+        option.setAttribute("aria-pressed", "false");
+      });
+
+      selectedButton.classList.add("selected");
+      selectedButton.setAttribute("aria-pressed", "true");
+
+      selectedPaper = paperName;
+
+      document.getElementById("message").textContent =
+        paperName + " paper selected.";
+    }
+
+    // CONTINUE BUTTON
+
+    function continuePaper() {
+      const message =
+        document.getElementById("message");
+
+      if (!selectedPaper) {
+        message.textContent =
+          "Please choose a paper before continuing.";
+        return;
+      }
+
+      // Save the paper choice for the next step.
+      sessionStorage.setItem("paperChoice", selectedPaper);
+    }
+  </script>
+</body>
+</html>
