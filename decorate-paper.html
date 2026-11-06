@@ -426,19 +426,20 @@
 
     // CONTINUE BUTTON
 
-    function continuePaper() {
-      const message =
-        document.getElementById("message");
+      function continuePaper() {
+    const message = document.getElementById("message");
 
-      if (!selectedPaper) {
-        message.textContent =
-          "Please choose a paper before continuing.";
-        return;
-      }
-
-      // Save the paper choice for the next step.
-      sessionStorage.setItem("paperChoice", selectedPaper);
+    if (!selectedPaper) {
+      message.textContent =
+        "Please choose a paper before continuing.";
+      return;
     }
+
+    sessionStorage.setItem("paperChoice", selectedPaper);
+
+    window.location.href = "decorate-ink.html";
+  }
   </script>
 </body>
 </html>
+  
