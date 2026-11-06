@@ -2,181 +2,176 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Fortune From, Fortune Found</title>
-<style>
-:root {
-  --cream: #f7f0df;
-  --paper: #fffaf0;
-  --brown: #493426;
-  --terracotta: #b96f55;
-  --sage: #87947a;
-  --rose: #d9a5a1;
-  --yellow: #e9cf83;
-}
-* {
-  box-sizing: border-box;
-}
-body {
-  margin: 0;
-  min-height: 100vh;
-  background: var(--cream);
-  color: var(--brown);
-  font-family: Georgia, "Times New Roman", serif;
-}
-main {
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 48px 20px;
-  text-align: center;
-  position: relative;
-  overflow: hidden;
-}
-.decor {
-  position: absolute;
-  font-size: 27px;
-  opacity: .65;
-  pointer-events: none;
-}
-.decor.one { top: 12%; left: 12%; transform: rotate(-15deg); }
-.decor.two { top: 20%; right: 13%; transform: rotate(15deg); }
-.decor.three { bottom: 18%; left: 15%; transform: rotate(12deg); }
-.decor.four { bottom: 12%; right: 12%; transform: rotate(-12deg); }
-.title {
-  max-width: 850px;
-  margin: 0;
-  font-size: clamp(2.8rem, 8vw, 5.7rem);
-  line-height: 1.02;
-  letter-spacing: -2px;
-  font-weight: 700;
-  text-shadow: 2px 2px 0 #e4d3b6;
-}
-.title span {
-  display: block;
-  color: var(--terracotta);
-  font-style: italic;
-}
-.tagline {
-  margin: 25px 0 48px;
-  font-size: clamp(1rem, 2.5vw, 1.3rem);
-  line-height: 1.6;
-  letter-spacing: .3px;
-}
-.buttons {
-  display: flex;
-  justify-content: center;
-  gap: 22px;
-  width: 100%;
-  max-width: 680px;
-}
-.main-button {
-  flex: 1;
-  min-height: 145px;
-  padding: 24px 18px;
-  border: 3px solid var(--brown);
-  border-radius: 22px 26px 21px 25px;
-  background: var(--paper);
-  color: var(--brown);
-  font: inherit;
-  font-size: clamp(1.3rem, 3vw, 1.8rem);
-  font-weight: bold;
-  cursor: pointer;
-  box-shadow: 5px 6px 0 var(--brown);
-  transition: transform .18s ease, box-shadow .18s ease;
-}
-.main-button .icon {
-  display: block;
-  font-size: 2.5rem;
-  margin-bottom: 12px;
-}
-.main-button:hover {
-  transform: translateY(-4px);
-  box-shadow: 5px 10px 0 var(--brown);
-}
-.main-button:active {
-  transform: translateY(2px);
-  box-shadow: 2px 3px 0 var(--brown);
-}
-.main-button:focus-visible {
-  outline: 4px solid var(--terracotta);
-  outline-offset: 6px;
-}
-.notice {
-  min-height: 28px;
-  margin-top: 35px;
-  font-size: .95rem;
-  color: var(--brown);
-}
-@media (max-width: 560px) {
-  main {
-    padding: 55px 20px;
-  }
-  .title {
-    letter-spacing: -1px;
-  }
-  .tagline {
-    margin: 22px 0 35px;
-  }
-  .buttons {
-    flex-direction: column;
-    max-width: 340px;
-    gap: 20px;
-  }
-  .main-button {
-    min-height: 120px;
-  }
-  .decor.one { left: 5%; top: 7%; }
-  .decor.two { right: 5%; top: 13%; }
-  .decor.three { left: 6%; bottom: 7%; }
-  .decor.four { right: 6%; bottom: 6%; }
-}
-@media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after {
-    scroll-behavior: auto !important;
-    transition: none !important;
-  }
-}
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Fortune From, Fortune Found</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Courier+Prime:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --cream: #f7f0df;
+      --paper: #fffaf0;
+      --brown: #493426;
+      --terracotta: #b96f55;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background: var(--cream);
+      color: var(--brown);
+      font-family: "Courier Prime", "Courier New", monospace;
+    }
+
+    .home {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 40px 20px;
+      text-align: center;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(2.5rem, 7vw, 5rem);
+      line-height: 1.15;
+      font-weight: 700;
+      letter-spacing: -2px;
+    }
+
+    h1 span {
+      display: block;
+      color: var(--terracotta);
+      font-style: italic;
+    }
+
+    .tagline {
+      margin: 24px 0 48px;
+      font-size: clamp(1rem, 2.5vw, 1.25rem);
+      line-height: 1.6;
+    }
+
+    .buttons {
+      display: flex;
+      justify-content: center;
+      gap: 24px;
+      width: 100%;
+      max-width: 650px;
+    }
+
+    .main-button {
+      flex: 1;
+      min-height: 115px;
+      padding: 22px 18px;
+      background: var(--paper);
+      color: var(--brown);
+      border: 3px solid var(--brown);
+      border-radius: 22px 18px 24px 17px;
+      box-shadow: 6px 7px 0 var(--brown);
+      font-family: inherit;
+      font-size: clamp(1.1rem, 3vw, 1.5rem);
+      font-weight: 700;
+      cursor: pointer;
+      transition: transform 150ms ease, box-shadow 150ms ease;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .main-button:hover {
+      transform: translate(-2px, -2px);
+      box-shadow: 8px 9px 0 var(--brown);
+    }
+
+    .main-button:active {
+      transform: translate(4px, 4px);
+      box-shadow: 2px 3px 0 var(--brown);
+    }
+
+    .main-button:focus-visible {
+      outline: 4px solid var(--terracotta);
+      outline-offset: 6px;
+    }
+
+    .main-button:focus:not(:focus-visible) {
+      outline: none;
+    }
+
+    .button-icon {
+      display: block;
+      margin-bottom: 10px;
+      font-size: 1.8rem;
+      line-height: 1;
+    }
+
+    .notice {
+      min-height: 30px;
+      margin-top: 38px;
+      font-size: 1rem;
+    }
+
+    @media (max-width: 540px) {
+      .buttons {
+        flex-direction: column;
+        max-width: 330px;
+        gap: 20px;
+      }
+
+      .main-button {
+        min-height: 100px;
+      }
+
+      .tagline {
+        margin-bottom: 36px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .main-button {
+        transition: none;
+      }
+    }
+  </style>
 </head>
+
 <body>
-<main>
-  <span class="decor one" aria-hidden="true">✦</span>
-  <span class="decor two" aria-hidden="true">✉</span>
-  <span class="decor three" aria-hidden="true">✿</span>
-  <span class="decor four" aria-hidden="true">✧</span>
+  <main class="home">
+    <h1>
+      Fortune From,
+      <span>Fortune Found</span>
+    </h1>
 
-  <h1 class="title">
-    Fortune From,
-    <span>Fortune Found</span>
-  </h1>
+    <p class="tagline">
+      Little fortunes, left by someone, found by you.
+    </p>
 
-  <p class="tagline">
-    Little fortunes, left by someone, found by you.
-  </p>
+    <div class="buttons">
+      <button class="main-button" onclick="showNotice('Fortune From is coming soon!')">
+        <span class="button-icon" aria-hidden="true">✉</span>
+        Fortune From
+      </button>
 
-  <div class="buttons">
-    <button class="main-button" onclick="showNotice('Fortune From is coming soon!')">
-      <span class="icon" aria-hidden="true">✉</span>
-      Fortune From
-    </button>
+      <button class="main-button" onclick="showNotice('Fortune Found is coming soon!')">
+        <span class="button-icon" aria-hidden="true">✦</span>
+        Fortune Found
+      </button>
+    </div>
 
-    <button class="main-button" onclick="showNotice('Fortune Found is coming soon!')">
-      <span class="icon" aria-hidden="true">✦</span>
-      Fortune Found
-    </button>
-  </div>
+    <p class="notice" id="notice" aria-live="polite"></p>
+  </main>
 
-  <p class="notice" id="notice" aria-live="polite"></p>
-</main>
-
-<script>
-function showNotice(message) {
-  document.getElementById("notice").textContent = message;
-}
-</script>
+  <script>
+    function showNotice(message) {
+      document.getElementById("notice").textContent = message;
+    }
+  </script>
 </body>
 </html>
