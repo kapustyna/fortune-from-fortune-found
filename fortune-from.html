@@ -413,6 +413,15 @@
         document.getElementById("showSignature").checked
       );
 
+            // Keep the signature choice for the next page.
+      sessionStorage.setItem(
+        "showSignature",
+        document.getElementById("showSignature").checked
+      );
+
+      // Move to the paper selection page.
+      window.location.href = "fortune-paper.html";
+
     }
   </script>
 </body>
