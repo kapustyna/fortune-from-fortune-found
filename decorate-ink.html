@@ -1,0 +1,652 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link href="https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&family=Lato:wght@400;700&family=Caveat:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --cream: #f7f0df;
+      --paper: #fffaf0;
+      --brown: #493426;
+      --tan: #eee2c9;
+      --progress-fill: #A08068;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background: var(--cream);
+      color: var(--brown);
+      font-family: "Courier Prime", "Courier New", monospace;
+    }
+
+    .page {
+      width: min(700px, 100%);
+      min-height: 100svh;
+      margin: 0 auto;
+      padding: 12px 20px 16px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .back-link {
+      display: inline-block;
+      width: fit-content;
+      color: var(--brown);
+      text-decoration: none;
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+
+    h1 {
+      color: var(--brown);
+      text-align: center;
+      font-size: clamp(2rem, 6vw, 3.5rem);
+      margin: 0 0 5px;
+    }
+
+    .intro {
+      text-align: center;
+      line-height: 1.35;
+      font-size: 0.95rem;
+      margin: 0 0 14px;
+    }
+
+    /* SIX-BOX PROGRESS METER */
+
+    .progress-meter {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      gap: 10px;
+      width: 100%;
+      max-width: 370px;
+      margin: 10px auto 22px;
+    }
+
+    .progress-box {
+      flex: 1;
+      aspect-ratio: 1 / 1;
+      max-width: 45px;
+      background-color: var(--tan);
+      border: 2px solid var(--brown);
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--brown);
+      font-size: 18px;
+      font-weight: bold;
+    }
+
+    .progress-box.active {
+      background-color: var(--progress-fill);
+    }
+
+    /* SECTION HEADINGS */
+
+    .section-label {
+      display: block;
+      font-weight: 700;
+      margin-bottom: 12px;
+    }
+
+    .ink-section {
+      margin-bottom: 24px;
+    }
+
+    /* INK COLOUR GRID */
+
+    .ink-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      width: 100%;
+    }
+
+    .ink-option {
+      min-height: 90px;
+      padding: 10px 5px;
+      border: 2px solid rgba(73, 52, 38, 0.45);
+      border-radius: 9px;
+      background: var(--selected-paper, #fffaf0);
+      color: var(--ink-color);
+      font-family: inherit;
+      cursor: pointer;
+      box-shadow: 2px 3px 4px rgba(73, 52, 38, 0.12);
+      transition: transform 120ms ease,
+                  box-shadow 120ms ease,
+                  border 120ms ease;
+      -webkit-tap-highlight-color: transparent;
+      touch-action: manipulation;
+    }
+
+    .ink-sample {
+      display: block;
+      font-size: 1.25rem;
+      font-weight: 700;
+      margin-bottom: 5px;
+    }
+
+    .ink-name {
+      display: block;
+      color: var(--brown);
+      font-size: 0.9rem;
+      font-weight: 700;
+    }
+
+    .ink-option:hover {
+      transform: translateY(-2px);
+      box-shadow: 3px 5px 6px rgba(73, 52, 38, 0.16);
+    }
+
+    .ink-option.selected {
+      border: 4px solid var(--brown);
+      box-shadow: 0 0 0 3px var(--progress-fill);
+    }
+
+    .ink-option:focus-visible,
+    .font-option:focus-visible {
+      outline: 3px solid var(--brown);
+      outline-offset: 4px;
+    }
+
+    /* FONT CHOICES */
+
+    .font-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      width: 100%;
+    }
+
+    .font-option {
+      min-height: 105px;
+      padding: 12px 6px;
+      border: 2px solid rgba(73, 52, 38, 0.45);
+      border-radius: 9px;
+      background: var(--tan);
+      color: var(--brown);
+      cursor: pointer;
+      box-shadow: 2px 3px 4px rgba(73, 52, 38, 0.12);
+      transition: transform 120ms ease,
+                  box-shadow 120ms ease,
+                  border 120ms ease;
+      -webkit-tap-highlight-color: transparent;
+      touch-action: manipulation;
+    }
+
+    .font-option:hover {
+      transform: translateY(-2px);
+      box-shadow: 3px 5px 6px rgba(73, 52, 38, 0.16);
+    }
+
+    .font-option.selected {
+      border: 4px solid var(--brown);
+      box-shadow: 0 0 0 3px var(--progress-fill);
+    }
+
+    .font-sample {
+      display: block;
+      font-size: 1.15rem;
+      margin-bottom: 7px;
+    }
+
+    .font-name {
+      display: block;
+      font-family: "Courier Prime", monospace;
+      font-size: 0.78rem;
+      font-weight: 700;
+    }
+
+    .typewriter-sample {
+      font-family: "Courier Prime", monospace;
+    }
+
+    .sans-sample {
+      font-family: "Lato", sans-serif;
+    }
+
+    .cursive-sample {
+      font-family: "Caveat", cursive;
+      font-size: 1.45rem;
+    }
+
+    /* LIVE PREVIEW */
+
+    .preview-area {
+      margin: 6px 0 18px;
+    }
+
+    .preview-paper {
+      min-height: 115px;
+      padding: 20px;
+      border: 2px solid rgba(73, 52, 38, 0.35);
+      border-radius: 5px;
+      background-color: var(--selected-paper, #fffaf0);
+      background-image:
+        repeating-linear-gradient(
+          0deg,
+          rgba(73, 52, 38, 0.035) 0px,
+          rgba(73, 52, 38, 0.035) 1px,
+          transparent 1px,
+          transparent 4px
+        );
+      box-shadow: 3px 4px 7px rgba(73, 52, 38, 0.12);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }
+
+    #previewText {
+      margin: 0;
+      color: var(--selected-ink, #292521);
+      font-family: "Courier Prime", monospace;
+      font-size: 1.35rem;
+      line-height: 1.5;
+      overflow-wrap: anywhere;
+    }
+
+    /* CONTINUE BUTTON */
+
+    .continue-button {
+      display: block;
+      width: 100%;
+      padding: 13px;
+      border: 2px solid var(--brown);
+      border-radius: 14px;
+      background: var(--progress-fill);
+      color: var(--brown);
+      box-shadow: 4px 5px 0 var(--brown);
+      font-family: inherit;
+      font-size: 1rem;
+      font-weight: 700;
+      cursor: pointer;
+      -webkit-tap-highlight-color: transparent;
+      touch-action: manipulation;
+      user-select: none;
+      transition: transform 120ms ease,
+                  box-shadow 120ms ease;
+    }
+
+    .continue-button:hover {
+      transform: translate(-2px, -2px);
+      box-shadow: 6px 7px 0 var(--brown);
+    }
+
+    .continue-button:active {
+      transform: translate(4px, 5px);
+      box-shadow: 0 0 0 var(--brown);
+    }
+
+    .continue-button:focus-visible {
+      outline: 3px solid var(--brown);
+      outline-offset: 4px;
+    }
+
+    .message {
+      min-height: 18px;
+      margin: 8px 0 0;
+      text-align: center;
+      font-size: 0.9rem;
+    }
+
+    @media (max-width: 540px) {
+      .page {
+        padding: 9px 15px 12px;
+      }
+
+      h1 {
+        font-size: 2rem;
+      }
+
+      .intro {
+        font-size: 0.85rem;
+        margin-bottom: 11px;
+      }
+
+      .progress-meter {
+        gap: 7px;
+        max-width: 330px;
+      }
+
+      .progress-box {
+        max-width: 42px;
+        font-size: 17px;
+      }
+
+      .ink-grid,
+      .font-grid {
+        gap: 8px;
+      }
+
+      .ink-option {
+        min-height: 82px;
+      }
+
+      .font-option {
+        min-height: 100px;
+      }
+
+      .ink-name {
+        font-size: 0.8rem;
+      }
+
+      .font-name {
+        font-size: 0.7rem;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .ink-option,
+      .font-option,
+      .continue-button {
+        transition: none;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <main class="page">
+
+    <a class="back-link" href="fortune-paper.html">← Back</a>
+
+    <h1>Fortune From</h1>
+
+    <p class="intro">
+      Welcome to the Fortune Factory! Here, you will write a fortune for somebody to find. Remember, you are now part of their day's narrative. Write something you would like to receive.
+    </p>
+
+    <!-- PROGRESS METER -->
+    <div class="progress-meter" id="progressMeter"
+         aria-label="Fortune creation progress">
+
+      <div class="progress-box active">1</div>
+      <div class="progress-box active">2</div>
+      <div class="progress-box active">3</div>
+      <div class="progress-box">4</div>
+      <div class="progress-box">5</div>
+      <div class="progress-box">6</div>
+
+    </div>
+
+    <!-- INK COLOUR SELECTION -->
+
+    <section class="ink-section">
+      <label class="section-label">Choose your ink</label>
+
+      <div class="ink-grid">
+
+        <button type="button"
+                class="ink-option"
+                style="--ink-color: #292521"
+                aria-pressed="false"
+                onclick="selectInk('Black', '#292521', this)">
+          <span class="ink-sample">Your words</span>
+          <span class="ink-name">Black</span>
+        </button>
+
+        <button type="button"
+                class="ink-option"
+                style="--ink-color: #315c91"
+                aria-pressed="false"
+                onclick="selectInk('Blue', '#315c91', this)">
+          <span class="ink-sample">Your words</span>
+          <span class="ink-name">Blue</span>
+        </button>
+
+        <button type="button"
+                class="ink-option"
+                style="--ink-color: #b94743"
+                aria-pressed="false"
+                onclick="selectInk('Red', '#b94743', this)">
+          <span class="ink-sample">Your words</span>
+          <span class="ink-name">Red</span>
+        </button>
+
+        <button type="button"
+                class="ink-option"
+                style="--ink-color: #476b4f"
+                aria-pressed="false"
+                onclick="selectInk('Green', '#476b4f', this)">
+          <span class="ink-sample">Your words</span>
+          <span class="ink-name">Green</span>
+        </button>
+
+        <button type="button"
+                class="ink-option"
+                style="--ink-color: #a45f3c"
+                aria-pressed="false"
+                onclick="selectInk('Copper', '#a45f3c', this)">
+          <span class="ink-sample">Your words</span>
+          <span class="ink-name">Copper</span>
+        </button>
+
+        <button type="button"
+                class="ink-option"
+                style="--ink-color: #76516f"
+                aria-pressed="false"
+                onclick="selectInk('Plum', '#76516f', this)">
+          <span class="ink-sample">Your words</span>
+          <span class="ink-name">Plum</span>
+        </button>
+
+      </div>
+    </section>
+
+    <!-- FONT SELECTION -->
+
+    <section class="ink-section">
+      <label class="section-label">Choose your font</label>
+
+      <div class="font-grid">
+
+        <button type="button"
+                class="font-option"
+                aria-pressed="false"
+                onclick="selectFont('typewriter', this)">
+          <span class="font-sample typewriter-sample">
+            Dear Stranger
+          </span>
+          <span class="font-name">Typewriter</span>
+        </button>
+
+        <button type="button"
+                class="font-option"
+                aria-pressed="false"
+                onclick="selectFont('sans', this)">
+          <span class="font-sample sans-sample">
+            Dear Stranger
+          </span>
+          <span class="font-name">Sans-serif</span>
+        </button>
+
+        <button type="button"
+                class="font-option"
+                aria-pressed="false"
+                onclick="selectFont('cursive', this)">
+          <span class="font-sample cursive-sample">
+            Dear Stranger
+          </span>
+          <span class="font-name">Cursive</span>
+        </button>
+
+      </div>
+    </section>
+
+    <!-- LIVE PREVIEW -->
+
+    <section class="preview-area">
+      <label class="section-label">Your writing will look like this</label>
+
+      <div class="preview-paper" id="previewPaper">
+        <p id="previewText">
+          A little kindness goes a long way.
+        </p>
+      </div>
+    </section>
+
+    <button
+      class="continue-button"
+      type="button"
+      onclick="continueInk()"
+    >
+      Continue →
+    </button>
+
+    <p class="message" id="message" aria-live="polite"></p>
+
+  </main>
+
+  <script>
+    // CURRENT SELECTIONS
+
+    let selectedInk = "";
+    let selectedInkHex = "";
+    let selectedFont = "";
+
+    // PAPER COLOURS FROM STEP 2
+
+    const paperColours = {
+      Ivory: "#fffaf0",
+      Butter: "#f0df9e",
+      Terracotta: "#b96f55",
+      Blush: "#d9a5a1",
+      Lavender: "#d8cde3",
+      Powder: "#c9dce8",
+      Sage: "#c4cdbb",
+      Smoke: "#deded9",
+      Charcoal: "#a39d97"
+    };
+
+    const savedPaper =
+      sessionStorage.getItem("paperChoice");
+
+    const previewPaper =
+      document.getElementById("previewPaper");
+
+    const paperColour =
+      paperColours[savedPaper] || "#fffaf0";
+
+    previewPaper.style.setProperty(
+      "--selected-paper",
+      paperColour
+    );
+
+    // INK SELECTION
+
+    function selectInk(inkName, inkHex, selectedButton) {
+      const options =
+        document.querySelectorAll(".ink-option");
+
+      options.forEach((option) => {
+        option.classList.remove("selected");
+        option.setAttribute("aria-pressed", "false");
+      });
+
+      selectedButton.classList.add("selected");
+      selectedButton.setAttribute("aria-pressed", "true");
+
+      selectedInk = inkName;
+      selectedInkHex = inkHex;
+
+      updatePreview();
+
+      document.getElementById("message").textContent =
+        inkName + " ink selected.";
+    }
+
+    // FONT SELECTION
+
+    function selectFont(fontName, selectedButton) {
+      const options =
+        document.querySelectorAll(".font-option");
+
+      options.forEach((option) => {
+        option.classList.remove("selected");
+        option.setAttribute("aria-pressed", "false");
+      });
+
+      selectedButton.classList.add("selected");
+      selectedButton.setAttribute("aria-pressed", "true");
+
+      selectedFont = fontName;
+
+      updatePreview();
+
+      document.getElementById("message").textContent =
+        "Font selected.";
+    }
+
+    // LIVE PREVIEW
+
+    function updatePreview() {
+      const preview =
+        document.getElementById("previewText");
+
+      if (selectedInkHex) {
+        preview.style.color = selectedInkHex;
+      }
+
+      if (selectedFont === "typewriter") {
+        preview.style.fontFamily =
+          '"Courier Prime", "Courier New", monospace';
+      }
+
+      if (selectedFont === "sans") {
+        preview.style.fontFamily =
+          '"Lato", sans-serif';
+      }
+
+      if (selectedFont === "cursive") {
+        preview.style.fontFamily =
+          '"Caveat", cursive';
+      }
+    }
+
+    // CONTINUE BUTTON
+
+    function continueInk() {
+      const message =
+        document.getElementById("message");
+
+      if (!selectedInk) {
+        message.textContent =
+          "Please choose an ink colour.";
+        return;
+      }
+
+      if (!selectedFont) {
+        message.textContent =
+          "Please choose a font.";
+        return;
+      }
+
+      // Save the ink choice.
+      sessionStorage.setItem("inkChoice", selectedInk);
+      sessionStorage.setItem("inkColour", selectedInkHex);
+
+      // Save the font choice.
+      sessionStorage.setItem("fontChoice", selectedFont);
+
+      message.textContent =
+        "Lovely! Your ink and font choices are saved.";
+    }
+
+    
+  </script>
+</body>
+</html>
