@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,7 +9,7 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Courier+Prime:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&display=swap" rel="stylesheet">
 
   <style>
     :root {
@@ -31,46 +32,46 @@
 
     .page {
       width: min(700px, 100%);
+      min-height: 100svh;
       margin: 0 auto;
-      padding: 35px 22px 60px;
+      padding: 12px 20px 16px;
+      display: flex;
+      flex-direction: column;
     }
 
     .back-link {
       display: inline-block;
+      width: fit-content;
       color: var(--brown);
       text-decoration: none;
       font-weight: 700;
-      margin-bottom: 35px;
-    }
-
-    .back-link:hover {
-      color: var(--brown);
+      margin-bottom: 10px;
     }
 
     h1 {
       color: var(--brown);
       text-align: center;
-      font-size: clamp(2.2rem, 6vw, 3.5rem);
-      margin: 0 0 12px;
+      font-size: clamp(2rem, 6vw, 3.5rem);
+      margin: 0 0 5px;
     }
 
     .intro {
       text-align: center;
-      line-height: 1.6;
-      margin: 0 0 35px;
+      line-height: 1.35;
+      font-size: 0.95rem;
+      margin: 0 0 14px;
     }
 
     label {
       display: block;
       font-weight: 700;
-      margin-bottom: 10px;
+      margin-bottom: 5px;
     }
 
-    select,
     textarea,
     input[type="text"] {
       width: 100%;
-      padding: 15px;
+      padding: 10px;
       border: 2px solid var(--brown);
       border-radius: 12px;
       background: var(--paper);
@@ -79,42 +80,47 @@
       font-size: 1rem;
     }
 
-    select {
-      margin-bottom: 25px;
-    }
-
     textarea {
-      min-height: 230px;
+      height: 115px;
+      min-height: 90px;
       resize: vertical;
-      line-height: 1.7;
+      line-height: 1.4;
     }
 
     .prompt-button,
     .continue-button {
-      display: inline-block;
-      padding: 14px 20px;
+      padding: 11px 14px;
       border: 2px solid var(--brown);
       border-radius: 14px;
       background: var(--paper);
       color: var(--brown);
-      box-shadow: 4px 5px 0 var(--brown);
+      box-shadow: 3px 4px 0 var(--brown);
       font: inherit;
       font-weight: 700;
       cursor: pointer;
     }
 
     .prompt-button {
-      margin: 14px 0 28px;
+      align-self: flex-start;
+      margin: 9px 0 5px;
     }
 
-    .prompt-button:hover,
-    .continue-button:hover {
+    .prompt-button:hover {
       background: #eee2c9;
     }
 
+    .prompt-hint {
+      font-size: 0.9rem;
+      line-height: 1.3;
+      margin: 3px 0 8px;
+      padding: 7px 10px;
+      background: #eee2c9;
+      border-radius: 8px;
+    }
+
     .signature-area {
-      margin: 20px 0 30px;
-      padding: 20px;
+      margin: 5px 0 12px;
+      padding: 10px 13px;
       border: 2px solid var(--brown);
       border-radius: 14px;
       background: var(--paper);
@@ -123,13 +129,13 @@
     .signature-toggle {
       display: flex;
       align-items: center;
-      gap: 10px;
-      margin-bottom: 15px;
+      gap: 9px;
+      margin: 0;
     }
 
     .signature-toggle input {
-      width: 19px;
-      height: 19px;
+      width: 18px;
+      height: 18px;
       accent-color: var(--brown);
     }
 
@@ -137,27 +143,91 @@
       margin: 0;
     }
 
+    #signatureInput {
+      margin-top: 9px;
+    }
+
     .continue-button {
       display: block;
       width: 100%;
-      padding: 17px;
+      padding: 13px;
       background: var(--brown);
       color: white;
-      font-size: 1.1rem;
+      font-size: 1rem;
+    }
+
+    .continue-button:hover {
+      background: #654b39;
     }
 
     .message {
-      min-height: 28px;
-      margin-top: 20px;
+      min-height: 18px;
+      margin: 8px 0 0;
       text-align: center;
+      font-size: 0.9rem;
     }
 
     button:focus-visible,
-    select:focus-visible,
     textarea:focus-visible,
     input:focus-visible {
       outline: 3px solid var(--brown);
-      outline-offset: 4px;
+      outline-offset: 3px;
+    }
+
+    @media (max-width: 540px) {
+      .page {
+        padding: 9px 15px 12px;
+      }
+
+      h1 {
+        font-size: 2rem;
+      }
+
+      .intro {
+        font-size: 0.85rem;
+        margin-bottom: 11px;
+      }
+
+      textarea {
+        height: 105px;
+        min-height: 85px;
+      }
+
+      .prompt-button {
+        font-size: 0.9rem;
+      }
+
+      .signature-area {
+        padding: 8px 11px;
+      }
+
+      .continue-button {
+        padding: 12px;
+      }
+    }
+
+    @media (max-height: 650px) {
+      .page {
+        padding-top: 6px;
+        padding-bottom: 8px;
+      }
+
+      .back-link {
+        margin-bottom: 5px;
+      }
+
+      h1 {
+        font-size: 1.8rem;
+      }
+
+      .intro {
+        margin-bottom: 8px;
+      }
+
+      textarea {
+        height: 85px;
+        min-height: 75px;
+      }
     }
 
     @media (prefers-reduced-motion: reduce) {
@@ -171,7 +241,7 @@
 <body>
   <main class="page">
 
-    <a class="back-link" href="index.html">←Home</a>
+    <a class="back-link" href="index.html">← Home</a>
 
     <h1>Fortune From</h1>
 
@@ -195,7 +265,10 @@
       ✦ Give me a writing prompt
     </button>
 
+    <p class="prompt-hint" id="promptHint" hidden aria-live="polite"></p>
+
     <section class="signature-area">
+
       <div class="signature-toggle">
         <input
           type="checkbox"
@@ -204,6 +277,17 @@
         >
         <label for="showSignature">Show my signature</label>
       </div>
+
+      <div id="signatureInput" hidden>
+        <label for="penName">Your pen name</label>
+        <input
+          type="text"
+          id="penName"
+          maxlength="40"
+          placeholder="Your chosen name"
+        >
+      </div>
+
     </section>
 
     <button
@@ -211,7 +295,7 @@
       type="button"
       onclick="continueWriting()"
     >
-      Design Your Fortune→
+      Design Your Fortune →
     </button>
 
     <p class="message" id="message" aria-live="polite"></p>
@@ -226,16 +310,16 @@
       "Imagine a fortune someone might find years from now.",
       "What advice would you give your younger self? Alternatively, what advice would you give your future self?",
       "Write a prediction that might make someone smile.",
-      "What is something beautiful that people often overlook?"
+      "What is something beautiful that people often overlook?",
       "Write a tiny piece of wisdom here.",
-      "Write something completely unexpected like, 'You've found a 4-leaf clover!')", 
+      "Write something completely unexpected like, 'You've found a 4-leaf clover!'",
       "Write a cute memory or story you have.",
       "Test your comedy here. Maybe the recipient needs some comedic relief today?",
       "Introduce some mysterious wonder to somebody's day with a cryptic message.",
-      "Got poety? Share it."
-      "Make a haiku! It's only 3 lines and 17 syllables in a 5-7-5 fasion.",
+      "Got poetry? Share it.",
+      "Make a haiku! It's only 3 lines and 17 syllables in a 5-7-5 fashion.",
       "Sing a song lyric you love!",
-      "A question to think about...",
+      "A question to think about..."
     ];
 
     function showPrompt() {
@@ -243,7 +327,10 @@
         Math.floor(Math.random() * prompts.length)
       ];
 
-      document.getElementById("fortune").placeholder = prompt;
+      const hint = document.getElementById("promptHint");
+
+      hint.textContent = prompt;
+      hint.hidden = false;
     }
 
     function toggleSignature() {
@@ -254,27 +341,27 @@
     }
 
     function continueWriting() {
-      const category = document.getElementById("category").value;
-      const fortune = document.getElementById("fortune").value.trim();
+      const fortune =
+        document.getElementById("fortune").value.trim();
+
       const showSignature =
         document.getElementById("showSignature").checked;
+
       const penName =
         document.getElementById("penName").value.trim();
 
-      const message = document.getElementById("message");
-
-      if (!category) {
-        message.textContent = "Please choose a fortune category.";
-        return;
-      }
+      const message =
+        document.getElementById("message");
 
       if (!fortune) {
-        message.textContent = "Your fortune is waiting to be written.";
+        message.textContent =
+          "Your fortune is waiting to be written.";
         return;
       }
 
       if (showSignature && !penName) {
-        message.textContent = "Please enter your pen name, or turn off your signature.";
+        message.textContent =
+          "Please enter your pen name, or turn off your signature.";
         return;
       }
 
