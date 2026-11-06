@@ -67,41 +67,61 @@
       max-width: 650px;
     }
 
-    .main-button {
-      flex: 1;
-      min-height: 115px;
-      padding: 22px 18px;
-      background: #fffaf0;
-      color: var(--brown);
-      border: 3px solid var(--brown);
-      border-radius: 22px 18px 24px 17px;
-      box-shadow: 6px 7px 0 var(--brown);
-      font-family: inherit;
-      font-size: clamp(1.1rem, 3vw, 1.5rem);
-      font-weight: 700;
-      cursor: pointer;
-      transition: transform 150ms ease, box-shadow 150ms ease;
-      -webkit-tap-highlight-color: transparent;
-    }
 
-    .main-button:hover {
-      transform: translate(-2px, -2px);
-      box-shadow: 8px 9px 0 var(--brown);
-    }
+.main-button {
+  flex: 1;
+  min-height: 115px;
+  padding: 22px 18px;
 
-    .main-button:active {
-      transform: translate(4px, 4px);
-      box-shadow: 2px 3px 0 var(--brown);
-    }
+  background-color: #fffaf0;
+  color: #493426;
 
-    .main-button:focus-visible {
-      outline: 4px solid var(--terracotta);
-      outline-offset: 6px;
-    }
+  border: 3px solid #493426;
+  border-radius: 22px 18px 24px 17px;
 
-    .main-button:focus:not(:focus-visible) {
-      outline: none;
-    }
+  box-shadow: 6px 7px 0 #493426;
+
+  font-family: inherit;
+  font-size: clamp(1.1rem, 3vw, 1.5rem);
+  font-weight: 700;
+
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+
+  transition:
+    transform 120ms ease,
+    box-shadow 120ms ease,
+    background-color 120ms ease;
+}
+
+.main-button:hover {
+  background-color: #fffaf0;
+  transform: translate(-2px, -2px);
+  box-shadow: 8px 9px 0 #493426;
+}
+
+.main-button:active {
+  background-color: #fffaf0;
+  transform: translate(5px, 6px);
+  box-shadow: 1px 1px 0 #493426;
+}
+
+.main-button:focus {
+  outline: none;
+}
+
+.main-button:focus-visible {
+  outline: 3px solid #b96f55;
+  outline-offset: 5px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .main-button {
+    transition: none;
+  }
+}
+
 
     .button-icon {
       display: block;
