@@ -128,7 +128,7 @@
       padding: 11px 14px;
       border: 2px solid var(--brown);
       border-radius: 14px;
-      background: var(--progress-fill);
+      background: var(--tan);
       color: var(--brown);
       box-shadow: 4px 5px 0 var(--brown);
       font-family: inherit;
@@ -302,7 +302,7 @@
       class="prompt-button"
       onclick="generatePrompt()"
     >
-      ✦ Give me a prompt
+      ✦ Give me a writing prompt
     </button>
 
     <section class="signature-area">
@@ -346,16 +346,28 @@
       "A question to think about..."
     ];
 
+    // GENERATE A PROMPT ONLY WHEN THE BOX IS EMPTY
+
     function generatePrompt() {
       const textBox = document.getElementById("fortune");
+      const message = document.getElementById("message");
 
+      // Do not generate a prompt if the user has started writing.
+      if (textBox.value.trim() !== "") {
+        message.textContent =
+          "You've already started writing! Keep going with your fortune.";
+        return;
+      }
+
+      // Choose a random prompt.
       const randomPrompt =
         prompts[Math.floor(Math.random() * prompts.length)];
 
-      // Display the suggestion inside the empty writing box.
-      // The suggestion does not become part of the fortune.
+      // Change only the placeholder.
+      // Do not focus the textarea or open the keyboard.
       textBox.placeholder = randomPrompt;
-      textBox.focus();
+
+      message.textContent = "";
     }
 
     // PROGRESS METER
