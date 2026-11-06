@@ -15,8 +15,6 @@
       --cream: #f7f0df;
       --paper: #fffaf0;
       --brown: #493426;
-      --terracotta: #b96f55;
-      --sage: #87947a;
     }
 
     * {
@@ -46,11 +44,11 @@
     }
 
     .back-link:hover {
-      color: var(--terracotta);
+      color: var(--brown);
     }
 
     h1 {
-      color: var(--terracotta);
+      color: var(--brown);
       text-align: center;
       font-size: clamp(2.2rem, 6vw, 3.5rem);
       margin: 0 0 12px;
@@ -132,7 +130,7 @@
     .signature-toggle input {
       width: 19px;
       height: 19px;
-      accent-color: var(--terracotta);
+      accent-color: var(--brown);
     }
 
     .signature-toggle label {
@@ -143,7 +141,7 @@
       display: block;
       width: 100%;
       padding: 17px;
-      background: var(--terracotta);
+      background: var(--brown);
       color: white;
       font-size: 1.1rem;
     }
@@ -158,7 +156,7 @@
     select:focus-visible,
     textarea:focus-visible,
     input:focus-visible {
-      outline: 3px solid var(--sage);
+      outline: 3px solid var(--brown);
       outline-offset: 4px;
     }
 
@@ -173,39 +171,20 @@
 <body>
   <main class="page">
 
-    <a class="back-link" href="index.html">← Back to Home</a>
+    <a class="back-link" href="index.html">←Home</a>
 
     <h1>Fortune From</h1>
 
     <p class="intro">
-      A little thought, a little wish, a little something
-      to send out into the world.
+      Welcome to the Fortune Factory, a place to create your own fortune to send out into the world for somebody to find!
     </p>
-
-    <label for="category">Choose a category</label>
-
-    <select id="category">
-      <option value="">Choose your kind of fortune</option>
-      <option>A little reminder</option>
-      <option>A wish for someone</option>
-      <option>Something funny</option>
-      <option>A thought to ponder</option>
-      <option>A mysterious message</option>
-      <option>A little encouragement</option>
-      <option>A question to think about</option>
-      <option>A tiny piece of wisdom</option>
-      <option>A love note to the world</option>
-      <option>Something completely unexpected</option>
-      <option>A strange prediction</option>
-      <option>A memory or story</option>
-    </select>
 
     <label for="fortune">Write your fortune</label>
 
     <textarea
       id="fortune"
-      maxlength="2000"
-      placeholder="Write whatever is on your mind..."
+      maxlength="500"
+      placeholder="Dear Stranger..."
     ></textarea>
 
     <button
@@ -225,16 +204,6 @@
         >
         <label for="showSignature">Show my signature</label>
       </div>
-
-      <div id="signatureInput" hidden>
-        <label for="penName">Your pen name</label>
-        <input
-          type="text"
-          id="penName"
-          maxlength="40"
-          placeholder="Your chosen name"
-        >
-      </div>
     </section>
 
     <button
@@ -242,7 +211,7 @@
       type="button"
       onclick="continueWriting()"
     >
-      Continue to Design Your Fortune →
+      Design Your Fortune→
     </button>
 
     <p class="message" id="message" aria-live="polite"></p>
@@ -253,11 +222,20 @@
     const prompts = [
       "What is something someone might need to hear today?",
       "Write a wish for a stranger you will never meet.",
-      "What little thing makes an ordinary day special?",
+      "What makes an ordinary day special? Remind the recipient that it's in the little things.",
       "Imagine a fortune someone might find years from now.",
-      "What advice would you give your younger self?",
+      "What advice would you give your younger self? Alternatively, what advice would you give your future self?",
       "Write a prediction that might make someone smile.",
       "What is something beautiful that people often overlook?"
+      "Write a tiny piece of wisdom here.",
+      "Write something completely unexpected like, 'You've found a 4-leaf clover!')", 
+      "Write a cute memory or story you have.",
+      "Test your comedy here. Maybe the recipient needs some comedic relief today?",
+      "Introduce some mysterious wonder to somebody's day with a cryptic message.",
+      "Got poety? Share it."
+      "Make a haiku! It's only 3 lines and 17 syllables in a 5-7-5 fasion.",
+      "Sing a song lyric you love!",
+      "A question to think about...",
     ];
 
     function showPrompt() {
