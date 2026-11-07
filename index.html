@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -15,6 +16,8 @@
       --cream: #f7f0df;
       --paper: #fffaf0;
       --brown: #493426;
+      --tan: #eee2c9;
+      --terracotta: #b96f55;
     }
 
     * {
@@ -29,13 +32,30 @@
       font-family: "Courier Prime", "Courier New", monospace;
     }
 
+    /* About link */
+
+    .about-link {
+      position: absolute;
+      top: 24px;
+      left: 28px;
+      color: var(--brown);
+      font-size: 1rem;
+      font-weight: 700;
+      text-decoration: underline;
+      text-underline-offset: 4px;
+    }
+
+    .about-link:hover {
+      color: var(--terracotta);
+    }
+
     .home {
       min-height: 100vh;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      padding: 40px 20px;
+      padding: 80px 20px 40px;
       text-align: center;
     }
 
@@ -59,6 +79,8 @@
       line-height: 1.6;
     }
 
+    /* Main fortune buttons */
+
     .buttons {
       display: flex;
       justify-content: center;
@@ -67,61 +89,53 @@
       max-width: 650px;
     }
 
+    .main-button {
+      flex: 1;
+      min-height: 115px;
+      padding: 22px 18px;
 
-.main-button {
-  flex: 1;
-  min-height: 115px;
-  padding: 22px 18px;
+      background-color: var(--tan);
+      color: var(--brown);
 
-  background-color: #eee2c9;
-  color: #493426;
+      border: 3px solid var(--brown);
+      border-radius: 22px 18px 24px 17px;
 
-  border: 3px solid #493426;
-  border-radius: 22px 18px 24px 17px;
+      box-shadow: 6px 7px 0 var(--brown);
 
-  box-shadow: 6px 7px 0 #493426;
+      font-family: inherit;
+      font-size: clamp(1.1rem, 3vw, 1.5rem);
+      font-weight: 700;
 
-  font-family: inherit;
-  font-size: clamp(1.1rem, 3vw, 1.5rem);
-  font-weight: 700;
+      cursor: pointer;
+      -webkit-tap-highlight-color: transparent;
+      touch-action: manipulation;
 
-  cursor: pointer;
-  -webkit-tap-highlight-color: transparent;
-  touch-action: manipulation;
+      transition:
+        transform 120ms ease,
+        box-shadow 120ms ease,
+        background-color 120ms ease;
+    }
 
-  transition:
-    transform 120ms ease,
-    box-shadow 120ms ease,
-    background-color 120ms ease;
-}
+    .main-button:hover {
+      background-color: var(--tan);
+      transform: translate(-2px, -2px);
+      box-shadow: 8px 9px 0 var(--brown);
+    }
 
-.main-button:hover {
-  background-color: #eee2c9;
-  transform: translate(-2px, -2px);
-  box-shadow: 8px 9px 0 #493426;
-}
+    .main-button:active {
+      background-color: var(--tan);
+      transform: translate(5px, 6px);
+      box-shadow: 1px 1px 0 var(--brown);
+    }
 
-.main-button:active {
-  background-color: #eee3c9;
-  transform: translate(5px, 6px);
-  box-shadow: 1px 1px 0 #493426;
-}
+    .main-button:focus {
+      outline: none;
+    }
 
-.main-button:focus {
-  outline: none;
-}
-
-.main-button:focus-visible {
-  outline: 3px solid #b96f55;
-  outline-offset: 5px;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .main-button {
-    transition: none;
-  }
-}
-
+    .main-button:focus-visible {
+      outline: 3px solid var(--terracotta);
+      outline-offset: 5px;
+    }
 
     .button-icon {
       display: block;
@@ -130,9 +144,72 @@
       line-height: 1;
     }
 
+    /* Login and Sign Up section */
+
+    .account-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 55px;
+      margin-top: 48px;
+    }
+
+    .account-option {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+      min-width: 115px;
+    }
+
+    .account-label {
+      margin: 0;
+      font-size: 1.1rem;
+      font-weight: 700;
+    }
+
+    .account-button {
+      min-width: 115px;
+      padding: 10px 18px;
+
+      background-color: var(--brown);
+      color: var(--paper);
+
+      border: 2px solid var(--brown);
+      border-radius: 12px;
+
+      box-shadow: 4px 4px 0 #a08068;
+
+      font-family: inherit;
+      font-size: 1rem;
+      font-weight: 700;
+
+      cursor: pointer;
+      text-decoration: none;
+
+      transition:
+        transform 120ms ease,
+        box-shadow 120ms ease;
+    }
+
+    .account-button:hover {
+      transform: translate(-1px, -1px);
+      box-shadow: 5px 5px 0 #a08068;
+    }
+
+    .account-button:active {
+      transform: translate(3px, 3px);
+      box-shadow: 1px 1px 0 #a08068;
+    }
+
+    .account-button:focus-visible,
+    .about-link:focus-visible {
+      outline: 3px solid var(--terracotta);
+      outline-offset: 4px;
+    }
+
     .notice {
       min-height: 30px;
-      margin-top: 38px;
+      margin-top: 30px;
       font-size: 1rem;
     }
 
@@ -150,10 +227,24 @@
       .tagline {
         margin-bottom: 36px;
       }
+
+      .account-buttons {
+        gap: 28px;
+        margin-top: 42px;
+      }
+
+      .account-option {
+        min-width: 105px;
+      }
+
+      .account-button {
+        min-width: 105px;
+      }
     }
 
     @media (prefers-reduced-motion: reduce) {
-      .main-button {
+      .main-button,
+      .account-button {
         transition: none;
       }
     }
@@ -161,29 +252,64 @@
 </head>
 
 <body>
+
+  <a class="about-link" href="about.html">About</a>
+
   <main class="home">
+
     <h1>
       Fortune From,
       <span>Fortune Found</span>
     </h1>
 
     <p class="tagline">
-      The little daily fortune box - give one, take one. 
+      The little daily fortune box - give one, take one.
     </p>
 
     <div class="buttons">
-      <button class="main-button" onclick="window.location.href='fortune-from.html'">
+
+      <button
+        class="main-button"
+        onclick="window.location.href='fortune-from.html'">
+
         <span class="button-icon" aria-hidden="true">✉</span>
         Fortune From
+
       </button>
 
-      <button class="main-button" onclick="showNotice('Fortune Found is coming soon!')">
+      <button
+        class="main-button"
+        onclick="showNotice('Fortune Found is coming soon!')">
+
         <span class="button-icon" aria-hidden="true">✦</span>
         Fortune Found
+
       </button>
+
+    </div>
+
+    <div class="account-buttons">
+
+      <div class="account-option">
+        <p class="account-label">Return</p>
+
+        <a class="account-button" href="login.html">
+          Login
+        </a>
+      </div>
+
+      <div class="account-option">
+        <p class="account-label">Join</p>
+
+        <a class="account-button" href="signup.html">
+          Sign Up
+        </a>
+      </div>
+
     </div>
 
     <p class="notice" id="notice" aria-live="polite"></p>
+
   </main>
 
   <script>
@@ -191,5 +317,6 @@
       document.getElementById("notice").textContent = message;
     }
   </script>
+
 </body>
 </html>
