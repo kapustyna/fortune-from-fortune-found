@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -32,7 +31,7 @@
       font-family: "Courier Prime", "Courier New", monospace;
     }
 
-    /* Top-left buttons */
+    /* Top-left Help and About buttons */
 
     .top-buttons {
       position: absolute;
@@ -234,7 +233,7 @@
       font-size: 1rem;
     }
 
-    /* Help popup */
+    /* Shared popup background */
 
     .help-overlay {
       position: fixed;
@@ -252,6 +251,8 @@
     .help-overlay.open {
       display: flex;
     }
+
+    /* Help popup */
 
     .help-popup {
       position: relative;
@@ -394,11 +395,100 @@
       box-shadow: 1px 1px 0 var(--brown);
     }
 
+    /* Origin Story popup */
+
+    .origin-popup {
+      position: relative;
+      width: 100%;
+      max-width: 540px;
+      max-height: 85vh;
+      overflow-y: auto;
+
+      padding: 30px 25px;
+
+      background: var(--paper);
+      color: var(--brown);
+
+      border: 3px solid var(--brown);
+      border-radius: 22px 18px 24px 17px;
+
+      box-shadow: 8px 9px 0 var(--brown);
+
+      text-align: center;
+    }
+
+    .origin-popup h2 {
+      margin: 5px 0 20px;
+      font-size: 1.8rem;
+    }
+
+    .origin-story {
+      padding: 22px;
+      background: var(--cream);
+      border: 2px solid var(--brown);
+      border-radius: 15px;
+
+      text-align: left;
+      font-size: 1rem;
+      line-height: 1.8;
+    }
+
+    .origin-story p {
+      margin: 0 0 18px;
+    }
+
+    .origin-story p:last-child {
+      margin-bottom: 0;
+    }
+
+    .origin-check {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+
+      width: 52px;
+      height: 48px;
+      margin-top: 24px;
+
+      background: var(--tan);
+      color: var(--brown);
+
+      border: 3px solid var(--brown);
+      border-radius: 14px 11px 15px 12px;
+
+      box-shadow: 4px 5px 0 var(--brown);
+
+      font-family: inherit;
+      font-size: 1.7rem;
+      font-weight: 700;
+
+      cursor: pointer;
+
+      transition:
+        transform 120ms ease,
+        box-shadow 120ms ease;
+    }
+
+    .origin-check:hover {
+      transform: translate(-2px, -2px);
+      box-shadow: 6px 7px 0 var(--brown);
+    }
+
+    .origin-check:active {
+      transform: translate(3px, 4px);
+      box-shadow: 1px 1px 0 var(--brown);
+    }
+
+    /* Keyboard focus */
+
     .help-action:focus-visible,
-    .close-help:focus-visible {
+    .close-help:focus-visible,
+    .origin-check:focus-visible {
       outline: 3px solid var(--terracotta);
       outline-offset: 4px;
     }
+
+    /* Mobile layout */
 
     @media (max-width: 540px) {
       .top-buttons {
@@ -436,13 +526,29 @@
       .help-popup h2 {
         font-size: 1.5rem;
       }
+
+      .origin-popup {
+        padding: 26px 16px 22px;
+      }
+
+      .origin-popup h2 {
+        font-size: 1.5rem;
+      }
+
+      .origin-story {
+        padding: 17px;
+        font-size: 0.95rem;
+      }
     }
+
+    /* Reduced motion accessibility */
 
     @media (prefers-reduced-motion: reduce) {
       .main-button,
       .small-button,
       .account-button,
-      .help-action {
+      .help-action,
+      .origin-check {
         transition: none;
       }
     }
@@ -451,7 +557,7 @@
 
 <body>
 
-  <!-- Top-left Help and About Me buttons -->
+  <!-- Top-left Help and Origin Story buttons -->
 
   <div class="top-buttons">
 
@@ -464,13 +570,14 @@
       ?
     </button>
 
-    <a
+    <button
       class="small-button smiley-button"
-      href="about.html"
-      aria-label="About Me"
-      title="About Me">
-      ☺︎
-    </a>
+      type="button"
+      onclick="openOrigin()"
+      aria-label="Origin Story"
+      title="Origin Story">
+      ☺
+    </button>
 
   </div>
 
@@ -626,10 +733,88 @@
     </div>
   </div>
 
+  <!-- Origin Story popup -->
+
+  <div
+    class="help-overlay"
+    id="originOverlay"
+    onclick="closeOriginOnBackdrop(event)">
+
+    <div
+      class="origin-popup"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="originTitle">
+
+      <h2 id="originTitle">Origin Story</h2>
+
+      <div class="origin-story">
+
+        <p>
+          Hi Stranger, I'm Cabbage Head🥬
+        </p>
+
+        <p>
+          This project was inspired by my trip to Japan in 2026,
+          where I stumbled upon something that quickly became
+          a highlight of my travels: <em>omikuji</em>, or fortunes.
+        </p>
+
+        <p>
+          They were everywhere! Whether sitting in boxes on the
+          street or tucked away in temples, I never missed an
+          opportunity to get one. The interesting part was, I
+          didn't mind if I was tied to a positive or negative fate,
+          or even if the paper told me that I should cover my
+          mouth when I yawn because people notice it (yes, that
+          was a real one!).
+        </p>
+
+        <p>
+          There was a magic in knowing that out of the many
+          options, this exact fortune was the one I was meant to find.
+        </p>
+
+        <p>
+          I wanted to mirror this magic in Fortune From, Fortune
+          Found - a place where strangers send good fortunes out
+          into the world, hoping they'll find just the right person
+          and brighten their day.
+          And who knows what fortune might find you, too!
+        </p>
+
+        <p>
+          Hope you stick around,<br>
+          ~ Cabbage Head🥬
+        </p>
+
+        <p>
+          Click the "?" button on the home page for a sneak
+          peak at the process.
+        </p>
+
+      </div>
+
+      <button
+        class="origin-check"
+        type="button"
+        onclick="closeOrigin()"
+        aria-label="Close Origin Story"
+        title="Close">
+        ✓
+      </button>
+
+    </div>
+  </div>
+
+  <!-- JavaScript -->
+
   <script>
     function showNotice(message) {
       document.getElementById("notice").textContent = message;
     }
+
+    /* Help popup functions */
 
     function openHelp() {
       const overlay = document.getElementById("helpOverlay");
@@ -649,11 +834,36 @@
       }
     }
 
+    /* Origin Story popup functions */
+
+    function openOrigin() {
+      const overlay = document.getElementById("originOverlay");
+      overlay.classList.add("open");
+
+      document.querySelector(".origin-check").focus();
+    }
+
+    function closeOrigin() {
+      document.getElementById("originOverlay").classList.remove("open");
+      document.querySelector(".smiley-button").focus();
+    }
+
+    function closeOriginOnBackdrop(event) {
+      if (event.target === document.getElementById("originOverlay")) {
+        closeOrigin();
+      }
+    }
+
+    /* Escape key closes whichever popup is open */
+
     document.addEventListener("keydown", function(event) {
       if (event.key === "Escape") {
-        const overlay = document.getElementById("helpOverlay");
+        const helpOverlay = document.getElementById("helpOverlay");
+        const originOverlay = document.getElementById("originOverlay");
 
-        if (overlay.classList.contains("open")) {
+        if (originOverlay.classList.contains("open")) {
+          closeOrigin();
+        } else if (helpOverlay.classList.contains("open")) {
           closeHelp();
         }
       }
