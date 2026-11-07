@@ -32,21 +32,51 @@
       font-family: "Courier Prime", "Courier New", monospace;
     }
 
-    /* About link */
+    /* About button */
 
-    .about-link {
+    .about-button {
       position: absolute;
       top: 24px;
       left: 28px;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      width: 44px;
+      height: 44px;
+
+      background-color: var(--tan);
       color: var(--brown);
-      font-size: 1rem;
+
+      border: 3px solid var(--brown);
+      border-radius: 14px 11px 15px 12px;
+
+      box-shadow: 4px 5px 0 var(--brown);
+
+      font-family: inherit;
+      font-size: 1.4rem;
       font-weight: 700;
-      text-decoration: underline;
-      text-underline-offset: 4px;
+      text-decoration: none;
+
+      cursor: pointer;
+      -webkit-tap-highlight-color: transparent;
+      touch-action: manipulation;
+
+      transition:
+        transform 120ms ease,
+        box-shadow 120ms ease,
+        background-color 120ms ease;
     }
 
-    .about-link:hover {
-      color: var(--terracotta);
+    .about-button:hover {
+      transform: translate(-2px, -2px);
+      box-shadow: 6px 7px 0 var(--brown);
+    }
+
+    .about-button:active {
+      transform: translate(3px, 4px);
+      box-shadow: 1px 1px 0 var(--brown);
     }
 
     .home {
@@ -132,7 +162,9 @@
       outline: none;
     }
 
-    .main-button:focus-visible {
+    .main-button:focus-visible,
+    .about-button:focus-visible,
+    .account-button:focus-visible {
       outline: 3px solid var(--terracotta);
       outline-offset: 5px;
     }
@@ -144,7 +176,7 @@
       line-height: 1;
     }
 
-    /* Login and Sign Up section */
+    /* Return and Join buttons */
 
     .account-buttons {
       display: flex;
@@ -153,31 +185,17 @@
       margin-top: 48px;
     }
 
-    .account-option {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 12px;
-      min-width: 115px;
-    }
-
-    .account-label {
-      margin: 0;
-      font-size: 1.1rem;
-      font-weight: 700;
-    }
-
     .account-button {
       min-width: 115px;
       padding: 10px 18px;
 
-      background-color: var(--brown);
-      color: var(--paper);
+      background-color: var(--tan);
+      color: var(--brown);
 
-      border: 2px solid var(--brown);
-      border-radius: 12px;
+      border: 3px solid var(--brown);
+      border-radius: 14px 12px 15px 11px;
 
-      box-shadow: 4px 4px 0 #a08068;
+      box-shadow: 4px 5px 0 var(--brown);
 
       font-family: inherit;
       font-size: 1rem;
@@ -185,26 +203,25 @@
 
       cursor: pointer;
       text-decoration: none;
+      -webkit-tap-highlight-color: transparent;
+      touch-action: manipulation;
 
       transition:
         transform 120ms ease,
-        box-shadow 120ms ease;
+        box-shadow 120ms ease,
+        background-color 120ms ease;
     }
 
     .account-button:hover {
-      transform: translate(-1px, -1px);
-      box-shadow: 5px 5px 0 #a08068;
+      background-color: var(--tan);
+      transform: translate(-2px, -2px);
+      box-shadow: 6px 7px 0 var(--brown);
     }
 
     .account-button:active {
-      transform: translate(3px, 3px);
-      box-shadow: 1px 1px 0 #a08068;
-    }
-
-    .account-button:focus-visible,
-    .about-link:focus-visible {
-      outline: 3px solid var(--terracotta);
-      outline-offset: 4px;
+      background-color: var(--tan);
+      transform: translate(3px, 4px);
+      box-shadow: 1px 1px 0 var(--brown);
     }
 
     .notice {
@@ -214,6 +231,11 @@
     }
 
     @media (max-width: 540px) {
+      .about-button {
+        top: 16px;
+        left: 18px;
+      }
+
       .buttons {
         flex-direction: column;
         max-width: 330px;
@@ -233,10 +255,6 @@
         margin-top: 42px;
       }
 
-      .account-option {
-        min-width: 105px;
-      }
-
       .account-button {
         min-width: 105px;
       }
@@ -244,7 +262,8 @@
 
     @media (prefers-reduced-motion: reduce) {
       .main-button,
-      .account-button {
+      .account-button,
+      .about-button {
         transition: none;
       }
     }
@@ -253,7 +272,13 @@
 
 <body>
 
-  <a class="about-link" href="about.html">About</a>
+  <a
+    class="about-button"
+    href="about.html"
+    aria-label="About"
+    title="About">
+    ?
+  </a>
 
   <main class="home">
 
@@ -290,21 +315,13 @@
 
     <div class="account-buttons">
 
-      <div class="account-option">
-        <p class="account-label">Return</p>
+      <a class="account-button" href="login.html">
+        Return
+      </a>
 
-        <a class="account-button" href="login.html">
-          Login
-        </a>
-      </div>
-
-      <div class="account-option">
-        <p class="account-label">Join</p>
-
-        <a class="account-button" href="signup.html">
-          Sign Up
-        </a>
-      </div>
+      <a class="account-button" href="signup.html">
+        Join
+      </a>
 
     </div>
 
