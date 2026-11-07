@@ -32,13 +32,17 @@
       font-family: "Courier Prime", "Courier New", monospace;
     }
 
-    /* About button */
+    /* Top-left buttons */
 
-    .about-button {
+    .top-buttons {
       position: absolute;
       top: 24px;
       left: 28px;
+      display: flex;
+      gap: 12px;
+    }
 
+    .small-button {
       display: flex;
       align-items: center;
       justify-content: center;
@@ -69,15 +73,23 @@
         background-color 120ms ease;
     }
 
-    .about-button:hover {
+    .small-button:hover {
       transform: translate(-2px, -2px);
       box-shadow: 6px 7px 0 var(--brown);
     }
 
-    .about-button:active {
+    .small-button:active {
       transform: translate(3px, 4px);
       box-shadow: 1px 1px 0 var(--brown);
     }
+
+    .smiley-button {
+      font-family: Arial, sans-serif;
+      font-size: 1.65rem;
+      font-weight: 400;
+    }
+
+    /* Homepage */
 
     .home {
       min-height: 100vh;
@@ -158,12 +170,8 @@
       box-shadow: 1px 1px 0 var(--brown);
     }
 
-    .main-button:focus {
-      outline: none;
-    }
-
     .main-button:focus-visible,
-    .about-button:focus-visible,
+    .small-button:focus-visible,
     .account-button:focus-visible {
       outline: 3px solid var(--terracotta);
       outline-offset: 5px;
@@ -203,8 +211,6 @@
 
       cursor: pointer;
       text-decoration: none;
-      -webkit-tap-highlight-color: transparent;
-      touch-action: manipulation;
 
       transition:
         transform 120ms ease,
@@ -213,13 +219,11 @@
     }
 
     .account-button:hover {
-      background-color: var(--tan);
       transform: translate(-2px, -2px);
       box-shadow: 6px 7px 0 var(--brown);
     }
 
     .account-button:active {
-      background-color: var(--tan);
       transform: translate(3px, 4px);
       box-shadow: 1px 1px 0 var(--brown);
     }
@@ -230,8 +234,174 @@
       font-size: 1rem;
     }
 
+    /* Help popup */
+
+    .help-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 1000;
+
+      display: none;
+      align-items: center;
+      justify-content: center;
+
+      padding: 20px;
+      background: rgba(73, 52, 38, 0.55);
+    }
+
+    .help-overlay.open {
+      display: flex;
+    }
+
+    .help-popup {
+      position: relative;
+      width: 100%;
+      max-width: 540px;
+      max-height: 85vh;
+      overflow-y: auto;
+
+      padding: 30px 25px;
+
+      background: var(--paper);
+      color: var(--brown);
+
+      border: 3px solid var(--brown);
+      border-radius: 22px 18px 24px 17px;
+
+      box-shadow: 8px 9px 0 var(--brown);
+
+      text-align: center;
+    }
+
+    .close-help {
+      position: absolute;
+      top: 12px;
+      right: 15px;
+
+      padding: 4px 8px;
+      border: none;
+      background: transparent;
+
+      color: var(--brown);
+      font-family: inherit;
+      font-size: 1.5rem;
+      font-weight: 700;
+
+      cursor: pointer;
+    }
+
+    .help-popup h2 {
+      margin: 10px 25px 8px;
+      font-size: 1.8rem;
+    }
+
+    .help-intro {
+      margin: 0 0 22px;
+      line-height: 1.6;
+    }
+
+    .help-section {
+      margin: 18px 0;
+      padding: 18px;
+      background: var(--cream);
+      border: 2px solid var(--brown);
+      border-radius: 15px;
+    }
+
+    .help-section h3 {
+      margin: 0 0 10px;
+      font-size: 1.2rem;
+    }
+
+    .help-section p {
+      margin: 8px 0;
+      line-height: 1.5;
+      font-size: 0.95rem;
+    }
+
+    .sample-fortune {
+      margin: 14px 0;
+      padding: 16px 12px;
+      background: var(--paper);
+      border: 1px dashed var(--brown);
+      font-style: italic;
+      line-height: 1.6;
+    }
+
+    .sample-envelopes {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      margin: 16px 0;
+    }
+
+    .sample-envelope {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      width: 70px;
+      height: 55px;
+
+      border: 2px solid var(--brown);
+      border-radius: 8px;
+      font-size: 1.8rem;
+    }
+
+    .envelope-blush {
+      background: #d9a5a1;
+    }
+
+    .envelope-sage {
+      background: #c4cdbb;
+    }
+
+    .envelope-lavender {
+      background: #d8cde3;
+    }
+
+    .help-action {
+      display: inline-block;
+      margin-top: 8px;
+      padding: 12px 20px;
+
+      background: var(--tan);
+      color: var(--brown);
+
+      border: 2px solid var(--brown);
+      border-radius: 12px;
+
+      box-shadow: 4px 5px 0 var(--brown);
+
+      font-family: inherit;
+      font-size: 1rem;
+      font-weight: 700;
+      text-decoration: none;
+      cursor: pointer;
+
+      transition:
+        transform 120ms ease,
+        box-shadow 120ms ease;
+    }
+
+    .help-action:hover {
+      transform: translate(-2px, -2px);
+      box-shadow: 6px 7px 0 var(--brown);
+    }
+
+    .help-action:active {
+      transform: translate(3px, 4px);
+      box-shadow: 1px 1px 0 var(--brown);
+    }
+
+    .help-action:focus-visible,
+    .close-help:focus-visible {
+      outline: 3px solid var(--terracotta);
+      outline-offset: 4px;
+    }
+
     @media (max-width: 540px) {
-      .about-button {
+      .top-buttons {
         top: 16px;
         left: 18px;
       }
@@ -258,12 +428,21 @@
       .account-button {
         min-width: 105px;
       }
+
+      .help-popup {
+        padding: 28px 16px 22px;
+      }
+
+      .help-popup h2 {
+        font-size: 1.5rem;
+      }
     }
 
     @media (prefers-reduced-motion: reduce) {
       .main-button,
+      .small-button,
       .account-button,
-      .about-button {
+      .help-action {
         transition: none;
       }
     }
@@ -272,13 +451,30 @@
 
 <body>
 
-  <a
-    class="about-button"
-    href="about.html"
-    aria-label="About"
-    title="About">
-    ?
-  </a>
+  <!-- Top-left Help and About Me buttons -->
+
+  <div class="top-buttons">
+
+    <button
+      class="small-button"
+      type="button"
+      onclick="openHelp()"
+      aria-label="Help and previews"
+      title="Help">
+      ?
+    </button>
+
+    <a
+      class="small-button smiley-button"
+      href="about.html"
+      aria-label="About Me"
+      title="About Me">
+      ☺︎
+    </a>
+
+  </div>
+
+  <!-- Homepage -->
 
   <main class="home">
 
@@ -329,10 +525,139 @@
 
   </main>
 
+  <!-- Help popup -->
+
+  <div
+    class="help-overlay"
+    id="helpOverlay"
+    onclick="closeHelpOnBackdrop(event)">
+
+    <div
+      class="help-popup"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="helpTitle">
+
+      <button
+        class="close-help"
+        type="button"
+        onclick="closeHelp()"
+        aria-label="Close help">
+        ×
+      </button>
+
+      <h2 id="helpTitle">A little help? ☺</h2>
+
+      <p class="help-intro">
+        Welcome to our little fortune box!
+        Here's how it works.
+      </p>
+
+      <!-- Fortune From preview -->
+
+      <section class="help-section">
+
+        <h3>✉ Fortune From</h3>
+
+        <p>
+          Leave a little kindness behind.
+          Write a fortune for someone else to discover.
+        </p>
+
+        <div class="sample-fortune">
+          "Somewhere, someone is having a day
+          that will get better because of you."
+        </div>
+
+        <p>
+          Choose your paper, ink and font.
+          Add a little decoration, then share your fortune
+          with the community.
+        </p>
+
+        <a class="help-action" href="fortune-from.html">
+          Explore Fortune From →
+        </a>
+
+      </section>
+
+      <!-- Fortune Found preview -->
+
+      <section class="help-section">
+
+        <h3>✦ Fortune Found</h3>
+
+        <p>
+          A little surprise is waiting for you.
+          Discover a fortune someone else has left behind.
+        </p>
+
+        <div class="sample-envelopes" aria-hidden="true">
+
+          <div class="sample-envelope envelope-blush">✉</div>
+          <div class="sample-envelope envelope-sage">✉</div>
+          <div class="sample-envelope envelope-lavender">✉</div>
+
+        </div>
+
+        <p>
+          Choose an envelope and see what little message
+          is waiting inside.
+        </p>
+
+        <p>
+          To keep the community going, members share
+          an approved fortune before opening one.
+        </p>
+
+        <button
+          class="help-action"
+          type="button"
+          onclick="closeHelp(); showNotice('Fortune Found is coming soon!')">
+          Sounds lovely!
+        </button>
+
+      </section>
+
+      <p>
+        A little kindness goes a long way. 💌
+      </p>
+
+    </div>
+  </div>
+
   <script>
     function showNotice(message) {
       document.getElementById("notice").textContent = message;
     }
+
+    function openHelp() {
+      const overlay = document.getElementById("helpOverlay");
+      overlay.classList.add("open");
+
+      document.querySelector(".close-help").focus();
+    }
+
+    function closeHelp() {
+      document.getElementById("helpOverlay").classList.remove("open");
+      document.querySelector(".top-buttons button").focus();
+    }
+
+    function closeHelpOnBackdrop(event) {
+      if (event.target === document.getElementById("helpOverlay")) {
+        closeHelp();
+      }
+    }
+
+    document.addEventListener("keydown", function(event) {
+      if (event.key === "Escape") {
+        const overlay = document.getElementById("helpOverlay");
+
+        if (overlay.classList.contains("open")) {
+          closeHelp();
+        }
+      }
+    });
   </script>
 
 </body>
